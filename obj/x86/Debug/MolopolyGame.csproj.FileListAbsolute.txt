@@ -69,3 +69,9 @@ D:\_IT7x22 - C#\Course Notes\IT7302_Assignment_3_Monopoly Project (Iteration 1, 
 D:\_IT7x22 - C#\Course Notes\IT7302_Assignment_3_Monopoly Project (Iteration 1, Completed)\bin\Debug\MolopolyGame.pdb
 D:\_IT7x22 - C#\Course Notes\IT7302_Assignment_3_Monopoly Project (Iteration 1, Completed)\bin\Debug\nunit.framework.xml
 D:\_IT7x22 - C#\Course Notes\IT7302_Assignment_3_Monopoly Project (Iteration 1, Completed)\obj\x86\Debug\MolopolyGame.csprojResolveAssemblyReference.cache
+I:\git hub\c-sharp-monopoly-game-console-\obj\x86\Debug\MolopolyGame.exe
+I:\git hub\c-sharp-monopoly-game-console-\obj\x86\Debug\MolopolyGame.pdb
+I:\git hub\c-sharp-monopoly-game-console-\bin\Debug\MolopolyGame.exe
+I:\git hub\c-sharp-monopoly-game-console-\bin\Debug\MolopolyGame.pdb
+I:\git hub\c-sharp-monopoly-game-console-\bin\Debug\nunit.framework.xml
+I:\git hub\c-sharp-monopoly-game-console-\obj\x86\Debug\MolopolyGame.csprojResolveAssemblyReference.cache
