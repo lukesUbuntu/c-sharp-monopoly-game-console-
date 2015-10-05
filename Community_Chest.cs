@@ -7,7 +7,7 @@ namespace MolopolyGame
 {
     class Community_Chest
     {
-
+        protected Player this_player; //Current Player
 
        // protected static Community_Chest Community_Chest_Cards() { }
         //info for creating a list of actions was taken from http://stackoverflow.com/questions/4910775/can-a-list-hold-multiple-void-methods
@@ -16,9 +16,6 @@ namespace MolopolyGame
            
          List<Actionable> Community_Cards_Actions = new List<Actionable>
            
-          
-
-
             {
                 new Actionable
                     {
@@ -94,8 +91,14 @@ namespace MolopolyGame
 
             };
 
-           
 
+         public virtual string draw_card(ref Player player)
+         {
+             this_player = player;//Current Player
+             
+          
+             return ("Card action was");
+         }
        
 
      public class Actionable
@@ -107,6 +110,7 @@ namespace MolopolyGame
     {
         public static void Doctor_fees()
         {
+            
             
         }
        public static void Get_out_of_jail_free(){
