@@ -7,7 +7,9 @@ namespace MolopolyGame
 {
     class Community_Chest
     {
-        protected static Community_Chest Community_Chest_Cards();
+
+
+       // protected static Community_Chest Community_Chest_Cards() { }
         //info for creating a list of actions was taken from http://stackoverflow.com/questions/4910775/can-a-list-hold-multiple-void-methods
 
       //Deck of comunity chest cards
@@ -153,6 +155,12 @@ namespace MolopolyGame
        }
         
     }
+
+   
+
+
+
+
 
 
     }
