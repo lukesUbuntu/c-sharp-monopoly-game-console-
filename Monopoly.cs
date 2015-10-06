@@ -340,7 +340,8 @@ namespace MolopolyGame
             Console.WriteLine("3. Purchase This Property");
             Console.WriteLine("4. Buy House for Property");
             Console.WriteLine("5. Trade Property with Player");
-            Console.Write("(1-5)>");
+            Console.WriteLine("6. Mortgage Property");
+            Console.Write("(1-6)>");
             //read response
             resp = inputInteger();
             //if response is invalid redisplay menu
@@ -368,6 +369,10 @@ namespace MolopolyGame
                         break;
                     case 5:
                         this.tradeProperty(player);
+                        this.displayPlayerChoiceMenu(player);
+                        break;
+                    case 6:
+                        this.mortgage_property(player);
                         this.displayPlayerChoiceMenu(player);
                         break;
                     default:
@@ -580,6 +585,23 @@ namespace MolopolyGame
         {
             Player p = (Player)obj;
             Console.WriteLine("{0} has passed go.{0} has received $200", p.getName());
+        }
+
+        //Allow player to mortgage property
+        public void mortgage_property(Player player) {
+
+            string sPrompt = String.Format("{0}Please select a property to mortgage:", this.playerPrompt(player));
+            //create variable for property to Mortgage
+            Residential propertyToMortgage = null;
+            if (player.getPropertiesOwnedFromBoard().Count == 0)
+            {
+                //write message
+                Console.WriteLine("{0}You do not have any properties to mortgage! ", playerPrompt(player));
+                //return from method
+                return;
+            }
+        
+        
         }
    }
 }
