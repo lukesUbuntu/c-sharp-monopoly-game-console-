@@ -10,6 +10,7 @@ namespace MolopolyGame
         decimal dHouseCost;
         int iHouses;
         static int iMaxHouses = 4;
+
         //int iHotels; //not implemented
 
         public Residential() : this("Residential Property"){}

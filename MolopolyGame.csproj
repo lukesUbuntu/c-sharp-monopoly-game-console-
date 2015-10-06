@@ -52,6 +52,8 @@
     <Compile Include="Game.cs" />
     <Compile Include="GameInterface.cs" />
     <Compile Include="InitialValuesAccessor.cs" />
+    <Compile Include="Jail.cs" />
+    <Compile Include="JailFactory.cs" />
     <Compile Include="Luck.cs" />
     <Compile Include="LuckFactory.cs" />
     <Compile Include="Monopoly.cs" />
