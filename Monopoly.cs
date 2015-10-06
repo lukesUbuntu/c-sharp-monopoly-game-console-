@@ -591,8 +591,10 @@ namespace MolopolyGame
         public void mortgage_property(Player player) {
 
             string sPrompt = String.Format("{0}Please select a property to mortgage:", this.playerPrompt(player));
-            //create variable for property to Mortgage
-            Residential propertyToMortgage = null;
+            
+            //Get the selected property to mortgage
+            Property selected_property = this.displayPropertyChooser(player.getPropertiesOwnedFromBoard(), sPrompt);
+          
             if (player.getPropertiesOwnedFromBoard().Count == 0)
             {
                 //write message
@@ -600,6 +602,16 @@ namespace MolopolyGame
                 //return from method
                 return;
             }
+            if (selected_property.isMortgaged) {
+
+                Console.WriteLine("{0} has already been mortgaged! ");
+            }
+            //get the mortgage value
+            Decimal mortgage_value = ((Property)selected_property).mortgage_value();
+            //set the isMortgaged flag to true
+            selected_property.isMortgaged = true;
+
+
         
         
         }
