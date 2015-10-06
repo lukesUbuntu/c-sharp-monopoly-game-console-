@@ -24,10 +24,11 @@ namespace MolopolyGame
         }
 
 
-        public Property(string sName, ref Trader owner)
+        public Property(string sName, ref Trader owner, decimal dMortgageValue )
         {
             this.sName = sName;
             this.owner = owner;
+            this.dMortgageValue = dMortgageValue;
         }
         public Trader getOwner()
         {
