@@ -602,17 +602,17 @@ namespace MolopolyGame
                 //return from method
                 return;
             }
-            if (selected_property.isMortgaged) {
+            if (selected_property.isMortgaged == false) {
 
                 Console.WriteLine("{0} has already been mortgaged! ");
             }
             //get the mortgage value
             Decimal mortgage_value = ((Property)selected_property).mortgage_value();
             //set the isMortgaged flag to true
-            selected_property.isMortgaged = true;
-
-
-        
+          //  selected_property.isMortgaged = true; This is done in the property class so there us no need to do it here
+            //Mortgage the property
+            selected_property.mortgage_Property();
+            Console.WriteLine("You have mortgaged {0} and have been paid" + mortgage_value.ToString());
         
         }
    }
