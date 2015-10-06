@@ -29,8 +29,18 @@ namespace MolopolyGame
 
         public virtual void payRent(ref Player player)
         {
-            player.pay(this.getRent());
-            this.getOwner().receive(this.getRent());
+            //Need to check if the property has been mortgage before we change the player rent.
+            if (this.isMortgaged == false)
+            {
+                player.pay(this.getRent());
+                this.getOwner().receive(this.getRent());
+            }
+            //Do not have to pay rent
+            else
+            {
+                //Should change this to an exception
+                Console.WriteLine("This property has been mortgaged, you do not need to pay rent: ");
+            }
         }
 
         public void purchase(ref Player buyer)

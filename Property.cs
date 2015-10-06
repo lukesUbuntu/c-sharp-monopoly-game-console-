@@ -13,7 +13,7 @@ namespace MolopolyGame
         protected string sName;
         protected Trader owner;
         protected decimal dMortgageValue;
-        bool isMortgaged;
+       public bool isMortgaged;
         public Property(): this("Property"){}
 
         public Property(string sName)
@@ -88,6 +88,11 @@ namespace MolopolyGame
                 Console.WriteLine("This property has not been mortgaged! ");
             }
 
+        }
+
+        public virtual bool check_mortgaged_status() {
+           
+            return isMortgaged;
         }
 
     }
