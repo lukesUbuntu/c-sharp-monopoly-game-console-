@@ -68,6 +68,7 @@ namespace MolopolyGame
         {
             if (isMortgaged == false)
             {
+                
                 this.getOwner().pay(this.dMortgageValue);
                 Banker.access().pay(this.dMortgageValue);
                 isMortgaged = true;

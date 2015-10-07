@@ -80,3 +80,8 @@ C:\Users\20504560\Documents\GitHub\c-sharp-monopoly-game-console-\bin\Debug\Molo
 C:\Users\20504560\Documents\GitHub\c-sharp-monopoly-game-console-\obj\x86\Debug\MolopolyGame.csprojResolveAssemblyReference.cache
 C:\Users\20504560\Documents\GitHub\c-sharp-monopoly-game-console-\obj\x86\Debug\MolopolyGame.exe
 C:\Users\20504560\Documents\GitHub\c-sharp-monopoly-game-console-\obj\x86\Debug\MolopolyGame.pdb
+E:\c-sharp-monopoly-game-console-\obj\x86\Debug\MolopolyGame.exe
+E:\c-sharp-monopoly-game-console-\obj\x86\Debug\MolopolyGame.pdb
+E:\c-sharp-monopoly-game-console-\bin\Debug\MolopolyGame.exe
+E:\c-sharp-monopoly-game-console-\bin\Debug\MolopolyGame.pdb
+E:\c-sharp-monopoly-game-console-\obj\x86\Debug\MolopolyGame.csprojResolveAssemblyReference.cache

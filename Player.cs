@@ -132,6 +132,22 @@ namespace MolopolyGame
             }
             return propertiesOwned;
         }
+        // get a list of all properties that are owned by the player and are mortgaged 
+        public ArrayList getPropertiesOwnedAndMortgaged()
+        {
+            ArrayList propertiesMortgaged = new ArrayList();
+            //go through all the properties
+            for (int i = 0; i < Board.access().getProperties().Count; i++)
+            {
+                //owned by this player and mortgaged
+                if (Board.access().getProperty(i).getOwner() == this && Board.access().getProperty(i).isMortgaged == true)
+                {
+                    //add to arraylist
+                    propertiesMortgaged.Add(Board.access().getProperty(i));
+                }
+            }
+            return propertiesMortgaged;
+        }
 
         public override void checkBankrupt()
         {

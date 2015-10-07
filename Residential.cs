@@ -21,7 +21,7 @@ namespace MolopolyGame
         {
             this.sName = sName;
             this.dPrice = dPrice;
-            this.dMortgageValue = dPrice / 2;
+            this.dMortgageValue = dPrice;
             this.dRent = dRent;
             this.dHouseCost = dHouseCost;
         }
@@ -62,5 +62,36 @@ namespace MolopolyGame
         {
            return base.ToString()  + string.Format("\tHouses: {0}", this.getHouseCount());
         }
+
+        public virtual void mortgage_Property()
+        {
+            if (isMortgaged == false)
+            {
+                this.getOwner().pay(this.dMortgageValue);
+                Banker.access().pay(this.dMortgageValue);
+                isMortgaged = true;
+            }
+            else
+            {
+
+                Console.WriteLine("This property has already been mortgaged! ");
+            }
+
+        }
+        public virtual void un_mortgage_Property()
+        {
+            if (isMortgaged == true)
+            {
+                isMortgaged = false;
+            }
+            else
+            {
+                //not sure if I need this as the choice to un mortgage a property should only be avalible to a mortgaged property
+                Console.WriteLine("This property has not been mortgaged! ");
+            }
+
+        }
+    
+    
     }
 }

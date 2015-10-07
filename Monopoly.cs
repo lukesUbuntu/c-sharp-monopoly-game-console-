@@ -595,17 +595,18 @@ namespace MolopolyGame
             //Get the selected property to mortgage
             Property selected_property = this.displayPropertyChooser(player.getPropertiesOwnedFromBoard(), sPrompt);
           
-            if (player.getPropertiesOwnedFromBoard().Count == 0)
+            if (player.getPropertiesOwnedFromBoard().Count == 0 && )
             {
                 //write message
                 Console.WriteLine("{0}You do not have any properties to mortgage! ", playerPrompt(player));
                 //return from method
                 return;
             }
-            if (selected_property.isMortgaged == false) {
+            if (selected_property.isMortgaged == true) {
 
-                Console.WriteLine("{0} has already been mortgaged! ");
+                Console.WriteLine(selected_property.ToString() + " has already been mortgaged! ");
             }
+            //need to fix the logic here as the following code will run no matter what!
             //get the mortgage value
             Decimal mortgage_value = ((Property)selected_property).mortgage_value();
             //set the isMortgaged flag to true
@@ -614,6 +615,22 @@ namespace MolopolyGame
             selected_property.mortgage_Property();
             Console.WriteLine("You have mortgaged {0} and have been paid" + mortgage_value.ToString());
         
+        }
+       // This allows us to get a list of all mortgaged properties owned by the current player
+        public void un_mortgage_property(Player player) {
+
+            string sprompt = string.Format("Please select a property to un-mortgage:", this.playerPrompt(player));
+            // getPropertiesOwnedAndMortgaged() had to be created to allow us to get a list of all mortgaged properties
+            //owned by the current player
+            Property selected_property = this.displayPropertyChooser(player.getPropertiesOwnedAndMortgaged(), sprompt);
+        
+            //check that the player has mortgaged properties
+
+            if(player.getPropertiesOwnedAndMortgaged().Count == 0){
+
+                Console.WriteLine("You have not mortgaged any properties ", playerPrompt(player));
+            }
+
         }
    }
 }
