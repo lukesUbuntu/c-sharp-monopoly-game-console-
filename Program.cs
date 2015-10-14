@@ -12,11 +12,11 @@ namespace MolopolyGame
         static void Main(string[] args)
         {
 
-            Community_Chest theCom = new Community_Chest();
-            Player thenPlayer = new Player();
+           // Community_Chest theCom = new Community_Chest();
+         //   Player thenPlayer = new Player();
 
-           // theCom.draw_card(ref thenPlayer);
-
+//theCom.draw_card(thenPlayer);
+         //   return;
 
             
 

@@ -222,6 +222,7 @@ namespace MolopolyGame
             UtilityFactory utilFactory = new UtilityFactory();
             PropertyFactory genericFactory = new PropertyFactory();
             JailFactory jailFactory = new JailFactory();
+            Community_Chest_Factory ChestFactory = new Community_Chest_Factory();
 
             //Create properties and add them to the board
             //Loading property details from file has not been implemented
@@ -262,7 +263,8 @@ namespace MolopolyGame
              Board.access().addProperty(jailFactory.create("Go to Jail", true)); //not properly implemented just a property that does nothing
              Board.access().addProperty(resFactory.create("Cable Cars Wellington", 300, 30, 200));
              Board.access().addProperty(resFactory.create("Cathedral Square", 300, 30, 200));
-             Board.access().addProperty(luckFactory.create("Community Chest", false, 50)); // not properly implemented just 50 benefit
+ //old            //Board.access().addProperty(luckFactory.create("Community Chest", false, 50)); // not properly implemented just 50 benefit
+             Board.access().addProperty(Community_Chest_Factory.create("Community Chest"));
              Board.access().addProperty(resFactory.create("The Square, Palmerston North", 320, 32, 200));
              Board.access().addProperty(transFactory.create("Picton Ferry"));
              Board.access().addProperty(luckFactory.create("Chance", true, 50)); // not properly implemented just 50 penalty

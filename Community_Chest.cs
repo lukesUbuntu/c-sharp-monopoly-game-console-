@@ -5,30 +5,45 @@ using System.Text;
 
 namespace MolopolyGame
 {
-    class Community_Chest
+  public  class Community_Chest : Property
     {
-        public Player current_player; //Current Player
-        //public List<Actionable> Community_Cards_Actions;
-       // protected static Community_Chest Community_Chest_Cards() { }
+        public Player current_player;
+        public Banker the_bank;//Current Player
+       public string sName;
+
+
+        public Community_Chest() : this("Community Chest") { }
+
+
+        public Community_Chest(string sName)
+        {
+            
+            this.sName = sName;
+        }
+
+        public override string landOn(ref Player player)
+        {
+
+            draw_card(player);
+            return base.landOn(ref player) + String.Format("You landed on something and got something");
+        
+        }
         //info for creating a list of actions was taken from http://stackoverflow.com/questions/4910775/can-a-list-hold-multiple-void-methods
 
       //Deck of comunity chest cards
 
 
-        public Community_Chest()
-        {
-            
-        }
+     
         public List<Actionable> CardList()
         {
 
             List<Actionable> Community_Cards_Actions = new List<Actionable>
-           //Community_Cards_Actions.Add(new Actionable{Name = "thisshit", Action = Card_Actions.Doctor_fees});
+          
             {
                 new Actionable
                     {
                           Name = "Doctor's fees – Pay $50 ",
-                          Action = Card_Actions.Doctor_fees
+                          Action = Doctor_fees
 
                     },
                 new Actionable
@@ -99,20 +114,28 @@ namespace MolopolyGame
                 
             };
        
+          
             return Community_Cards_Actions;
          }
+        //confirmed that this action runs
+        public void Doctor_fees()
+        {
+            
+            Console.WriteLine("Doctor's fees – Pay $50 ");
+            current_player.pay(50);
+            the_bank.receive(50);
+            Console.WriteLine("Your new balance is /n" + current_player.getBalance());
+            Console.ReadLine();
 
-
+        }
         
 
          public string draw_card(Player player)
          {
              List<Actionable>  Community_Cards_Actions = CardList();
-             current_player = player;//Current Player
+             current_player = player; //Current Player
              Community_Cards_Actions[0].Action.Invoke();
-            
-          
-             return ("Card action was");
+             return ("need to figure out how to not bother returning anything");
          }
        
 
@@ -121,16 +144,16 @@ namespace MolopolyGame
         public string Name { get; set; }
         public Action Action { get; set; }
     }
-        public static class Card_Actions : Community_Chest
+        public static class Card_Actions
     {
            
-        public static void Doctor_fees()
+      /*  public static void Doctor_fees()
         {
              
             Console.WriteLine("Some Action!");
             Console.ReadLine();
             
-        }
+        }*/
        public static void Get_out_of_jail_free(){
            
            //Logic for each card will go here

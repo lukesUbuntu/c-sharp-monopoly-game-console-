@@ -73,7 +73,6 @@ I:\git hub\c-sharp-monopoly-game-console-\obj\x86\Debug\MolopolyGame.exe
 I:\git hub\c-sharp-monopoly-game-console-\obj\x86\Debug\MolopolyGame.pdb
 I:\git hub\c-sharp-monopoly-game-console-\bin\Debug\MolopolyGame.exe
 I:\git hub\c-sharp-monopoly-game-console-\bin\Debug\MolopolyGame.pdb
-I:\git hub\c-sharp-monopoly-game-console-\bin\Debug\nunit.framework.xml
 I:\git hub\c-sharp-monopoly-game-console-\obj\x86\Debug\MolopolyGame.csprojResolveAssemblyReference.cache
 C:\Users\20504560\Documents\GitHub\c-sharp-monopoly-game-console-\bin\Debug\MolopolyGame.exe
 C:\Users\20504560\Documents\GitHub\c-sharp-monopoly-game-console-\bin\Debug\MolopolyGame.pdb
