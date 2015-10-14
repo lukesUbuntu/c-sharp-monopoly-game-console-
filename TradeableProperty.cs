@@ -83,7 +83,7 @@ namespace MolopolyGame
                 return base.landOn(ref player);
         }
 
-        public override void mortgage_Property()
+        public  void mortgage_Property()
         {
             if (isMortgaged == false)
             {

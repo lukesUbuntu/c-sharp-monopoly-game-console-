@@ -98,8 +98,7 @@ namespace MolopolyGame
                 }
                 
             };
-            //Community_Cards_Actions.ForEach(a => a.Action());
-         //   Community_Cards_Actions[0].Action.Invoke();
+       
             return Community_Cards_Actions;
          }
 
@@ -122,12 +121,13 @@ namespace MolopolyGame
         public string Name { get; set; }
         public Action Action { get; set; }
     }
-        public static class Card_Actions
+        public static class Card_Actions : Community_Chest
     {
+           
         public static void Doctor_fees()
         {
              
-            Console.WriteLine("fuck");
+            Console.WriteLine("Some Action!");
             Console.ReadLine();
             
         }

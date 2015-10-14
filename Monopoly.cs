@@ -616,7 +616,7 @@ namespace MolopolyGame
 
                 // ((Property)
               decimal mortgage = selected_property.mortgage_value();
-              ((Property)selected_property).mortgage_Property();
+            //  ((Property)selected_property).mortgage_Property();
 
 
              //   decimal mortgage = selected_property.mortgage_value();
