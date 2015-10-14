@@ -20,6 +20,7 @@ namespace MolopolyGame
         // A template method : 
         public void playOneGame(int playersCount)
         {
+           
             this.playersCount = playersCount;
             initializeGame();
             int j = 0;

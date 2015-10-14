@@ -5,9 +5,11 @@ using System.Text;
 
 namespace MolopolyGame
 {
-    public class JailFactory
+    public class JailFactory : PropertyFactory
     {
-        
+        public Jail create(string sName, bool setJail) {
+            return new Jail(sName, setJail);
+        }
 
     }
 }

@@ -14,6 +14,7 @@ namespace MolopolyGame
     {
         private int location;
         private int lastMove;
+        private bool inJail;
 
         //each player has two dice
         Die die1 = new Die();
@@ -29,6 +30,7 @@ namespace MolopolyGame
             this.sName = "Player";
             this.dBalance = InitialValuesAccessor.getPlayerStartingBalance();
             this.location = 0;
+            this.inJail = false;
         }
 
         public Player(string sName)
@@ -36,6 +38,7 @@ namespace MolopolyGame
             this.sName = sName;
             this.dBalance = InitialValuesAccessor.getPlayerStartingBalance();
             this.location = 0;
+            this.inJail = false;
         }
 
 
@@ -168,6 +171,11 @@ namespace MolopolyGame
 
 
             }
+        }
+
+        public void setIsInJail() {
+
+           this.inJail = true;
         }
 
         public bool isNotActive()

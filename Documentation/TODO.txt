@@ -1,6 +1,9 @@
 ﻿Finish Nunit Tests
 Conduct unit tests on all classes in monopoly game using nUnit framework and produce average of 75% code coverage for overall application. 
 
+
+Started
+
 Implement more functionality:
 Mortgage properties
 Properties can also be mortgaged. The player receives money from the bank for each mortgaged property (half of the purchase price), which must be repaid with 10% interest to unmortgage. 
@@ -16,9 +19,11 @@ That is, a second house cannot be built on any property within a group until all
 any undeveloped properties within it. Although houses and hotels cannot be built on railroads or utilities, the given rent also increases if a player owns more than one of either type.
  If there is more demand for houses to be built than what remains in the bank, then a housing auction is conducted to determine who will get to purchase each house.
 
+ Started
 Cards
 A deck of 32 Chance and Community Chest cards (16 Chance and 16 Community Chest) which players draw when they land on the corresponding squares of the track, and follow the instructions printed on them. 
 
+Started
 Jail
 A player will land in jail if they land on "Go to Jail", throw three straight doubles in a turn, or draw a Community Chest or Chance Card saying "Go to Jail". 
 When a player is sent to jail they move there directly ("Do not pass Go. Do not collect $200.") and their turn ends. 

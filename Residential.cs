@@ -1,4 +1,4 @@
-using System;
+ using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -21,7 +21,8 @@ namespace MolopolyGame
         {
             this.sName = sName;
             this.dPrice = dPrice;
-            this.dMortgageValue = dPrice;
+
+            this.dMortgageValue = dPrice / 2;
             this.dRent = dRent;
             this.dHouseCost = dHouseCost;
         }
@@ -63,7 +64,7 @@ namespace MolopolyGame
            return base.ToString()  + string.Format("\tHouses: {0}", this.getHouseCount());
         }
 
-        public virtual void mortgage_Property()
+    /*    public  override  void  mortgage_Property()
         {
             if (isMortgaged == false)
             {
@@ -78,7 +79,7 @@ namespace MolopolyGame
             }
 
         }
-        public virtual void un_mortgage_Property()
+        public override void un_mortgage_Property()
         {
             if (isMortgaged == true)
             {
@@ -90,7 +91,7 @@ namespace MolopolyGame
                 Console.WriteLine("This property has not been mortgaged! ");
             }
 
-        }
+        }*/
     
     
     }

@@ -12,8 +12,12 @@ namespace MolopolyGame
     {
         protected string sName;
         protected Trader owner;
+        protected decimal dPrice;
         protected decimal dMortgageValue;
-       public bool isMortgaged;
+        protected decimal dRent;
+        //protected decimal dMortgageValue;
+        //private decimal dMortgageValue;
+        public bool isMortgaged;
         public Property(): this("Property"){}
 
         public Property(string sName)
@@ -24,11 +28,12 @@ namespace MolopolyGame
         }
 
 
-        public Property(string sName, ref Trader owner, decimal dMortgageValue )
+        public Property(string sName, ref Trader owner)
         {
+            //decimal dMortgageValue
             this.sName = sName;
             this.owner = owner;
-            this.dMortgageValue = dMortgageValue;
+            //this.dMortgageValue = 50;
         }
         public Trader getOwner()
         {
@@ -64,6 +69,7 @@ namespace MolopolyGame
         {
             return false;//generic properties are not available for purchase
         }
+        /*
         public virtual void mortgage_Property()
         {
             if (isMortgaged == false)
@@ -71,7 +77,7 @@ namespace MolopolyGame
                 
                 this.getOwner().pay(this.dMortgageValue);
                 Banker.access().pay(this.dMortgageValue);
-                isMortgaged = true;
+                this.isMortgaged = true;
             }
             else
             {
@@ -79,7 +85,7 @@ namespace MolopolyGame
                 Console.WriteLine("This property has already been mortgaged! ");
             }
             
-        }
+        }*/
         public virtual void un_mortgage_Property()
         {
             if (isMortgaged == true)
@@ -100,10 +106,13 @@ namespace MolopolyGame
         //Get the mortgage value and return it
         public virtual decimal mortgage_value()
         {
+            
             return this.dMortgageValue;
         }
 
+       
+        }
     }
 
    
-}
+

@@ -8,6 +8,7 @@ namespace MolopolyGame
     {
         public Residential create(string sName, decimal dPrice, decimal dRent, decimal dHouseCost)
         {
+            
             return new Residential(sName, dPrice, dRent, dHouseCost);
         }
     }

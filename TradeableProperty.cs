@@ -6,10 +6,8 @@ namespace MolopolyGame
 {
     public class TradeableProperty : Property //should be abstract but not to make testing easier
     {
-        protected decimal dPrice;
-        protected decimal dMortgageValue;
-        protected decimal dRent;
-
+       
+   
         public TradeableProperty()
         {
             this.dPrice = 200;
@@ -84,5 +82,36 @@ namespace MolopolyGame
             else
                 return base.landOn(ref player);
         }
+
+        public override void mortgage_Property()
+        {
+            if (isMortgaged == false)
+            {
+                this.getOwner().pay(this.dMortgageValue);
+                Banker.access().pay(this.dMortgageValue);
+                isMortgaged = true;
+            }
+            else
+            {
+
+                Console.WriteLine("This property has already been mortgaged! ");
+            }
+
+        }
+        public override void un_mortgage_Property()
+        {
+            if (isMortgaged == true)
+            {
+                isMortgaged = false;
+            }
+            else
+            {
+                //not sure if I need this as the choice to un mortgage a property should only be avalible to a mortgaged property
+                Console.WriteLine("This property has not been mortgaged! ");
+            }
+
+        }
+    
+
     }
 }

@@ -9,14 +9,15 @@ namespace MolopolyGame
     /// <summary>
     /// Main class for monoploy game that implements abstract class game
     /// </summary>
-    
+
     public class Monopoly : Game
     {
-        ConsoleColor[] colors = new ConsoleColor[8] { ConsoleColor.Cyan, ConsoleColor.Green, ConsoleColor.Yellow, ConsoleColor.Red, ConsoleColor.Magenta, ConsoleColor.Gray, ConsoleColor.Blue, ConsoleColor.DarkYellow};
+        ConsoleColor[] colors = new ConsoleColor[8] { ConsoleColor.Cyan, ConsoleColor.Green, ConsoleColor.Yellow, ConsoleColor.Red, ConsoleColor.Magenta, ConsoleColor.Gray, ConsoleColor.Blue, ConsoleColor.DarkYellow };
         bool gameSetUp = false;
 
         public override void initializeGame()
         {
+
             displayMainChoiceMenu();
 
         }
@@ -49,11 +50,11 @@ namespace MolopolyGame
                 {
                     this.printWinner();
                 }
-               
+
                 return;
             }
-            
-            
+
+
 
             //prompt player to make move
             Console.WriteLine("{0}Your turn. Press Enter to make move", playerPrompt(iPlayerIndex));
@@ -64,7 +65,7 @@ namespace MolopolyGame
             //Display making move
             Console.WriteLine("*****Move for {0}:*****", player.getName());
             //Display rolling
-           Console.WriteLine("{0}{1}\n", playerPrompt(iPlayerIndex), player.diceRollingToString());
+            Console.WriteLine("{0}{1}\n", playerPrompt(iPlayerIndex), player.diceRollingToString());
 
             Property propertyLandedOn = Board.access().getProperty(player.getLocation());
             //landon property and output to console
@@ -74,7 +75,7 @@ namespace MolopolyGame
             //display player choice menu
             displayPlayerChoiceMenu(player);
 
-            
+
         }
 
         public override bool endOfGame()
@@ -97,8 +98,8 @@ namespace MolopolyGame
                 if (!p.isNotActive())
                     winner = p;
             }
-             //display winner
-            Console.WriteLine("\n\n{0} has won the game!\n\n" , winner.getName());
+            //display winner
+            Console.WriteLine("\n\n{0} has won the game!\n\n", winner.getName());
             //end the game
             this.endOfGame();
         }
@@ -143,11 +144,11 @@ namespace MolopolyGame
                         throw new ApplicationException("That option is not avaliable. Please try again.");
                 }
             }
-            catch(ApplicationException ex)
+            catch (ApplicationException ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            
+
         }
 
         public void setUpGame()
@@ -157,7 +158,7 @@ namespace MolopolyGame
 
             //add players
             this.setUpPlayers();
-            
+
         }
 
         public void playGame()
@@ -168,7 +169,7 @@ namespace MolopolyGame
                 {
                     this.makePlay(i);
                 }
-            } 
+            }
         }
 
         public int inputInteger() //0 is invalid input
@@ -200,7 +201,7 @@ namespace MolopolyGame
         public decimal inputDecimal(string msg)
         {
             Console.WriteLine(msg);
-             Console.Write(">");
+            Console.Write(">");
             decimal amount = this.inputDecimal();
 
             //if response is invalid redisplay 
@@ -220,6 +221,7 @@ namespace MolopolyGame
             TransportFactory transFactory = new TransportFactory();
             UtilityFactory utilFactory = new UtilityFactory();
             PropertyFactory genericFactory = new PropertyFactory();
+            JailFactory jailFactory = new JailFactory();
 
             //Create properties and add them to the board
             //Loading property details from file has not been implemented
@@ -228,45 +230,46 @@ namespace MolopolyGame
             //Colours have not been implemented
             Board.access().addProperty(luckFactory.create("Go", false, 200));
             Board.access().addProperty(resFactory.create("Ohakune Carrot", 60, 6, 50));
+            
             Board.access().addProperty(luckFactory.create("Community Chest", false, 50)); // not properly implemented just 50 benefit
             Board.access().addProperty(resFactory.create("Te Puke, Giant Kiwifruit", 60, 6, 50));
             Board.access().addProperty(luckFactory.create("Income Tax", true, 200));
-            Board.access().addProperty(transFactory.create("Auckland International Airport"));
-            Board.access().addProperty(resFactory.create("Te Papa", 100, 10, 50));
-            Board.access().addProperty(luckFactory.create("Chance", true, 50)); // not properly implemented just 50 penalty
-            Board.access().addProperty(resFactory.create("Waitangi Treaty Grounds", 100, 10, 50));
-            Board.access().addProperty(resFactory.create("Larnach Castle", 120, 12, 50));
-            Board.access().addProperty(genericFactory.create("Jail")); //not properly implemented just a property that does nothing
-            Board.access().addProperty(resFactory.create("Cape Reinga Lighthouse", 140, 14, 100));
-            Board.access().addProperty(utilFactory.create("Mobile Phone Company"));
-            Board.access().addProperty(resFactory.create("Lake Taupo", 140, 14, 100));
-            Board.access().addProperty(resFactory.create("Queenstown Ski Fields", 160, 16, 100));
-            Board.access().addProperty(transFactory.create("Dunedin Railway Station"));
-            Board.access().addProperty(resFactory.create("Fox Glacier", 180, 18, 100));
-            Board.access().addProperty(luckFactory.create("Community Chest", false, 50)); // not properly implemented just 50 benefit
-            Board.access().addProperty(resFactory.create("Milford Sound", 180, 18, 100));
-            Board.access().addProperty(resFactory.create("Mt Cook", 200, 20, 100));
-            Board.access().addProperty(genericFactory.create("Free Parking")); //not properly implemented just a property that does nothing
-            Board.access().addProperty(resFactory.create("Ninety Mile Beach", 220, 22, 150));
-            Board.access().addProperty(luckFactory.create("Chance", true, 50)); // not properly implemented just 50 penalty
-            Board.access().addProperty(resFactory.create("Golden Bay", 220, 22, 150));
-            Board.access().addProperty(resFactory.create("Moeraki Boulders, Oamaru", 240, 24, 150));
-            Board.access().addProperty(transFactory.create("Port Tauranga"));
-            Board.access().addProperty(resFactory.create("Waitomo Caves", 260, 26, 150));
-            Board.access().addProperty(resFactory.create("Mt Maunganui", 260, 26, 150));
-            Board.access().addProperty(utilFactory.create("Internet Service Provider"));
-            Board.access().addProperty(resFactory.create("Art Deco Buildings, Napier", 280, 28, 150));
-            Board.access().addProperty(genericFactory.create("Go to Jail")); //not properly implemented just a property that does nothing
-            Board.access().addProperty(resFactory.create("Cable Cars Wellington", 300, 30, 200));
-            Board.access().addProperty(resFactory.create("Cathedral Square", 300, 30, 200));
-            Board.access().addProperty(luckFactory.create("Community Chest", false, 50)); // not properly implemented just 50 benefit
-            Board.access().addProperty(resFactory.create("The Square, Palmerston North", 320, 32, 200));
-            Board.access().addProperty(transFactory.create("Picton Ferry"));
-            Board.access().addProperty(luckFactory.create("Chance", true, 50)); // not properly implemented just 50 penalty
-            Board.access().addProperty(resFactory.create("Pukekura Park, Festival of Lights", 350, 35, 200));
-            Board.access().addProperty(luckFactory.create("Super Tax", true, 100));
-            Board.access().addProperty(resFactory.create("Rangitoto", 400, 40, 200));
-
+             Board.access().addProperty(transFactory.create("Auckland International Airport"));
+             Board.access().addProperty(resFactory.create("Te Papa", 100, 10, 50));
+             Board.access().addProperty(luckFactory.create("Chance", true, 50)); // not properly implemented just 50 penalty
+             Board.access().addProperty(resFactory.create("Waitangi Treaty Grounds", 100, 10, 50));
+             Board.access().addProperty(resFactory.create("Larnach Castle", 120, 12, 50));
+             Board.access().addProperty(jailFactory.create("Jail", false)); //not properly implemented just a property that does nothing
+             Board.access().addProperty(resFactory.create("Cape Reinga Lighthouse", 140, 14, 100));
+             Board.access().addProperty(utilFactory.create("Mobile Phone Company"));
+             Board.access().addProperty(resFactory.create("Lake Taupo", 140, 14, 100));
+             Board.access().addProperty(resFactory.create("Queenstown Ski Fields", 160, 16, 100));
+             Board.access().addProperty(transFactory.create("Dunedin Railway Station"));
+             Board.access().addProperty(resFactory.create("Fox Glacier", 180, 18, 100));
+             Board.access().addProperty(luckFactory.create("Community Chest", false, 50)); // not properly implemented just 50 benefit
+             Board.access().addProperty(resFactory.create("Milford Sound", 180, 18, 100));
+             Board.access().addProperty(resFactory.create("Mt Cook", 200, 20, 100));
+             Board.access().addProperty(genericFactory.create("Free Parking")); //not properly implemented just a property that does nothing
+             Board.access().addProperty(resFactory.create("Ninety Mile Beach", 220, 22, 150));
+             Board.access().addProperty(luckFactory.create("Chance", true, 50)); // not properly implemented just 50 penalty
+             Board.access().addProperty(resFactory.create("Golden Bay", 220, 22, 150));
+             Board.access().addProperty(resFactory.create("Moeraki Boulders, Oamaru", 240, 24, 150));
+             Board.access().addProperty(transFactory.create("Port Tauranga"));
+             Board.access().addProperty(resFactory.create("Waitomo Caves", 260, 26, 150));
+             Board.access().addProperty(resFactory.create("Mt Maunganui", 260, 26, 150));
+             Board.access().addProperty(utilFactory.create("Internet Service Provider"));
+             Board.access().addProperty(resFactory.create("Art Deco Buildings, Napier", 280, 28, 150));
+             Board.access().addProperty(jailFactory.create("Go to Jail", true)); //not properly implemented just a property that does nothing
+             Board.access().addProperty(resFactory.create("Cable Cars Wellington", 300, 30, 200));
+             Board.access().addProperty(resFactory.create("Cathedral Square", 300, 30, 200));
+             Board.access().addProperty(luckFactory.create("Community Chest", false, 50)); // not properly implemented just 50 benefit
+             Board.access().addProperty(resFactory.create("The Square, Palmerston North", 320, 32, 200));
+             Board.access().addProperty(transFactory.create("Picton Ferry"));
+             Board.access().addProperty(luckFactory.create("Chance", true, 50)); // not properly implemented just 50 penalty
+             Board.access().addProperty(resFactory.create("Pukekura Park, Festival of Lights", 350, 35, 200));
+             Board.access().addProperty(luckFactory.create("Super Tax", true, 100));
+             Board.access().addProperty(resFactory.create("Rangitoto", 400, 40, 200));
+             
             Console.WriteLine("Properties have been setup");
         }
 
@@ -349,37 +352,37 @@ namespace MolopolyGame
                 this.displayPlayerChoiceMenu(player);
 
             //perform choice according to number input
-                switch (resp)
-                {
-                    case 1:
-                        break;
-                    case 2:
-                        Console.WriteLine("==================================");
-                        Console.WriteLine(player.FullDetailsToString());
-                        Console.WriteLine("==================================");
-                        this.displayPlayerChoiceMenu(player);
-                        break;
-                    case 3:
-                        this.purchaseProperty(player);
-                        this.displayPlayerChoiceMenu(player);
-                        break;
-                    case 4:
-                        this.buyHouse(player);
-                        this.displayPlayerChoiceMenu(player);
-                        break;
-                    case 5:
-                        this.tradeProperty(player);
-                        this.displayPlayerChoiceMenu(player);
-                        break;
-                    case 6:
-                        this.mortgage_property(player);
-                        this.displayPlayerChoiceMenu(player);
-                        break;
-                    default:
-                        Console.WriteLine("That option is not avaliable. Please try again.");
-                        this.displayPlayerChoiceMenu(player);
-                        break;
-                }
+            switch (resp)
+            {
+                case 1:
+                    break;
+                case 2:
+                    Console.WriteLine("==================================");
+                    Console.WriteLine(player.FullDetailsToString());
+                    Console.WriteLine("==================================");
+                    this.displayPlayerChoiceMenu(player);
+                    break;
+                case 3:
+                    this.purchaseProperty(player);
+                    this.displayPlayerChoiceMenu(player);
+                    break;
+                case 4:
+                    this.buyHouse(player);
+                    this.displayPlayerChoiceMenu(player);
+                    break;
+                case 5:
+                    this.tradeProperty(player);
+                    this.displayPlayerChoiceMenu(player);
+                    break;
+                case 6:
+                    this.mortgage_property(player);
+                    this.displayPlayerChoiceMenu(player);
+                    break;
+                default:
+                    Console.WriteLine("That option is not avaliable. Please try again.");
+                    this.displayPlayerChoiceMenu(player);
+                    break;
+            }
         }
 
         public void purchaseProperty(Player player)
@@ -417,19 +420,19 @@ namespace MolopolyGame
             //get the property to buy house for
             Property property = this.displayPropertyChooser(player.getPropertiesOwnedFromBoard(), sPrompt);
             //if dont own any properties
-            
+
             //check that it is a residential
             if (property.GetType() == (new Residential().GetType()))
             {
                 //cast to residential property
-               propertyToBuyFor = (Residential) property;
+                propertyToBuyFor = (Residential)property;
             }
             else //else display msg 
             {
                 Console.WriteLine("{0}A house can no be bought for {1} because it is not a Residential Property.", this.playerPrompt(player), propertyToBuyFor.getName());
                 return;
             }
-            
+
             //check that max houses has not been reached
             if (propertyToBuyFor.getHouseCount() >= Residential.getMaxHouses())
             {
@@ -478,11 +481,11 @@ namespace MolopolyGame
             decimal amountWanted = inputDecimal(inputAmtMsg);
 
             //confirm with playerToTradeWith
-                //set console color
+            //set console color
             ConsoleColor origColor = Console.ForegroundColor;
             int i = Board.access().getPlayers().IndexOf(playerToTradeWith);
             Console.ForegroundColor = this.colors[i];
-                //get player response
+            //get player response
             bool agreesToTrade = getInputYN(playerToTradeWith, string.Format("{0} wants to trade '{1}' with you for ${2}. Do you agree to pay {2} for '{1}'", player.getName(), propertyToTrade.getName(), amountWanted));
             //resent console color
             Console.ForegroundColor = origColor;
@@ -498,7 +501,7 @@ namespace MolopolyGame
             {
                 //display rejection message
                 Console.WriteLine("{0}{1} does not agree to trade {2} for ${3}", playerPrompt(player), playerToTradeWith.getName(), propertyToTrade.getName(), amountWanted);
-            }     
+            }
         }
 
         public Property displayPropertyChooser(ArrayList properties, String sPrompt)
@@ -526,7 +529,7 @@ namespace MolopolyGame
             else
             {
                 //return the appropriate property
-                return (Property) properties[resp - 1];
+                return (Property)properties[resp - 1];
             }
         }
 
@@ -561,11 +564,11 @@ namespace MolopolyGame
             }
             else
             {
-                Player chosenPlayer = (Player) displayList[resp - 1];
+                Player chosenPlayer = (Player)displayList[resp - 1];
                 //find the player to return
                 foreach (Player p in players)
                 {
-                    if(p.getName() == chosenPlayer.getName())
+                    if (p.getName() == chosenPlayer.getName())
                         return p;
                 }
                 return null;
@@ -573,13 +576,13 @@ namespace MolopolyGame
         }
 
         public static void playerBankruptHandler(object obj, EventArgs args)
-            {
-                //cast to player
-                Player p = (Player) obj;
-                //display bankrupt msg
-                Console.WriteLine("{0} IS BANKRUPT!", p.getName().ToUpper());
+        {
+            //cast to player
+            Player p = (Player)obj;
+            //display bankrupt msg
+            Console.WriteLine("{0} IS BANKRUPT!", p.getName().ToUpper());
 
-            }
+        }
 
         public static void playerPassGoHandler(object obj, EventArgs args)
         {
@@ -588,13 +591,14 @@ namespace MolopolyGame
         }
 
         //Allow player to mortgage property
-        public void mortgage_property(Player player) {
+        public void mortgage_property(Player player)
+        {
 
             string sPrompt = String.Format("{0}Please select a property to mortgage:", this.playerPrompt(player));
-            
+            //test git
             //Get the selected property to mortgage
             Property selected_property = this.displayPropertyChooser(player.getPropertiesOwnedFromBoard(), sPrompt);
-          
+
             if (player.getPropertiesOwnedFromBoard().Count == 0)
             {
                 //write message
@@ -609,32 +613,38 @@ namespace MolopolyGame
             }
             else
             {
-                
-                Decimal mortgage_value = ((Property)selected_property).mortgage_value();
-                //set the isMortgaged flag to true
-                //  selected_property.isMortgaged = true; This is done in the property class so there us no need to do it here
-                //Mortgage the property
-                selected_property.mortgage_Property();
-                Console.WriteLine("You have mortgaged {0} and have been paid" + mortgage_value.ToString());
+
+                // ((Property)
+              decimal mortgage = selected_property.mortgage_value();
+              ((Property)selected_property).mortgage_Property();
+
+
+             //   decimal mortgage = selected_property.mortgage_value();
+             //   selected_property.mortgage_Property();
+           Console.WriteLine("You have mortgaged" + selected_property.getName() + "and have been paid" + mortgage);
             }
         }
-       // This allows us to get a list of all mortgaged properties owned by the current player
-        public void un_mortgage_property(Player player) {
+        // This allows us to get a list of all mortgaged properties owned by the current player
+        public void un_mortgage_property(Player player)
+        {
 
             string sprompt = string.Format("Please select a property to un-mortgage:", this.playerPrompt(player));
             // getPropertiesOwnedAndMortgaged() had to be created to allow us to get a list of all mortgaged properties
             //owned by the current player
             Property selected_property = this.displayPropertyChooser(player.getPropertiesOwnedAndMortgaged(), sprompt);
-        
+
             //check that the player has mortgaged properties
 
-            if(player.getPropertiesOwnedAndMortgaged().Count == 0){
+            if (player.getPropertiesOwnedAndMortgaged().Count == 0)
+            {
 
                 Console.WriteLine("You have not mortgaged any properties  ", playerPrompt(player));
             }
 
             selected_property.un_mortgage_Property();
         }
-   }
+
+
+    }
 }
 

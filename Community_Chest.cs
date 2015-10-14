@@ -7,15 +7,23 @@ namespace MolopolyGame
 {
     class Community_Chest
     {
-        protected Player this_player; //Current Player
-
+        public Player current_player; //Current Player
+        //public List<Actionable> Community_Cards_Actions;
        // protected static Community_Chest Community_Chest_Cards() { }
         //info for creating a list of actions was taken from http://stackoverflow.com/questions/4910775/can-a-list-hold-multiple-void-methods
 
       //Deck of comunity chest cards
-           
-         List<Actionable> Community_Cards_Actions = new List<Actionable>
-           
+
+
+        public Community_Chest()
+        {
+            
+        }
+        public List<Actionable> CardList()
+        {
+
+            List<Actionable> Community_Cards_Actions = new List<Actionable>
+           //Community_Cards_Actions.Add(new Actionable{Name = "thisshit", Action = Card_Actions.Doctor_fees});
             {
                 new Actionable
                     {
@@ -88,14 +96,22 @@ namespace MolopolyGame
                     Name = "Holiday Fund matures - Receive $100",
                     Action = Card_Actions.Holiday_Fund
                 }
-
+                
             };
+            //Community_Cards_Actions.ForEach(a => a.Action());
+         //   Community_Cards_Actions[0].Action.Invoke();
+            return Community_Cards_Actions;
+         }
 
 
-         public virtual string draw_card(ref Player player)
+        
+
+         public string draw_card(Player player)
          {
-             this_player = player;//Current Player
-             
+             List<Actionable>  Community_Cards_Actions = CardList();
+             current_player = player;//Current Player
+             Community_Cards_Actions[0].Action.Invoke();
+            
           
              return ("Card action was");
          }
@@ -110,10 +126,13 @@ namespace MolopolyGame
     {
         public static void Doctor_fees()
         {
-            
+             
+            Console.WriteLine("fuck");
+            Console.ReadLine();
             
         }
        public static void Get_out_of_jail_free(){
+           
            //Logic for each card will go here
        }
             public static void Go_to_jail(){
