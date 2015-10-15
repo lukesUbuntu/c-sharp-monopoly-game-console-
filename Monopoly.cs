@@ -14,7 +14,7 @@ namespace MolopolyGame
     {
         ConsoleColor[] colors = new ConsoleColor[8] { ConsoleColor.Cyan, ConsoleColor.Green, ConsoleColor.Yellow, ConsoleColor.Red, ConsoleColor.Magenta, ConsoleColor.Gray, ConsoleColor.Blue, ConsoleColor.DarkYellow };
         bool gameSetUp = false;
-
+        int rollCount;
         public override void initializeGame()
         {
 
@@ -54,7 +54,16 @@ namespace MolopolyGame
                 return;
             }
 
+            if (player.getJailStatis() == true) { Console.WriteLine("This bitch in jail");
 
+            if (player.getLocation() != 11) {
+                player.setLocation(11, false);
+            }
+
+            rollCount++;
+                if (player.diceRollingToString)
+            
+            }
 
             //prompt player to make move
             Console.WriteLine("{0}Your turn. Press Enter to make move", playerPrompt(iPlayerIndex));
@@ -264,7 +273,7 @@ namespace MolopolyGame
              Board.access().addProperty(resFactory.create("Cable Cars Wellington", 300, 30, 200));
              Board.access().addProperty(resFactory.create("Cathedral Square", 300, 30, 200));
  //old            //Board.access().addProperty(luckFactory.create("Community Chest", false, 50)); // not properly implemented just 50 benefit
-             Board.access().addProperty(Community_Chest_Factory.create("Community Chest"));
+          //   Board.access().addProperty(Community_Chest_Factory.create("Community Chest"));
              Board.access().addProperty(resFactory.create("The Square, Palmerston North", 320, 32, 200));
              Board.access().addProperty(transFactory.create("Picton Ferry"));
              Board.access().addProperty(luckFactory.create("Chance", true, 50)); // not properly implemented just 50 penalty

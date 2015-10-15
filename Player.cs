@@ -64,6 +64,11 @@ namespace MolopolyGame
             return this.lastMove;
         }
 
+        public bool getJailStatis() {
+        
+        return this.inJail;
+        }
+
         public string BriefDetailsToString()
         {
             return String.Format("You are on {0}.\tYou have ${1}.", Board.access().getProperty(this.getLocation()).getName(), this.getBalance());
@@ -93,7 +98,7 @@ namespace MolopolyGame
             return owned;
         }
 
-        public void setLocation(int location)
+        public void setLocation(int location, bool playerpaPassGo)
         {
            
             //if set location is greater than number of squares then move back to beginning
