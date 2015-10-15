@@ -56,14 +56,19 @@ namespace MolopolyGame
 
             if (player.getJailStatis() == true) { Console.WriteLine("This bitch in jail");
 
+              ref player.diceRollingToString
+
+            }
+
+
             if (player.getLocation() != 11) {
                 player.setLocation(11, false);
             }
 
             rollCount++;
-                if (player.diceRollingToString)
+                
             
-            }
+         
 
             //prompt player to make move
             Console.WriteLine("{0}Your turn. Press Enter to make move", playerPrompt(iPlayerIndex));

@@ -55,7 +55,7 @@ namespace MolopolyGame
             //move distance is total of both throws
            int iMoveDistance = die1.roll() + die2.roll();
             //increase location
-           this.setLocation(this.getLocation() + iMoveDistance);
+           this.setLocation(this.getLocation() + iMoveDistance,false);
            this.lastMove = iMoveDistance;
         }
 
@@ -124,6 +124,7 @@ namespace MolopolyGame
         {
             return String.Format("Rolling Dice:\tDice 1: {0}\tDice 2: {1}", die1, die2); 
         }
+      
 
         public ArrayList getPropertiesOwnedFromBoard()
         {
