@@ -103,6 +103,10 @@ namespace MolopolyGame
             return isMortgaged;
         }
 
+        public virtual decimal getMortgageValue()
+        {
+            return this.dMortgageValue;
+        }
         //Get the mortgage value and return it
         public virtual decimal mortgage_value()
         {

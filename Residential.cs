@@ -27,8 +27,10 @@ namespace MolopolyGame
             this.dHouseCost = dHouseCost;
         }
 
-        
-
+        public override decimal getMortgageValue()
+        {
+            return this.dMortgageValue;
+        }
         public override decimal getRent()
         {
             //rent is rental amount plus the rental amount for each house

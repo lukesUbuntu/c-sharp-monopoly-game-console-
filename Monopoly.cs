@@ -56,7 +56,7 @@ namespace MolopolyGame
 
             if (player.getJailStatis() == true) { Console.WriteLine("This bitch in jail");
 
-              ref player.diceRollingToString
+              //ref player.diceRollingToString
 
             }
 
@@ -631,7 +631,7 @@ namespace MolopolyGame
             {
 
                 // ((Property)
-              decimal mortgage = selected_property.mortgage_value();
+              decimal mortgage = selected_property.getMortgageValue();
             //  ((Property)selected_property).mortgage_Property();
 
 
