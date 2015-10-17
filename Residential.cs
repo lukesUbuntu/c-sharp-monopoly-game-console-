@@ -63,6 +63,11 @@ namespace MolopolyGame
 
         }
 
+        public decimal getHotelCount()
+        {
+           return this.iHotels;
+        }
+
         public decimal getHouseCost()
         {
             return this.dHouseCost;
@@ -83,17 +88,28 @@ namespace MolopolyGame
            return base.ToString()  + string.Format("\tHouses: {0}", this.getHouseCount());
         }
 
-      
-        public override void un_mortgage_Property()
+        //override the mortgage_property function from property as we need to check if the property has houses 
+        //or hotels
+        public virtual override void mortgage_Property()
         {
-            if (isMortgaged == true)
+            //Check if the property has house and hotels
+            if (this.getHouseCost() != 0 && this.getHotelCount() != 0)
             {
-                isMortgaged = false;
+
+                Console.WriteLine("You must sell your houses and hotels before you can mortgage this property!");
+            }
+
+            if (isMortgaged == false)
+            {
+
+                this.getOwner().receive(this.dMortgageValue);
+                Banker.access().pay(this.dMortgageValue);
+                this.isMortgaged = true;
             }
             else
             {
-                //not sure if I need this as the choice to un mortgage a property should only be avalible to a mortgaged property
-                Console.WriteLine("This property has not been mortgaged! ");
+
+                Console.WriteLine("This property has already been mortgaged! ");
             }
 
         }

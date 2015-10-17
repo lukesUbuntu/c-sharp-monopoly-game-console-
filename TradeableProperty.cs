@@ -99,7 +99,7 @@ namespace MolopolyGame
             }
 
         }*/
-        public override void un_mortgage_Property()
+     /*   public override void un_mortgage_Property()
         {
 
 
@@ -118,7 +118,7 @@ namespace MolopolyGame
                 Console.WriteLine("This property has not been mortgaged! ");
             }
 
-        }
+        }*/
     
 
     }
