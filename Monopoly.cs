@@ -60,15 +60,27 @@ namespace MolopolyGame
 
 
             player.rollCount++;
+            // if player is not in jail and has rolled  doubles incriment the doubles counter.
+            if (player.getJailStatis() == false && player.CheckForDouble() == true) {
 
-            if (player.rollCount == 3) { 
-            
-            //send the current user to jail
+
+                player.rollDoubleCount++;
+
+                if (player.rollDoubleCount == 3)
+                {
+                    //Send user to jail
+
+                }
             }
 
 
             //just for testing 
-            if (player.getJailStatis() == true) { Console.WriteLine("You are in jail!");
+            if (player.getJailStatis() == true) { 
+                
+                
+                
+                
+                Console.WriteLine("You are in jail!");
               
 
                 //if roll is doubles

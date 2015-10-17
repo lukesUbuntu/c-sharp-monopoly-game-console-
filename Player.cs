@@ -16,6 +16,7 @@ namespace MolopolyGame
         private int lastMove;
         private bool inJail;
         public int rollCount;
+        public int rollDoubleCount;
 
         //each player has two dice
         Die die1 = new Die();
@@ -209,6 +210,8 @@ namespace MolopolyGame
         {
             this.inJail = false;
         }
+
+        
 
         public bool isNotActive()
         {
