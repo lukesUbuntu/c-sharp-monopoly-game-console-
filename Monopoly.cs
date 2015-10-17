@@ -614,7 +614,7 @@ namespace MolopolyGame
             
             //Get the selected property to mortgage
             Property selected_property = this.displayPropertyChooser(player.getPropertiesOwnedFromBoard(), sPrompt);
-
+          
             if (player.getPropertiesOwnedFromBoard().Count == 0)
             {
                 //write message
