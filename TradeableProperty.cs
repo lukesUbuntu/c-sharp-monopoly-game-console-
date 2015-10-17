@@ -84,7 +84,7 @@ namespace MolopolyGame
                 return base.landOn(ref player);
         }
 
-        public  void mortgage_Property()
+     /*   public  void mortgage_Property()
         {
             if (isMortgaged == false)
             {
@@ -98,9 +98,16 @@ namespace MolopolyGame
                 Console.WriteLine("This property has already been mortgaged! ");
             }
 
-        }
+        }*/
         public override void un_mortgage_Property()
         {
+
+
+            this.getOwner().pay(this.dMortgageValue);
+            Banker.access().pay(this.dMortgageValue);
+            isMortgaged = true;
+
+
             if (isMortgaged == true)
             {
                 isMortgaged = false;

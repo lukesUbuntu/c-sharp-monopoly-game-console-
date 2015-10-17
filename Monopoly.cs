@@ -407,7 +407,8 @@ namespace MolopolyGame
             Console.WriteLine("4. Buy House for Property");
             Console.WriteLine("5. Trade Property with Player");
             Console.WriteLine("6. Mortgage Property");
-            Console.Write("(1-6)>");
+             Console.WriteLine("6.Un Mortgage Property");
+            Console.Write("(1-7)>");
             //read response
             resp = inputInteger();
             //if response is invalid redisplay menu
@@ -439,6 +440,10 @@ namespace MolopolyGame
                     break;
                 case 6:
                     this.mortgage_property(player);
+                    this.displayPlayerChoiceMenu(player);
+                    break;
+                case 7:
+                    this.un_mortgage_property(player);
                     this.displayPlayerChoiceMenu(player);
                     break;
                 default:

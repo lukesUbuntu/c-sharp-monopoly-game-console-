@@ -1,16 +1,26 @@
 ﻿Finish Nunit Tests
 Conduct unit tests on all classes in monopoly game using nUnit framework and produce average of 75% code coverage for overall application. 
 
-
-Started
-
-Implement more functionality:
+============================================================================================================
 Mortgage properties
-Properties can also be mortgaged. The player receives money from the bank for each mortgaged property (half of the purchase price), which must be repaid with 10% interest to unmortgage. 
+Properties can also be mortgaged - Done
+
+The player receives money from the bank for each mortgaged property (half of the purchase price) - Done
+ 
+which must be repaid with 10% interest to unmortgage. 
+
 Houses and hotels can be sold back to the bank for half their purchase price. 
-Players cannot collect rent on mortgaged properties and may not give improved property away to others; however, trading mortgaged properties is allowed.
+
+Players cannot collect rent on mortgaged properties - Done
+
+ and may not give improved property away to others;
+ 
+however, trading mortgaged properties is allowed. - Done
+
 The player receiving the mortgaged property must immediately unmortgage it for the mortgage price plus 10%, or pay the bank just the 10% amount and keep the property mortgaged; if the player 
 chooses the latter, they must still pay the 10% again if the property is later unmortgaged.
+
+=================================================================================================================
 
 Hotels 
 When a player owns all of the properties in a color group and none of them are mortgaged, they may develop them during their turn or in between other player's turns. 
@@ -19,9 +29,11 @@ That is, a second house cannot be built on any property within a group until all
 any undeveloped properties within it. Although houses and hotels cannot be built on railroads or utilities, the given rent also increases if a player owns more than one of either type.
  If there is more demand for houses to be built than what remains in the bank, then a housing auction is conducted to determine who will get to purchase each house.
 
+ =================================================================================================================
  Started
 Cards
 A deck of 32 Chance and Community Chest cards (16 Chance and 16 Community Chest) which players draw when they land on the corresponding squares of the track, and follow the instructions printed on them. 
+=================================================================================================================
 
 Started
 Jail
@@ -35,8 +47,11 @@ While a player is in jail, they may not buy property directly, by virtue of not 
 However, they may sell, trade and mortgage properties, purchase buildings, participate in auctions, and collect rents. 
 If a player does roll doubles to exit Jail, they may immediately move according to the roll, but they cannot roll a second time after exiting jail. 
 If the player instead pays the $50 fine or uses a Get out of Jail Free card and then rolls doubles, they are required to move the amount shown on the dice and then roll again.
+=================================================================================================================
 
+=================================================================================================================
 Loading from Text file 
 Load the attribute values for the properties and starting values for the game from a text file at startup to allow localization and customization of the game.
 
+=================================================================================================================
 Allow save and restore for a game in progress. Provide an option to save a game (txt or xml file) and loading a game from file that has already been saved.  

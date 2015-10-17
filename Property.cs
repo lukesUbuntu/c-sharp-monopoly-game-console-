@@ -85,23 +85,30 @@ namespace MolopolyGame
             }
             
         }
+
+        // un mortgage property
         public virtual void un_mortgage_Property()
         {
-            if (this.getOwner().getBalance() <= (this.mortgage_value() * 10 / 100)){
+           
+          
 
-                Console.WriteLine("You do not have enough money to pay for this mortgage!");
-            }
-            if (isMortgaged == true)
-            {
-              
-                this.getOwner().pay(this.mortgage_value() * 10 / 100);
-                Console.WriteLine("You have paied: " + this.mortgage_value() * 10 / 100 + "you have now paied off your mortgage!");
-                this.isMortgaged = false;
-            }
-            else {
-                Console.WriteLine("This property has not been mortgaged! ");
-            }
+                if (this.getOwner().getBalance() <= (this.mortgage_value() * 10 / 100))
+                {
 
+                    Console.WriteLine("You do not have enough money to pay for this mortgage!");
+                }
+
+                payMortgage();
+            
+            
+
+        }
+
+        private void payMortgage()
+        {
+            this.getOwner().pay(this.mortgage_value() * 10 / 100);
+            Console.WriteLine("You have paied: " + this.mortgage_value() * 10 / 100 + "you have now paied off your mortgage!");
+            this.isMortgaged = false;
         }
 
         public virtual bool check_mortgaged_status() {
