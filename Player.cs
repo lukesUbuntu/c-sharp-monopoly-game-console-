@@ -15,6 +15,7 @@ namespace MolopolyGame
         private int location;
         private int lastMove;
         private bool inJail;
+        public int rollCount;
 
         //each player has two dice
         Die die1 = new Die();

@@ -54,6 +54,20 @@ namespace MolopolyGame
                 return;
             }
 
+
+
+            rollCount++;
+
+
+            player.rollCount++;
+
+            if (player.rollCount == 3) { 
+            
+            //send the current user to jail
+            }
+
+
+            //just for testing 
             if (player.getJailStatis() == true) { Console.WriteLine("You are in jail!");
               
 
@@ -79,7 +93,7 @@ namespace MolopolyGame
 
 
        
-            rollCount++;
+           
                 
             
          
