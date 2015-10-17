@@ -87,6 +87,10 @@ namespace MolopolyGame
         }
         public virtual void un_mortgage_Property()
         {
+            if (this.getOwner().getBalance() <= (this.mortgage_value() * 10 / 100)){
+
+                Console.WriteLine("You do not have enough money to pay for this mortgage!");
+            }
             if (isMortgaged == true)
             {
               
