@@ -10,6 +10,9 @@ namespace MolopolyGame.Testing
     class _LandOnTest
     {
         //[Test]
+        /// <summary>
+        /// This test has been created to test that you will not have to pay rent if you land on a mortgaged property 
+        /// </summary>
         public void TestLandOn()
         {
 

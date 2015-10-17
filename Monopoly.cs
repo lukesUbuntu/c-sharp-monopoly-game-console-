@@ -81,12 +81,12 @@ namespace MolopolyGame
             }
 
 
-            //just for testing 
-            if (player.getJailStatis() == true) { 
-                
-                
-                
-                
+           
+            if (player.getJailStatis() == true) {
+
+
+
+                //just for testing 
                 Console.WriteLine("You are in jail!");
               
 

@@ -11,7 +11,7 @@ namespace MolopolyGame
         int iHouses;
         static int iMaxHouses = 4;
 
-        //int iHotels; //not implemented
+        int iHotels;
 
         public Residential() : this("Residential Property"){}
 
@@ -44,6 +44,23 @@ namespace MolopolyGame
             this.getOwner().pay(this.dHouseCost);
             //add houses to residental
             this.iHouses ++;
+        }
+
+        //add hotel
+        public void addHotel()
+        {
+            // if all the houses are owned
+            if (iHouses == iMaxHouses)
+            {
+                //pay for hotel
+                this.getOwner().pay(this.dHouseCost * 2);
+                //add to the hotel counter
+                this.iHotels++;
+                //remove the houses
+                this.iHouses = 0;
+
+            }
+
         }
 
         public decimal getHouseCost()
