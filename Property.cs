@@ -91,7 +91,8 @@ namespace MolopolyGame
             {
               
                 this.getOwner().pay(this.mortgage_value() * 10 / 100);
-                Console.WriteLine("You have paied: " + this.mortgage_value() * 10 / 100 + "you have now paied off your mortgage!")
+                Console.WriteLine("You have paied: " + this.mortgage_value() * 10 / 100 + "you have now paied off your mortgage!");
+                this.isMortgaged = false;
             }
             else {
                 Console.WriteLine("This property has not been mortgaged! ");
