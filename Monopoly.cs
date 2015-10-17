@@ -55,28 +55,30 @@ namespace MolopolyGame
             }
 
             if (player.getJailStatis() == true) { Console.WriteLine("You are in jail!");
-                //Get dice roll, if doubles set is in jail to false
+              
 
                 //if roll is doubles
             if (player.CheckForDouble())
             {
+                //set jail status to false
+                player.setIsNotInJail();
 
-                
+                Console.WriteLine("Congradulations you have rolled doubles and have been released from jail!");
 
 
             }
 
+            if (rollCount == 3)
+            {
+                Console.WriteLine("You have now made your 3rd roll, you must pay $50 to leave jail!");
 
-
-            player.CheckForDouble();
-            Console.WriteLine(player.diceRollingToString());
+            }
+           
+          
             }
 
 
-          /*  if (player.getLocation() != 11) {
-                player.setLocation(11, false);
-            }*/
-
+       
             rollCount++;
                 
             
