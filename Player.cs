@@ -120,6 +120,25 @@ namespace MolopolyGame
             return this.location;
         }
 
+        //check the dice roll for doubles 
+        public bool CheckForDouble() {
+         
+
+            int dice_1 = Int32.Parse(die1.ToString());
+            int dice_2 = Int32.Parse(die2.ToString());
+
+            if (dice_1 == dice_2)
+            {
+
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
+
         public string diceRollingToString()
         {
             return String.Format("Rolling Dice:\tDice 1: {0}\tDice 2: {1}", die1, die2); 
@@ -179,9 +198,15 @@ namespace MolopolyGame
             }
         }
 
+        //send player to jail
         public void setIsInJail() {
 
            this.inJail = true;
+        }
+        //release player from jail
+        public void setIsNotInJail()
+        {
+            this.inJail = false;
         }
 
         public bool isNotActive()

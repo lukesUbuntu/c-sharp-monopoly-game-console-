@@ -54,16 +54,28 @@ namespace MolopolyGame
                 return;
             }
 
-            if (player.getJailStatis() == true) { Console.WriteLine("This bitch in jail");
+            if (player.getJailStatis() == true) { Console.WriteLine("You are in jail!");
+                //Get dice roll, if doubles set is in jail to false
 
-              //ref player.diceRollingToString
+                //if roll is doubles
+            if (player.CheckForDouble())
+            {
+
+                
+
 
             }
 
 
-            if (player.getLocation() != 11) {
+
+            player.CheckForDouble();
+            Console.WriteLine(player.diceRollingToString());
+            }
+
+
+          /*  if (player.getLocation() != 11) {
                 player.setLocation(11, false);
-            }
+            }*/
 
             rollCount++;
                 
@@ -627,6 +639,7 @@ namespace MolopolyGame
 
                 Console.WriteLine(selected_property.getName().ToString() + " has already been mortgaged! ");
             }
+                
             else
             {
 

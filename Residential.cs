@@ -66,23 +66,7 @@ namespace MolopolyGame
            return base.ToString()  + string.Format("\tHouses: {0}", this.getHouseCount());
         }
 
-        /*
-      public  override  void  mortgage_Property()
-        {
-            if (isMortgaged == false)
-            {
-                this.getOwner().pay(this.dMortgageValue);
-                Banker.access().pay(this.dMortgageValue);
-                isMortgaged = true;
-            }
-            else
-            {
-
-                Console.WriteLine("This property has already been mortgaged! ");
-            }
-
-        }
-        */
+      
         public override void un_mortgage_Property()
         {
             if (isMortgaged == true)
