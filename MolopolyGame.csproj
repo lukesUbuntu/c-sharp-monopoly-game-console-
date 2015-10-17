@@ -34,7 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.5.7.10213, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -69,6 +72,7 @@
     <Compile Include="Testing\_BoardTest.cs" />
     <Compile Include="Testing\_DieTest.cs" />
     <Compile Include="Testing\_FactoriesTest.cs" />
+    <Compile Include="Testing\_LandOnTest.cs" />
     <Compile Include="Testing\_TraderTest.cs" />
     <Compile Include="Testing\_UtilityTest.cs" />
     <Compile Include="TradeableProperty.cs" />
@@ -80,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Documentation\ClassDiagram.cd" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Documentation\TODO.txt" />

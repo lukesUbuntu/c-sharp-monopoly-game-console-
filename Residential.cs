@@ -66,7 +66,8 @@ namespace MolopolyGame
            return base.ToString()  + string.Format("\tHouses: {0}", this.getHouseCount());
         }
 
-    /*    public  override  void  mortgage_Property()
+        /*
+      public  override  void  mortgage_Property()
         {
             if (isMortgaged == false)
             {
@@ -81,6 +82,7 @@ namespace MolopolyGame
             }
 
         }
+        */
         public override void un_mortgage_Property()
         {
             if (isMortgaged == true)
@@ -93,7 +95,7 @@ namespace MolopolyGame
                 Console.WriteLine("This property has not been mortgaged! ");
             }
 
-        }*/
+        }
     
     
     }

@@ -73,8 +73,9 @@ namespace MolopolyGame
         public override string landOn(ref Player player)
         {
             //Pay rent if needed
-            if ((this.getOwner() != Banker.access()) && (this.getOwner() != player))
+            if ((this.getOwner() != Banker.access()) && (this.getOwner() != player) && (this.isMortgaged = false))
             {
+               
                 //pay rent
                 this.payRent(ref player);
                 return base.landOn(ref player) + string.Format("Rent has been paid for {0} of ${1} to {2}.", this.getName(), this.getRent(), this.getOwner().getName());

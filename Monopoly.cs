@@ -611,7 +611,7 @@ namespace MolopolyGame
         {
 
             string sPrompt = String.Format("{0}Please select a property to mortgage:", this.playerPrompt(player));
-            //test git
+            
             //Get the selected property to mortgage
             Property selected_property = this.displayPropertyChooser(player.getPropertiesOwnedFromBoard(), sPrompt);
 
@@ -630,17 +630,15 @@ namespace MolopolyGame
             else
             {
 
-                // ((Property)
+            
               decimal mortgage = selected_property.getMortgageValue();
-            //  ((Property)selected_property).mortgage_Property();
+              selected_property.mortgage_Property();
 
-
-             //   decimal mortgage = selected_property.mortgage_value();
-             //   selected_property.mortgage_Property();
+          
            Console.WriteLine("You have mortgaged" + selected_property.getName() + "and have been paid" + mortgage);
             }
         }
-        // This allows us to get a list of all mortgaged properties owned by the current player
+     
         public void un_mortgage_property(Player player)
         {
 
