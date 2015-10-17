@@ -68,8 +68,15 @@ namespace MolopolyGame
 
                 if (player.rollDoubleCount == 3)
                 {
-                    //Send user to jail
+                    //Send player to jail
 
+                    player.setIsInJail();
+
+                    //set the location as jail and do not pass go
+                    player.setLocation(11, false);
+
+                    Console.WriteLine("You have rolled doubles 3 times in a row and have been sent to jail! you did not pass Go, you did not collect $200!");
+                    
                 }
             }
 
