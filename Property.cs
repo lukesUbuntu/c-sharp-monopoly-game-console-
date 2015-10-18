@@ -68,8 +68,9 @@ namespace MolopolyGame
             return false;//generic properties are not available for purchase
         }
         
-        public virtual void mortgage_Property()
+        public virtual void mortgageProperty()
         {
+            
             
             if (isMortgaged == false)
             {
@@ -87,7 +88,7 @@ namespace MolopolyGame
         }
 
         // un mortgage property
-        public virtual void un_mortgage_Property()
+        public virtual void unMortgageProperty()
         {
            
           

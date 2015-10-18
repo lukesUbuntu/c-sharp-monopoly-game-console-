@@ -7,13 +7,13 @@ Properties can also be mortgaged - Done
 
 The player receives money from the bank for each mortgaged property (half of the purchase price) - Done
  
-which must be repaid with 10% interest to unmortgage. 
+which must be repaid with 10% interest to unmortgage - Done
 
 Houses and hotels can be sold back to the bank for half their purchase price. 
 
 Players cannot collect rent on mortgaged properties - Done
 
- and may not give improved property away to others;
+and may not give improved property away to others;
  
 however, trading mortgaged properties is allowed. - Done
 

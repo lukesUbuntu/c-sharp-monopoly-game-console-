@@ -26,6 +26,16 @@ namespace MolopolyGame
             this.dRent = dRent;
             this.dHouseCost = dHouseCost;
         }
+        public void SellHouses()
+        {
+            if (this.getHouseCount() != 0)
+            {
+                this.owner.receive(dHouseCost / 2);
+                iHouses --;
+                
+            }
+            
+        }
 
         public override decimal getMortgageValue()
         {
@@ -90,14 +100,15 @@ namespace MolopolyGame
 
         //override the mortgage_property function from property as we need to check if the property has houses 
         //or hotels
-        public virtual override void mortgage_Property()
+        public override void mortgageProperty()
         {
             //Check if the property has house and hotels
-            if (this.getHouseCost() != 0 && this.getHotelCount() != 0)
+            if (this.getHouseCount() != 0 && this.getHotelCount() != 0)
             {
 
                 Console.WriteLine("You must sell your houses and hotels before you can mortgage this property!");
             }
+
 
             if (isMortgaged == false)
             {

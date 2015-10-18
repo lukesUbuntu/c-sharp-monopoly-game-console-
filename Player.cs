@@ -83,7 +83,7 @@ namespace MolopolyGame
 
         public string FullDetailsToString()
         {
-            return String.Format("Player:{0}.\nBalance: ${1}\nLocation: {2} (Square {3}) \nProperties Owned:\n{4}", this.getName(), this.getBalance(), Board.access().getProperty(this.getLocation()), this.getLocation(), this.PropertiesOwnedToString());
+            return String.Format("Player:{0}.\nBalance: ${1}\nLocation: {2} (Square {3}) \nProperties Owned:\n{4} \nIn Jail? {5}", this.getName(), this.getBalance(), Board.access().getProperty(this.getLocation()), this.getLocation(), this.PropertiesOwnedToString(), this.getJailStatis().ToString());
         }
 
         public string PropertiesOwnedToString()
@@ -129,7 +129,7 @@ namespace MolopolyGame
             int dice_1 = Int32.Parse(die1.ToString());
             int dice_2 = Int32.Parse(die2.ToString());
 
-            if (dice_1 == dice_2)
+            if (dice_1 == dice_2 && dice_2 == dice_1)
             {
 
                 return true;
@@ -179,6 +179,22 @@ namespace MolopolyGame
             return propertiesMortgaged;
         }
 
+        public ArrayList getPropertiesOwnedFromBoardWithHouses()
+        {
+            ArrayList propertiesOwned = new ArrayList();
+            //go through all the properties
+            for (int i = 0; i < Board.access().getProperties().Count; i++)
+            {
+                //owned by this player
+                if (Board.access().getProperty(i).getOwner() == this )
+                {
+                    
+                    //add to arraylist
+                    propertiesOwned.Add(Board.access().getProperty(i));
+                }
+            }
+            return propertiesOwned;
+        }
         public override void checkBankrupt()
         {
             if (this.getBalance() <= 0)

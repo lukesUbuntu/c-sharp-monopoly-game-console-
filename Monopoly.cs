@@ -56,17 +56,18 @@ namespace MolopolyGame
 
 
 
-            rollCount++;
+            
 
 
-            player.rollCount++;
+            
             // if player is not in jail and has rolled  doubles incriment the doubles counter.
+            
             if (player.getJailStatis() == false && player.CheckForDouble() == true) {
 
 
                 player.rollDoubleCount++;
 
-                if (player.rollDoubleCount == 3)
+                if (player.rollDoubleCount >= 3)
                 {
                     //Send player to jail
 
@@ -76,7 +77,7 @@ namespace MolopolyGame
                     player.setLocation(11, false);
 
                     Console.WriteLine("You have rolled doubles 3 times in a row and have been sent to jail! you did not pass Go, you did not collect $200!");
-                    
+                    player.rollDoubleCount = 0;
                 }
             }
 
@@ -84,14 +85,20 @@ namespace MolopolyGame
            
             if (player.getJailStatis() == true) {
 
-
+                player.rollCount++;
 
                 //just for testing 
                 Console.WriteLine("You are in jail!");
-              
+                if (rollCount >= 3)
+                {
+                    Console.WriteLine("You have now made your 3rd roll, you must pay $50 to leave jail!");
+                    player.pay(50);
+                    Banker.access().receive(50);
+                    player.rollCount = 0;
+                }
 
                 //if roll is doubles
-            if (player.CheckForDouble())
+            if (player.rollDoubleCount == 3)
             {
                 //set jail status to false
                 player.setIsNotInJail();
@@ -101,11 +108,7 @@ namespace MolopolyGame
 
             }
 
-            if (rollCount == 3)
-            {
-                Console.WriteLine("You have now made your 3rd roll, you must pay $50 to leave jail!");
-
-            }
+           
            
           
             }
@@ -407,7 +410,7 @@ namespace MolopolyGame
             Console.WriteLine("4. Buy House for Property");
             Console.WriteLine("5. Trade Property with Player");
             Console.WriteLine("6. Mortgage Property");
-             Console.WriteLine("6.Un Mortgage Property");
+             Console.WriteLine("7.Un Mortgage Property");
             Console.Write("(1-7)>");
             //read response
             resp = inputInteger();
@@ -434,6 +437,7 @@ namespace MolopolyGame
                     this.buyHouse(player);
                     this.displayPlayerChoiceMenu(player);
                     break;
+                
                 case 5:
                     this.tradeProperty(player);
                     this.displayPlayerChoiceMenu(player);
@@ -444,6 +448,10 @@ namespace MolopolyGame
                     break;
                 case 7:
                     this.un_mortgage_property(player);
+                    this.displayPlayerChoiceMenu(player);
+                    break;
+                case 8:
+                    this.buyHouse(player);
                     this.displayPlayerChoiceMenu(player);
                     break;
                 default:
@@ -470,6 +478,9 @@ namespace MolopolyGame
             {
                 Console.WriteLine("{0}{1} is not available for purchase.", playerPrompt(player), Board.access().getProperty(player.getLocation()).getName());
             }
+        }
+        public void sellHouse(Player player) {
+            string sPrompt = String.Format("Please select a property to sell houses for:", this.playerPrompt(player));
         }
 
         public void buyHouse(Player player)
@@ -685,7 +696,7 @@ namespace MolopolyGame
 
             
               decimal mortgage = selected_property.getMortgageValue();
-              selected_property.mortgage_Property();
+              selected_property.mortgageProperty();
 
           
            Console.WriteLine("You have mortgaged" + selected_property.getName() + "and have been paid" + mortgage);
@@ -708,7 +719,7 @@ namespace MolopolyGame
                 Console.WriteLine("You have not mortgaged any properties  ", playerPrompt(player));
             }
 
-            selected_property.un_mortgage_Property();
+            selected_property.unMortgageProperty();
         }
 
 
