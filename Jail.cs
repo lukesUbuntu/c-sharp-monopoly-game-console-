@@ -29,7 +29,7 @@ namespace MolopolyGame
 
         public override string landOn(ref Player player)
         {
-
+            
             if (this.setJail == true)
             {
                 player.setIsInJail();
