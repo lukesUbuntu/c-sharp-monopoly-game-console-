@@ -11,7 +11,7 @@ namespace MolopolyGame
         int iHouses;
         static int iMaxHouses = 4;
 
-        //int iHotels; //not implemented
+        int iHotels;
 
         public Residential() : this("Residential Property"){}
 
@@ -25,6 +25,16 @@ namespace MolopolyGame
             this.dMortgageValue = dPrice / 2;
             this.dRent = dRent;
             this.dHouseCost = dHouseCost;
+        }
+        public void SellHouses()
+        {
+            if (this.getHouseCount() != 0)
+            {
+                this.owner.receive(dHouseCost / 2);
+                iHouses --;
+                
+            }
+            
         }
 
         public override decimal getMortgageValue()
@@ -44,6 +54,28 @@ namespace MolopolyGame
             this.getOwner().pay(this.dHouseCost);
             //add houses to residental
             this.iHouses ++;
+        }
+
+        //add hotel
+        public void addHotel()
+        {
+            // if all the houses are owned
+            if (iHouses == iMaxHouses)
+            {
+                //pay for hotel
+                this.getOwner().pay(this.dHouseCost * 2);
+                //add to the hotel counter
+                this.iHotels++;
+                //remove the houses
+                this.iHouses = 0;
+
+            }
+
+        }
+
+        public decimal getHotelCount()
+        {
+           return this.iHotels;
         }
 
         public decimal getHouseCost()
@@ -66,13 +98,24 @@ namespace MolopolyGame
            return base.ToString()  + string.Format("\tHouses: {0}", this.getHouseCount());
         }
 
-    /*    public  override  void  mortgage_Property()
+        //override the mortgage_property function from property as we need to check if the property has houses 
+        //or hotels
+        public override void mortgageProperty()
         {
+            //Check if the property has house and hotels
+            if (this.getHouseCount() != 0 && this.getHotelCount() != 0)
+            {
+
+                Console.WriteLine("You must sell your houses and hotels before you can mortgage this property!");
+            }
+
+
             if (isMortgaged == false)
             {
-                this.getOwner().pay(this.dMortgageValue);
+
+                this.getOwner().receive(this.dMortgageValue);
                 Banker.access().pay(this.dMortgageValue);
-                isMortgaged = true;
+                this.isMortgaged = true;
             }
             else
             {
@@ -81,19 +124,6 @@ namespace MolopolyGame
             }
 
         }
-        public override void un_mortgage_Property()
-        {
-            if (isMortgaged == true)
-            {
-                isMortgaged = false;
-            }
-            else
-            {
-                //not sure if I need this as the choice to un mortgage a property should only be avalible to a mortgaged property
-                Console.WriteLine("This property has not been mortgaged! ");
-            }
-
-        }*/
     
     
     }

@@ -15,8 +15,6 @@ namespace MolopolyGame
         protected decimal dPrice;
         protected decimal dMortgageValue;
         protected decimal dRent;
-        //protected decimal dMortgageValue;
-        //private decimal dMortgageValue;
         public bool isMortgaged;
         public Property(): this("Property"){}
 
@@ -30,10 +28,10 @@ namespace MolopolyGame
 
         public Property(string sName, ref Trader owner)
         {
-            //decimal dMortgageValue
+          
             this.sName = sName;
             this.owner = owner;
-            //this.dMortgageValue = 50;
+         
         }
         public Trader getOwner()
         {
@@ -69,13 +67,15 @@ namespace MolopolyGame
         {
             return false;//generic properties are not available for purchase
         }
-        /*
-        public virtual void mortgage_Property()
+        
+        public virtual void mortgageProperty()
         {
+            
+            
             if (isMortgaged == false)
             {
-                
-                this.getOwner().pay(this.dMortgageValue);
+
+                this.getOwner().receive(this.dMortgageValue);
                 Banker.access().pay(this.dMortgageValue);
                 this.isMortgaged = true;
             }
@@ -85,17 +85,31 @@ namespace MolopolyGame
                 Console.WriteLine("This property has already been mortgaged! ");
             }
             
-        }*/
-        public virtual void un_mortgage_Property()
-        {
-            if (isMortgaged == true)
-            {
-                isMortgaged = false;
-            }
-            else {
-                Console.WriteLine("This property has not been mortgaged! ");
-            }
+        }
 
+        // un mortgage property
+        public virtual void unMortgageProperty()
+        {
+           
+          
+
+                if (this.getOwner().getBalance() <= (this.mortgage_value() * 10 / 100))
+                {
+
+                    Console.WriteLine("You do not have enough money to pay for this mortgage!");
+                }
+
+                payMortgage();
+            
+            
+
+        }
+
+        private void payMortgage()
+        {
+            this.getOwner().pay(this.mortgage_value() * 10 / 100);
+            Console.WriteLine("You have paied: " + this.mortgage_value() * 10 / 100 + "you have now paied off your mortgage!");
+            this.isMortgaged = false;
         }
 
         public virtual bool check_mortgaged_status() {

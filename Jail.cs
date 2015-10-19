@@ -29,10 +29,11 @@ namespace MolopolyGame
 
         public override string landOn(ref Player player)
         {
-
+            
             if (this.setJail == true)
             {
                 player.setIsInJail();
+                player.setLocation(10, false);
                 return base.landOn(ref player) + String.Format(player.getName().ToString() + " has gone to jail!");
             }
             else

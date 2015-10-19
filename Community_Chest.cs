@@ -5,6 +5,10 @@ using System.Text;
 
 namespace MolopolyGame
 {
+    /// <summary>
+    /// This class stores all of the community chest cards
+    /// </summary>
+
   public  class Community_Chest : Property
     {
         public Player current_player;

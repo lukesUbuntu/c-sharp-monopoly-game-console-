@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+using MolopolyGame.Testing;
+
 namespace MolopolyGame
 {
      /// <summary>
@@ -11,8 +13,11 @@ namespace MolopolyGame
     {
         static void Main(string[] args)
         {
+          //  _LandOnTest theTest = new _LandOnTest();
+           // theTest.TestLandOn();
 
-           // Community_Chest theCom = new Community_Chest();
+            //return;
+           //Community_Chest theCom = new Community_Chest();
          //   Player thenPlayer = new Player();
 
 //theCom.draw_card(thenPlayer);

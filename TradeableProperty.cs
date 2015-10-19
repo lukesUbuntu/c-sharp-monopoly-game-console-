@@ -72,9 +72,10 @@ namespace MolopolyGame
 
         public override string landOn(ref Player player)
         {
-            //Pay rent if needed
-            if ((this.getOwner() != Banker.access()) && (this.getOwner() != player))
+            //Pay rent if needed, you will only pay rent when the property is owned by a player that is not the current player and the propety has not been mortgaged.
+            if ((this.getOwner() != Banker.access()) && (this.getOwner() != player) && (this.isMortgaged = false))
             {
+               
                 //pay rent
                 this.payRent(ref player);
                 return base.landOn(ref player) + string.Format("Rent has been paid for {0} of ${1} to {2}.", this.getName(), this.getRent(), this.getOwner().getName());
@@ -83,7 +84,7 @@ namespace MolopolyGame
                 return base.landOn(ref player);
         }
 
-        public  void mortgage_Property()
+     /*   public  void mortgageProperty()
         {
             if (isMortgaged == false)
             {
@@ -97,9 +98,16 @@ namespace MolopolyGame
                 Console.WriteLine("This property has already been mortgaged! ");
             }
 
-        }
-        public override void un_mortgage_Property()
+        }*/
+     /*   public override void unMortgageProperty()
         {
+
+
+            this.getOwner().pay(this.dMortgageValue);
+            Banker.access().pay(this.dMortgageValue);
+            isMortgaged = true;
+
+
             if (isMortgaged == true)
             {
                 isMortgaged = false;
@@ -110,7 +118,7 @@ namespace MolopolyGame
                 Console.WriteLine("This property has not been mortgaged! ");
             }
 
-        }
+        }*/
     
 
     }
