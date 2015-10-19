@@ -52,14 +52,10 @@ namespace MolopolyGame
                     },
                 new Actionable
                 {
-                    Name = "Get out of jail free",
-                    Action = Card_Actions.Get_out_of_jail_free
-                },
-                new Actionable
-                {
-                    Name = "Go to jail – go directly to jail – Do not pass Go, do not collect $200",
-                    Action = Card_Actions. Go_to_jail
-                },
+                    Name = "Advance To Go",
+                    Action = advance_to_go
+                }
+                
                 new Actionable
                 {
                     Name = "It is your birthday Collect $10 from each player ",
@@ -122,6 +118,17 @@ namespace MolopolyGame
             return Community_Cards_Actions;
          }
         //confirmed that this action runs
+
+        public string draw_card(Player player)
+        {
+            List<Actionable> Community_Cards_Actions = CardList();
+            current_player = player; //Current Player
+            Community_Cards_Actions[0].Action.Invoke();
+            return ("need to figure out how to not bother returning anything");
+        }
+      /**
+       * Card Methods below here 
+       */
         public void Doctor_fees()
         {
             
@@ -132,15 +139,15 @@ namespace MolopolyGame
             Console.ReadLine();
 
         }
+
+        public void advance_to_go()
+        {
+            current_player.setLocation(0, false);
+            Console.WriteLine("Advance straight to GO");
+        }
         
 
-         public string draw_card(Player player)
-         {
-             List<Actionable>  Community_Cards_Actions = CardList();
-             current_player = player; //Current Player
-             Community_Cards_Actions[0].Action.Invoke();
-             return ("need to figure out how to not bother returning anything");
-         }
+        
        
 
      public class Actionable
@@ -148,65 +155,7 @@ namespace MolopolyGame
         public string Name { get; set; }
         public Action Action { get; set; }
     }
-        public static class Card_Actions
-    {
-           
-      /*  public static void Doctor_fees()
-        {
-             
-            Console.WriteLine("Some Action!");
-            Console.ReadLine();
-            
-        }*/
-       public static void Get_out_of_jail_free(){
-           
-           //Logic for each card will go here
-       }
-            public static void Go_to_jail(){
-
-       }
-            public static void birthday(){
-
-       }
-            public static void Opera_Night(){
-
-       }
-            public static void Tax_refund(){
-
-       }
-            public static void Hospital_Fees(){
-
-       }
-            public static void School_Fees(){
-
-       }
-            public static void Consultancy_Fee(){
-
-       }
-            public static void street_repairs(){
-
-       }
-               public static void beauty_contest(){
-
-       }
-               public static void inherit(){
-
-       }
-               public static void sale_of_stock(){
-
-
-
-       }
-        
-               public static void Holiday_Fund(){
-
-       }
-             
-       }
-        
-    }
-
-   
+    
 
 
 
