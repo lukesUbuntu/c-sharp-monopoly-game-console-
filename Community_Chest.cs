@@ -54,27 +54,27 @@ namespace MolopolyGame
                 {
                     Name = "Advance To Go",
                     Action = advance_to_go
-                }
+                },
                 
                 new Actionable
                 {
                     Name = "It is your birthday Collect $10 from each player ",
-                    Action = Card_Actions.birthday
+                    Action = your_birthday
                 },
                  new Actionable
                 {
                     Name = "Grand Opera Night – collect $50 from every player for opening night seats ",
-                    Action = Card_Actions.Opera_Night
+                    Action = Opera_Night
                 },
                  new Actionable
                 {
                     Name = "Income Tax refund – collect $20",
-                    Action = Card_Actions.Tax_refund
+                    Action = Tax_refund
                 },
                  new Actionable
                 {
                     Name = "Pay Hospital Fees of $100 ",
-                    Action = Card_Actions.Hospital_Fees
+                    Action = Hospital_Fees
                 },
                  new Actionable
                 {
@@ -146,7 +146,46 @@ namespace MolopolyGame
             Console.WriteLine("Advance straight to GO");
         }
         
+       public void your_birthday(){
+           //collect $10 from all players on board
+           foreach (Player otherPlayer in Board.access().getPlayers())
+              {
+                  if (otherPlayer != current_player)
+                  {
+                      otherPlayer.pay(10);
+                    Console.WriteLine(String.Format("{0} paid you $10 ",otherPlayer.getName()));
+                      current_player.receive(10);
+                  }
 
+              }
+             
+       }
+
+      public void Opera_Night(){
+          foreach (Player otherPlayer in Board.access().getPlayers())
+              {
+                  if (otherPlayer != current_player)
+                  {
+                      otherPlayer.pay(50);
+                    Console.WriteLine(String.Format("{0} paid you $50 ",otherPlayer.getName()));
+                      current_player.receive(50);
+                  }
+
+              }
+           Console.WriteLine("Your new balance is /n" + current_player.getBalance());
+      }
+
+      public void Tax_refund(){
+            
+            current_player.receive(20);
+            the_bank.pay(20);
+            Console.WriteLine("Your new balance is /n" + current_player.getBalance());
+          
+      }
+
+      public void Hospital_Fees(){
+
+      }
         
        
 
