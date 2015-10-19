@@ -137,8 +137,18 @@ namespace MolopolyGame
                 if (this.getJailStatis() == true)
                 {
                     this.setIsNotInJail();
-                    Console.WriteLine("You have rolled doubles and are no longer in jail bitch!");
+                    Console.WriteLine("You have rolled doubles and are no longer in jail!");
                     
+                }
+
+                rollDoubleCount++;
+
+                if (rollDoubleCount >= 3)
+                {
+                    this.setIsInJail();
+                    this.setLocation(10, false);
+                    Console.WriteLine("You have rolled doubles 3 times in a row and have been sent to jail!");
+
                 }
                 return true;
             }
