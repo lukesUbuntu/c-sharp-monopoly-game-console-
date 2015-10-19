@@ -55,6 +55,10 @@ namespace MolopolyGame
             }
 
 
+<<<<<<< HEAD
+              //ref player.diceRollingToString
+=======
+>>>>>>> b61b0a8b2e2b399e4b3d737958e3777bf8752802
 
 
 
@@ -698,9 +702,15 @@ namespace MolopolyGame
             else
             {
 
+<<<<<<< HEAD
+                // ((Property)
+              decimal mortgage = selected_property.getMortgageValue();
+            //  ((Property)selected_property).mortgage_Property();
+=======
 
                 decimal mortgage = selected_property.getMortgageValue();
                 selected_property.mortgageProperty();
+>>>>>>> b61b0a8b2e2b399e4b3d737958e3777bf8752802
 
 
                 Console.WriteLine("You have mortgaged" + selected_property.getName() + "and have been paid" + mortgage);

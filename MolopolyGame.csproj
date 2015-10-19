@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actionable.cs" />
     <Compile Include="Banker.cs" />
     <Compile Include="Board.cs" />
     <Compile Include="Card.cs" />
