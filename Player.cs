@@ -146,7 +146,7 @@ namespace MolopolyGame
                 
                 if (this.getJailStatis() == true)
                 {
-                    //this.setIsNotInJail();
+                    this.setIsNotInJail();
                     Console.WriteLine("You have rolled doubles and are no longer in jail!");
                     
                     
