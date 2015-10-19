@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Speech.Synthesis;
 
 namespace MolopolyGame
 {
@@ -32,12 +34,20 @@ namespace MolopolyGame
             
             if (this.setJail == true)
             {
+                SpeechSynthesizer synth = new SpeechSynthesizer();
+                synth.Speak("You have gone to jail, you do not pass go you can not collect $200");
                 player.setIsInJail();
                 player.setLocation(10, false);
                 return base.landOn(ref player) + String.Format(player.getName().ToString() + " has gone to jail!");
             }
             else
             {
+                if (player.getJailStatis() == true)
+                {
+                    SpeechSynthesizer synth = new SpeechSynthesizer();
+                    synth.Speak("Hahahaha you are in jail, Just like Kiel with his ankle bracelet");
+                    return base.landOn(ref player) + String.Format(player.getName().ToString() + " is in jail!..");
+                }
                 return base.landOn(ref player) + String.Format(player.getName().ToString() + " is just visiting!.");
 
             }

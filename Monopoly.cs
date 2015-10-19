@@ -62,11 +62,11 @@ namespace MolopolyGame
 
 
 
-
+            
 
             // if player is not in jail and has rolled  doubles incriment the doubles counter.
 
-            if (player.getJailStatis() == false && player.CheckForDouble() == true)
+          /*  if (player.getJailStatis() == false && player.CheckForDouble() == true)
             {
 
 
@@ -84,12 +84,12 @@ namespace MolopolyGame
                     Console.WriteLine("You have rolled doubles 3 times in a row and have been sent to jail! you did not pass Go, you did not collect $200!");
                     player.rollDoubleCount = 0;
                 }
-            }
+            }*/
 
 
 
             
-            if (player.getJailStatis() == true)
+         /*   if (player.getJailStatis() == true)
             {
                 player.CheckForDouble();
 
@@ -111,14 +111,13 @@ namespace MolopolyGame
 
                             
 
-            }
+            }*/
 
 
             if (player.getJailStatis() == true)
             {
                 Console.WriteLine("I am in jail and can not move");
-                Console.WriteLine("{0}{1}\n", playerPrompt(iPlayerIndex), player.diceRollingToString());
-                displayPlayerChoiceMenu(player);
+                
             }
 
 
@@ -129,7 +128,7 @@ namespace MolopolyGame
             Console.WriteLine("{0}Your turn. Press Enter to make move", playerPrompt(iPlayerIndex));
             Console.ReadLine();
             //move player
-
+            
          
             player.move();
 
@@ -137,7 +136,8 @@ namespace MolopolyGame
             Console.WriteLine("*****Move for {0}:*****", player.getName());
             //Display rolling
             Console.WriteLine("{0}{1}\n", playerPrompt(iPlayerIndex), player.diceRollingToString());
-
+            //check for double
+            player.CheckForDouble();
             Property propertyLandedOn = Board.access().getProperty(player.getLocation());
             //landon property and output to console
             Console.WriteLine(propertyLandedOn.landOn(ref player));
