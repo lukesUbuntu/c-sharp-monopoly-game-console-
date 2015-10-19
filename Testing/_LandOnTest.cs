@@ -6,10 +6,10 @@ using System.Text;
 
 namespace MolopolyGame.Testing
 {
-    //[TestFixture]
+    [TestFixture]
     class _LandOnTest
     {
-        //[Test]
+        [Test]
         /// <summary>
         /// This test has been created to test that you will not have to pay rent if you land on a mortgaged property 
         /// </summary>
@@ -32,6 +32,20 @@ namespace MolopolyGame.Testing
 
             theproperty.landOn(ref playertwo);
 
+        }
+
+        public void TestLandOnJail() {
+            Player playerone = new Player();
+            
+            Board theboard = new Board();
+
+            Jail Visting = new Jail("visitng", false);
+            Board.access().addPlayer(playerone);
+           
+            Board.access().addProperty(Visting);
+
+            playerone.setLocation(0, false);
+            Visting.landOn(ref playerone);
         }
         
     }

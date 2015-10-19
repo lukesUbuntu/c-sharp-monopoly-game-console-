@@ -55,77 +55,13 @@ namespace MolopolyGame
             }
 
 
-
-
-
-            
-
-            // if player is not in jail and has rolled  doubles incriment the doubles counter.
-
-          /*  if (player.getJailStatis() == false && player.CheckForDouble() == true)
-            {
-
-
-                player.rollDoubleCount++;
-
-                if (player.rollDoubleCount >= 3)
-                {
-                    //Send player to jail
-
-                    player.setIsInJail();
-
-                    //set the location as jail and do not pass go
-                    player.setLocation(11, false);
-
-                    Console.WriteLine("You have rolled doubles 3 times in a row and have been sent to jail! you did not pass Go, you did not collect $200!");
-                    player.rollDoubleCount = 0;
-                }
-            }*/
-
-
-
-            
-         /*   if (player.getJailStatis() == true)
-            {
-                player.CheckForDouble();
-
-                if (player.getJailStatis() == true)
-                {
-                    player.rollCount++;
-
-                    //just for testing 
-                    Console.WriteLine("You are in jail!");
-                    if (rollCount >= 3)
-                    {
-                        Console.WriteLine("You have now made your 3rd roll, you must pay $50 to leave jail!");
-                        player.pay(50);
-                        Banker.access().receive(50);
-                        player.rollCount = 0;
-                    }
-                }
-              
-
-                            
-
-            }*/
-
-
-            if (player.getJailStatis() == true)
-            {
-                Console.WriteLine("I am in jail and can not move");
-                
-            }
-
-
-
-
-
             //prompt player to make move
             Console.WriteLine("{0}Your turn. Press Enter to make move", playerPrompt(iPlayerIndex));
             Console.ReadLine();
             //move player
             
-         
+            //Inside player.move there is a check that will stop the player from moving if 
+            //they are in jail
             player.move();
 
             //Display making move

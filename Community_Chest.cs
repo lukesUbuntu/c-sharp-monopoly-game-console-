@@ -12,7 +12,7 @@ namespace MolopolyGame
     public class Community_Chest : Property
     {
         public Player current_player;
-        public Banker the_bank;//Current Player
+        public Banker the_bank;
         public string sName;
 
 

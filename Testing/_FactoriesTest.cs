@@ -67,5 +67,15 @@ namespace MolopolyGame
             Type t = new Utility().GetType();
             Assert.IsInstanceOfType(t, p);
         }
+
+        [Test]
+        public void testCommunityChest()
+        {
+            //create a instance of community chest
+            Community_Chest_Factory T = new Community_Chest_Factory();
+           Community_Chest p = T.create("new community chest");
+            Type thisItem = new  Community_Chest().GetType();
+            Assert.IsInstanceOfType(thisItem, p);
+        }
     }
 }

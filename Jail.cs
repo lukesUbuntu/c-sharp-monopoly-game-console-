@@ -34,8 +34,8 @@ namespace MolopolyGame
             
             if (this.setJail == true)
             {
-                SpeechSynthesizer synth = new SpeechSynthesizer();
-                synth.Speak("You have gone to jail, you do not pass go you can not collect $200");
+               // SpeechSynthesizer synth = new SpeechSynthesizer();
+               // synth.Speak("You have gone to jail, you do not pass go you can not collect $200");
                 player.setIsInJail();
                 player.setLocation(10, false);
                 return base.landOn(ref player) + String.Format(player.getName().ToString() + " has gone to jail!");
@@ -44,8 +44,8 @@ namespace MolopolyGame
             {
                 if (player.getJailStatis() == true)
                 {
-                    SpeechSynthesizer synth = new SpeechSynthesizer();
-                    synth.Speak("Hahahaha you are in jail, Just like Kiel with his ankle bracelet");
+                   // SpeechSynthesizer synth = new SpeechSynthesizer();
+                   // synth.Speak("Hahahaha you are in jail, Just like Kiel with his ankle bracelet");
                     return base.landOn(ref player) + String.Format(player.getName().ToString() + " is in jail!..");
                 }
                 return base.landOn(ref player) + String.Format(player.getName().ToString() + " is just visiting!.");
@@ -54,29 +54,5 @@ namespace MolopolyGame
 
         }
        
-        /*
-           public override string landOn(ref Player player)
-        {
-            //if this is a jail property and user has past go.
-            //&& player.passGo()
-            if (this.isJail)
-            {
-                //player landed on jail
-                player.setIsInJail();
-                //if is a benefit player receives amount else pay amount
-                return base.landOn(ref player) + String.Format("{0} has gone to jail.", player.getName());
-
-            }
-            else
-            {
-                //if is a benefit player receives amount else pay amount
-                return base.landOn(ref player) + String.Format("{0} just visting jail.", player.getName());
-
-            }
-           
-                    
-        }*/
-
-
-    }
+     }
 }
