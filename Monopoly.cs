@@ -51,18 +51,19 @@ namespace MolopolyGame
                     this.printWinner();
                 }
 
-                return;
+                
             }
 
 
 
-            
 
 
-            
+
+
             // if player is not in jail and has rolled  doubles incriment the doubles counter.
-            
-            if (player.getJailStatis() == false && player.CheckForDouble() == true) {
+
+            if (player.getJailStatis() == false && player.CheckForDouble() == true)
+            {
 
 
                 player.rollDoubleCount++;
@@ -82,48 +83,50 @@ namespace MolopolyGame
             }
 
 
-           
-            if (player.getJailStatis() == true) {
 
-                player.rollCount++;
-
-                //just for testing 
-                Console.WriteLine("You are in jail!");
-                if (rollCount >= 3)
-                {
-                    Console.WriteLine("You have now made your 3rd roll, you must pay $50 to leave jail!");
-                    player.pay(50);
-                    Banker.access().receive(50);
-                    player.rollCount = 0;
-                }
-
-                //if roll is doubles
-            if (player.rollDoubleCount == 3)
-            {
-                //set jail status to false
-                player.setIsNotInJail();
-
-                Console.WriteLine("Congradulations you have rolled doubles and have been released from jail!");
-
-
-            }
-
-           
-           
-          
-            }
-
-
-       
-           
-                
             
-         
+            if (player.getJailStatis() == true)
+            {
+                player.CheckForDouble();
+
+                if (player.getJailStatis() == true)
+                {
+                    player.rollCount++;
+
+                    //just for testing 
+                    Console.WriteLine("You are in jail!");
+                    if (rollCount >= 3)
+                    {
+                        Console.WriteLine("You have now made your 3rd roll, you must pay $50 to leave jail!");
+                        player.pay(50);
+                        Banker.access().receive(50);
+                        player.rollCount = 0;
+                    }
+                }
+              
+
+                            
+
+            }
+
+
+            if (player.getJailStatis() == true)
+            {
+                Console.WriteLine("I am in jail and can not move");
+                Console.WriteLine("{0}{1}\n", playerPrompt(iPlayerIndex), player.diceRollingToString());
+                displayPlayerChoiceMenu(player);
+            }
+
+
+
+
 
             //prompt player to make move
             Console.WriteLine("{0}Your turn. Press Enter to make move", playerPrompt(iPlayerIndex));
             Console.ReadLine();
             //move player
+
+         
             player.move();
 
             //Display making move
@@ -295,47 +298,47 @@ namespace MolopolyGame
             //Colours have not been implemented
             Board.access().addProperty(luckFactory.create("Go", false, 200));
             Board.access().addProperty(resFactory.create("Ohakune Carrot", 60, 6, 50));
-            
+
             Board.access().addProperty(luckFactory.create("Community Chest", false, 50)); // not properly implemented just 50 benefit
             Board.access().addProperty(resFactory.create("Te Puke, Giant Kiwifruit", 60, 6, 50));
             Board.access().addProperty(luckFactory.create("Income Tax", true, 200));
-             Board.access().addProperty(transFactory.create("Auckland International Airport"));
-             Board.access().addProperty(resFactory.create("Te Papa", 100, 10, 50));
-             Board.access().addProperty(luckFactory.create("Chance", true, 50)); // not properly implemented just 50 penalty
-             Board.access().addProperty(resFactory.create("Waitangi Treaty Grounds", 100, 10, 50));
-             Board.access().addProperty(resFactory.create("Larnach Castle", 120, 12, 50));
-             Board.access().addProperty(jailFactory.create("Jail", false)); //not properly implemented just a property that does nothing
-             Board.access().addProperty(resFactory.create("Cape Reinga Lighthouse", 140, 14, 100));
-             Board.access().addProperty(utilFactory.create("Mobile Phone Company"));
-             Board.access().addProperty(resFactory.create("Lake Taupo", 140, 14, 100));
-             Board.access().addProperty(resFactory.create("Queenstown Ski Fields", 160, 16, 100));
-             Board.access().addProperty(transFactory.create("Dunedin Railway Station"));
-             Board.access().addProperty(resFactory.create("Fox Glacier", 180, 18, 100));
-             Board.access().addProperty(luckFactory.create("Community Chest", false, 50)); // not properly implemented just 50 benefit
-             Board.access().addProperty(resFactory.create("Milford Sound", 180, 18, 100));
-             Board.access().addProperty(resFactory.create("Mt Cook", 200, 20, 100));
-             Board.access().addProperty(genericFactory.create("Free Parking")); //not properly implemented just a property that does nothing
-             Board.access().addProperty(resFactory.create("Ninety Mile Beach", 220, 22, 150));
-             Board.access().addProperty(luckFactory.create("Chance", true, 50)); // not properly implemented just 50 penalty
-             Board.access().addProperty(resFactory.create("Golden Bay", 220, 22, 150));
-             Board.access().addProperty(resFactory.create("Moeraki Boulders, Oamaru", 240, 24, 150));
-             Board.access().addProperty(transFactory.create("Port Tauranga"));
-             Board.access().addProperty(resFactory.create("Waitomo Caves", 260, 26, 150));
-             Board.access().addProperty(resFactory.create("Mt Maunganui", 260, 26, 150));
-             Board.access().addProperty(utilFactory.create("Internet Service Provider"));
-             Board.access().addProperty(resFactory.create("Art Deco Buildings, Napier", 280, 28, 150));
-             Board.access().addProperty(jailFactory.create("Go to Jail", true)); //not properly implemented just a property that does nothing
-             Board.access().addProperty(resFactory.create("Cable Cars Wellington", 300, 30, 200));
-             Board.access().addProperty(resFactory.create("Cathedral Square", 300, 30, 200));
- //old            //Board.access().addProperty(luckFactory.create("Community Chest", false, 50)); // not properly implemented just 50 benefit
-          //   Board.access().addProperty(Community_Chest_Factory.create("Community Chest"));
-             Board.access().addProperty(resFactory.create("The Square, Palmerston North", 320, 32, 200));
-             Board.access().addProperty(transFactory.create("Picton Ferry"));
-             Board.access().addProperty(luckFactory.create("Chance", true, 50)); // not properly implemented just 50 penalty
-             Board.access().addProperty(resFactory.create("Pukekura Park, Festival of Lights", 350, 35, 200));
-             Board.access().addProperty(luckFactory.create("Super Tax", true, 100));
-             Board.access().addProperty(resFactory.create("Rangitoto", 400, 40, 200));
-             
+            Board.access().addProperty(transFactory.create("Auckland International Airport"));
+            Board.access().addProperty(resFactory.create("Te Papa", 100, 10, 50));
+            Board.access().addProperty(luckFactory.create("Chance", true, 50)); // not properly implemented just 50 penalty
+            Board.access().addProperty(resFactory.create("Waitangi Treaty Grounds", 100, 10, 50));
+            Board.access().addProperty(resFactory.create("Larnach Castle", 120, 12, 50));
+            Board.access().addProperty(jailFactory.create("Jail", false)); //not properly implemented just a property that does nothing
+            Board.access().addProperty(resFactory.create("Cape Reinga Lighthouse", 140, 14, 100));
+            Board.access().addProperty(utilFactory.create("Mobile Phone Company"));
+            Board.access().addProperty(resFactory.create("Lake Taupo", 140, 14, 100));
+            Board.access().addProperty(resFactory.create("Queenstown Ski Fields", 160, 16, 100));
+            Board.access().addProperty(transFactory.create("Dunedin Railway Station"));
+            Board.access().addProperty(resFactory.create("Fox Glacier", 180, 18, 100));
+            Board.access().addProperty(luckFactory.create("Community Chest", false, 50)); // not properly implemented just 50 benefit
+            Board.access().addProperty(resFactory.create("Milford Sound", 180, 18, 100));
+            Board.access().addProperty(resFactory.create("Mt Cook", 200, 20, 100));
+            Board.access().addProperty(genericFactory.create("Free Parking")); //not properly implemented just a property that does nothing
+            Board.access().addProperty(resFactory.create("Ninety Mile Beach", 220, 22, 150));
+            Board.access().addProperty(luckFactory.create("Chance", true, 50)); // not properly implemented just 50 penalty
+            Board.access().addProperty(resFactory.create("Golden Bay", 220, 22, 150));
+            Board.access().addProperty(resFactory.create("Moeraki Boulders, Oamaru", 240, 24, 150));
+            Board.access().addProperty(transFactory.create("Port Tauranga"));
+            Board.access().addProperty(resFactory.create("Waitomo Caves", 260, 26, 150));
+            Board.access().addProperty(resFactory.create("Mt Maunganui", 260, 26, 150));
+            Board.access().addProperty(utilFactory.create("Internet Service Provider"));
+            Board.access().addProperty(resFactory.create("Art Deco Buildings, Napier", 280, 28, 150));
+            Board.access().addProperty(jailFactory.create("Go to Jail", true)); //not properly implemented just a property that does nothing
+            Board.access().addProperty(resFactory.create("Cable Cars Wellington", 300, 30, 200));
+            Board.access().addProperty(resFactory.create("Cathedral Square", 300, 30, 200));
+            //old            //Board.access().addProperty(luckFactory.create("Community Chest", false, 50)); // not properly implemented just 50 benefit
+            //   Board.access().addProperty(Community_Chest_Factory.create("Community Chest"));
+            Board.access().addProperty(resFactory.create("The Square, Palmerston North", 320, 32, 200));
+            Board.access().addProperty(transFactory.create("Picton Ferry"));
+            Board.access().addProperty(luckFactory.create("Chance", true, 50)); // not properly implemented just 50 penalty
+            Board.access().addProperty(resFactory.create("Pukekura Park, Festival of Lights", 350, 35, 200));
+            Board.access().addProperty(luckFactory.create("Super Tax", true, 100));
+            Board.access().addProperty(resFactory.create("Rangitoto", 400, 40, 200));
+
             Console.WriteLine("Properties have been setup");
         }
 
@@ -410,7 +413,7 @@ namespace MolopolyGame
             Console.WriteLine("4. Buy House for Property");
             Console.WriteLine("5. Trade Property with Player");
             Console.WriteLine("6. Mortgage Property");
-             Console.WriteLine("7.Un Mortgage Property");
+            Console.WriteLine("7.Un Mortgage Property");
             Console.Write("(1-7)>");
             //read response
             resp = inputInteger();
@@ -437,7 +440,7 @@ namespace MolopolyGame
                     this.buyHouse(player);
                     this.displayPlayerChoiceMenu(player);
                     break;
-                
+
                 case 5:
                     this.tradeProperty(player);
                     this.displayPlayerChoiceMenu(player);
@@ -479,7 +482,8 @@ namespace MolopolyGame
                 Console.WriteLine("{0}{1} is not available for purchase.", playerPrompt(player), Board.access().getProperty(player.getLocation()).getName());
             }
         }
-        public void sellHouse(Player player) {
+        public void sellHouse(Player player)
+        {
             string sPrompt = String.Format("Please select a property to sell houses for:", this.playerPrompt(player));
         }
 
@@ -674,10 +678,10 @@ namespace MolopolyGame
         {
 
             string sPrompt = String.Format("{0}Please select a property to mortgage:", this.playerPrompt(player));
-            
+
             //Get the selected property to mortgage
             Property selected_property = this.displayPropertyChooser(player.getPropertiesOwnedFromBoard(), sPrompt);
-          
+
             if (player.getPropertiesOwnedFromBoard().Count == 0)
             {
                 //write message
@@ -690,19 +694,19 @@ namespace MolopolyGame
 
                 Console.WriteLine(selected_property.getName().ToString() + " has already been mortgaged! ");
             }
-                
+
             else
             {
 
-            
-              decimal mortgage = selected_property.getMortgageValue();
-              selected_property.mortgageProperty();
 
-          
-           Console.WriteLine("You have mortgaged" + selected_property.getName() + "and have been paid" + mortgage);
+                decimal mortgage = selected_property.getMortgageValue();
+                selected_property.mortgageProperty();
+
+
+                Console.WriteLine("You have mortgaged" + selected_property.getName() + "and have been paid" + mortgage);
             }
         }
-     
+
         public void un_mortgage_property(Player player)
         {
 

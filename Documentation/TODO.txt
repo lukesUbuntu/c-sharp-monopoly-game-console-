@@ -45,7 +45,10 @@ Community Chest Get Out of Jail Free card, or attempt to roll doubles on the dic
 Failure to roll doubles thrice will result in paying the $50 fine (or use a Get out of Jail Free card) to be released. 
 While a player is in jail, they may not buy property directly, by virtue of not being able to land on the properties. 
 However, they may sell, trade and mortgage properties, purchase buildings, participate in auctions, and collect rents. 
-If a player does roll doubles to exit Jail, they may immediately move according to the roll, but they cannot roll a second time after exiting jail. 
+
+If a player does roll doubles to exit Jail, they may immediately move according to the roll - Done
+
+but they cannot roll a second time after exiting jail. 
 If the player instead pays the $50 fine or uses a Get out of Jail Free card and then rolls doubles, they are required to move the amount shown on the dice and then roll again.
 =================================================================================================================
 

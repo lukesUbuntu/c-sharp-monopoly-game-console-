@@ -129,9 +129,17 @@ namespace MolopolyGame
             int dice_1 = Int32.Parse(die1.ToString());
             int dice_2 = Int32.Parse(die2.ToString());
 
+           
+
             if (dice_1 == dice_2 && dice_2 == dice_1)
             {
-
+                
+                if (this.getJailStatis() == true)
+                {
+                    this.setIsNotInJail();
+                    Console.WriteLine("You have rolled doubles and are no longer in jail bitch!");
+                    
+                }
                 return true;
             }
 
