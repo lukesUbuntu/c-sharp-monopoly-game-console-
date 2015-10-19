@@ -9,11 +9,11 @@ namespace MolopolyGame
     /// This class stores all of the community chest cards
     /// </summary>
 
-  public  class Community_Chest : Property
+    public class Community_Chest : Property
     {
         public Player current_player;
         public Banker the_bank;//Current Player
-       public string sName;
+        public string sName;
 
 
         public Community_Chest() : this("Community Chest") { }
@@ -21,7 +21,7 @@ namespace MolopolyGame
 
         public Community_Chest(string sName)
         {
-            
+
             this.sName = sName;
         }
 
@@ -30,14 +30,14 @@ namespace MolopolyGame
 
             draw_card(player);
             return base.landOn(ref player) + String.Format("You landed on something and got something");
-        
+
         }
         //info for creating a list of actions was taken from http://stackoverflow.com/questions/4910775/can-a-list-hold-multiple-void-methods
 
-      //Deck of comunity chest cards
+        //Deck of comunity chest cards
 
 
-     
+
         public List<Actionable> CardList()
         {
 
@@ -79,44 +79,44 @@ namespace MolopolyGame
                  new Actionable
                 {
                     Name = "Pay School Fees of $50",
-                    Action = Card_Actions.School_Fees
+                    Action = School_Fees
                 },
                  new Actionable
                 {
                     Name = "Receive $25 Consultancy Fee",
-                    Action = Card_Actions.Consultancy_Fee
+                    Action = Consultancy_Fee
                 },
                  new Actionable
                 {
                     Name = "You are assessed for street repairs – $40 per house, $115 per hotel ",
-                    Action = Card_Actions.street_repairs
+                    Action = street_repairs
                 },
                  new Actionable
                 {
                     Name = "You have won second prize in a beauty contest– collect $10 ",
-                    Action = Card_Actions.beauty_contest
+                    Action = beauty_contest
                 },
                  new Actionable
                 {
                     Name = "You inherit $100 ",
-                    Action = Card_Actions.inherit
+                    Action = inherit
                 },
                  new Actionable
                 {
                     Name = "From sale of stock you get $50 ",
-                    Action = Card_Actions.sale_of_stock
+                    Action = sale_of_stock
                 },
                  new Actionable
                 {
                     Name = "Holiday Fund matures - Receive $100",
-                    Action = Card_Actions.Holiday_Fund
+                    Action = Holiday_Fund
                 }
                 
             };
-       
-          
+
+
             return Community_Cards_Actions;
-         }
+        }
         //confirmed that this action runs
 
         public string draw_card(Player player)
@@ -126,12 +126,12 @@ namespace MolopolyGame
             Community_Cards_Actions[0].Action.Invoke();
             return ("need to figure out how to not bother returning anything");
         }
-      /**
-       * Card Methods below here 
-       */
+        /**
+         * Card Methods below here 
+         */
         public void Doctor_fees()
         {
-            
+
             Console.WriteLine("Doctor's fees – Pay $50 ");
             current_player.pay(50);
             the_bank.receive(50);
@@ -145,49 +145,99 @@ namespace MolopolyGame
             current_player.setLocation(0, false);
             Console.WriteLine("Advance straight to GO");
         }
-        
-       public void your_birthday(){
-           //collect $10 from all players on board
-           foreach (Player otherPlayer in Board.access().getPlayers())
-              {
-                  if (otherPlayer != current_player)
-                  {
-                      otherPlayer.pay(10);
-                    Console.WriteLine(String.Format("{0} paid you $10 ",otherPlayer.getName()));
-                      current_player.receive(10);
-                  }
 
-              }
-             
-       }
+        public void your_birthday()
+        {
+            //collect $10 from all players on board
+            foreach (Player otherPlayer in Board.access().getPlayers())
+            {
+                if (otherPlayer != current_player)
+                {
+                    otherPlayer.pay(10);
+                    Console.WriteLine(String.Format("{0} paid you $10 ", otherPlayer.getName()));
+                    current_player.receive(10);
+                }
 
-      public void Opera_Night(){
-          foreach (Player otherPlayer in Board.access().getPlayers())
-              {
-                  if (otherPlayer != current_player)
-                  {
-                      otherPlayer.pay(50);
-                    Console.WriteLine(String.Format("{0} paid you $50 ",otherPlayer.getName()));
-                      current_player.receive(50);
-                  }
+            }
 
-              }
-           Console.WriteLine("Your new balance is /n" + current_player.getBalance());
-      }
+        }
 
-      public void Tax_refund(){
-            
+        public void Opera_Night()
+        {
+            foreach (Player otherPlayer in Board.access().getPlayers())
+            {
+                if (otherPlayer != current_player)
+                {
+                    otherPlayer.pay(50);
+                    Console.WriteLine(String.Format("{0} paid you $50 ", otherPlayer.getName()));
+                    current_player.receive(50);
+                }
+
+            }
+            Console.WriteLine("Your new balance is /n" + current_player.getBalance());
+        }
+
+        public void Tax_refund()
+        {
+
             current_player.receive(20);
             the_bank.pay(20);
             Console.WriteLine("Your new balance is /n" + current_player.getBalance());
-          
-      }
 
-      public void Hospital_Fees(){
+        }
 
-      }
-        
-       
+        public void Hospital_Fees()
+        {
+            current_player.pay(100);
+            the_bank.receive(100);
+            Console.WriteLine("Your new balance is /n" + current_player.getBalance());
+        }
+
+        public void School_Fees()
+        {
+            current_player.pay(50);
+            the_bank.receive(50);
+            Console.WriteLine("Your new balance is /n" + current_player.getBalance());
+        }
+
+        public void Consultancy_Fee()
+        {
+            current_player.receive(25);
+            the_bank.pay(25);
+            Console.WriteLine("Your new balance is /n" + current_player.getBalance());
+        }
+        public void beauty_contest()
+        {
+            current_player.receive(10);
+            the_bank.pay(10);
+            Console.WriteLine("Your new balance is /n" + current_player.getBalance());
+        }
+        public void inherit()
+        {
+            current_player.receive(100);
+            the_bank.pay(100);
+            Console.WriteLine("Your new balance is /n" + current_player.getBalance());
+        }
+        public void sale_of_stock()
+        {
+            current_player.receive(50);
+            the_bank.pay(50);
+            Console.WriteLine("Your new balance is /n" + current_player.getBalance());
+        }
+
+        public void Holiday_Fund()
+        {
+            current_player.receive(100);
+            the_bank.pay(100);
+            Console.WriteLine("Your new balance is /n" + current_player.getBalance());
+        }
+        public void street_repairs()
+        {
+            //need to finish of the residental class
+        }
+
+    }
+}
 
      public class Actionable
     {
