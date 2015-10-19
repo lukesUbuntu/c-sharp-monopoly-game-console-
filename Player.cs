@@ -51,14 +51,24 @@ namespace MolopolyGame
   
         public void move()
         {
-            
             die1.roll();
             die2.roll();
-            //move distance is total of both throws
-           int iMoveDistance = die1.roll() + die2.roll();
-            //increase location
-           this.setLocation(this.getLocation() + iMoveDistance,false);
-           this.lastMove = iMoveDistance;
+
+            if (this.getJailStatis() == true)
+            {
+                Console.WriteLine("in jail so didnt move");
+            }
+            else
+            {
+             
+                //move distance is total of both throws
+                int iMoveDistance = die1.roll() + die2.roll();
+                
+                //increase location
+                this.setLocation(this.getLocation() + iMoveDistance, false);
+                this.lastMove = iMoveDistance;
+            }
+           
         }
 
         public int getLastMove()
@@ -136,8 +146,9 @@ namespace MolopolyGame
                 
                 if (this.getJailStatis() == true)
                 {
-                    this.setIsNotInJail();
+                    //this.setIsNotInJail();
                     Console.WriteLine("You have rolled doubles and are no longer in jail!");
+                    
                     
                 }
 
@@ -148,7 +159,7 @@ namespace MolopolyGame
                     this.setIsInJail();
                     this.setLocation(10, false);
                     Console.WriteLine("You have rolled doubles 3 times in a row and have been sent to jail!");
-
+                    rollDoubleCount = 0;
                 }
                 return true;
             }

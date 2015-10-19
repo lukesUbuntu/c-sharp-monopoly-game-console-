@@ -42,6 +42,12 @@ namespace MolopolyGame
             }
             else
             {
+                if (player.getJailStatis() == true)
+                {
+                    SpeechSynthesizer synth = new SpeechSynthesizer();
+                    synth.Speak("Hahahaha you are in jail, Just like Kiel with his ankle bracelet");
+                    return base.landOn(ref player) + String.Format(player.getName().ToString() + " is in jail!..");
+                }
                 return base.landOn(ref player) + String.Format(player.getName().ToString() + " is just visiting!.");
 
             }

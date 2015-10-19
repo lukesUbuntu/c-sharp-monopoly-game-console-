@@ -48,7 +48,7 @@ However, they may sell, trade and mortgage properties, purchase buildings, parti
 
 If a player does roll doubles to exit Jail, they may immediately move according to the roll - Done
 
-but they cannot roll a second time after exiting jail. 
+but they cannot roll a second time after exiting jail.
 If the player instead pays the $50 fine or uses a Get out of Jail Free card and then rolls doubles, they are required to move the amount shown on the dice and then roll again.
 =================================================================================================================
 
