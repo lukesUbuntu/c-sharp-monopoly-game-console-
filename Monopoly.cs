@@ -377,6 +377,7 @@ namespace MolopolyGame
             switch (resp)
             {
                 case 1:
+                    player.first = false;
                     break;
                 case 2:
                     Console.WriteLine("==================================");

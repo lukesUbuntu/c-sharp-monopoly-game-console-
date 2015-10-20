@@ -263,7 +263,7 @@ namespace MolopolyGame
 
         //send player to jail
         public void setIsInJail() {
-
+            first = true;
            this.inJail = true;
         }
         //release player from jail
