@@ -17,6 +17,8 @@ namespace MolopolyGame
         private bool inJail;
         public int rollCount;
         public int rollDoubleCount;
+        public bool sendMsg;
+        public bool first = false;
 
         //each player has two dice
         Die die1 = new Die();
@@ -134,8 +136,8 @@ namespace MolopolyGame
 
         //check the dice roll for doubles 
         public bool CheckForDouble() {
-         
 
+            
             int dice_1 = Int32.Parse(die1.ToString());
             int dice_2 = Int32.Parse(die2.ToString());
 
@@ -146,7 +148,7 @@ namespace MolopolyGame
                 
                 if (this.getJailStatis() == true)
                 {
-                    //this.setIsNotInJail();
+                    this.setIsNotInJail();
                     Console.WriteLine("You have rolled doubles and are no longer in jail!");
                     
                     
@@ -156,10 +158,14 @@ namespace MolopolyGame
 
                 if (rollDoubleCount >= 3)
                 {
+                    this.first = true;
                     this.setIsInJail();
                     this.setLocation(10, false);
+                    sendMsg = false;
                     Console.WriteLine("You have rolled doubles 3 times in a row and have been sent to jail!");
+                    
                     rollDoubleCount = 0;
+
                 }
                 return true;
             }
@@ -224,6 +230,16 @@ namespace MolopolyGame
             }
             return propertiesOwned;
         }
+        public void payJailFine()
+        {
+            this.pay(50);
+            Banker.access().receive(50);
+            this.setIsNotInJail();
+            Console.WriteLine("you no in jail");
+
+
+        }
+
         public override void checkBankrupt()
         {
             if (this.getBalance() <= 0)
@@ -262,6 +278,8 @@ namespace MolopolyGame
         {
             return this.isInactive;
         }
+
+       
 
     }
 }

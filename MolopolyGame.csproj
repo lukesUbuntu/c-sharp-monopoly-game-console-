@@ -74,7 +74,9 @@
     <Compile Include="Testing\_BoardTest.cs" />
     <Compile Include="Testing\_DieTest.cs" />
     <Compile Include="Testing\_FactoriesTest.cs" />
+    <Compile Include="Testing\_JailTest.cs" />
     <Compile Include="Testing\_LandOnTest.cs" />
+    <Compile Include="Testing\_PlayerTest.cs" />
     <Compile Include="Testing\_TraderTest.cs" />
     <Compile Include="Testing\_UtilityTest.cs" />
     <Compile Include="TradeableProperty.cs" />

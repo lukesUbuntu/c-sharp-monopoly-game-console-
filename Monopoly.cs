@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Collections;
+using System.Xml.Serialization;
+using System.IO;
+using System.Xml.Linq;
 
 namespace MolopolyGame
 {
@@ -15,6 +18,10 @@ namespace MolopolyGame
         ConsoleColor[] colors = new ConsoleColor[8] { ConsoleColor.Cyan, ConsoleColor.Green, ConsoleColor.Yellow, ConsoleColor.Red, ConsoleColor.Magenta, ConsoleColor.Gray, ConsoleColor.Blue, ConsoleColor.DarkYellow };
         bool gameSetUp = false;
         int rollCount;
+        //create a collection that will be used to save the game
+      //  Player players = new List<Player>();
+        //clsPerson[] objArr = new clsPerson[1000];
+        public List<Player> playerList = new List<Player>();
         public override void initializeGame()
         {
 
@@ -69,6 +76,7 @@ namespace MolopolyGame
             //Display rolling
             Console.WriteLine("{0}{1}\n", playerPrompt(iPlayerIndex), player.diceRollingToString());
             //check for double
+            
             player.CheckForDouble();
             Property propertyLandedOn = Board.access().getProperty(player.getLocation());
             //landon property and output to console
@@ -291,7 +299,7 @@ namespace MolopolyGame
                 Console.WriteLine("That is an invalid amount. Please try again.");
                 this.setUpPlayers();
             }
-
+            
             //Ask for players names
             for (int i = 0; i < playerCount; i++)
             {
@@ -304,6 +312,7 @@ namespace MolopolyGame
                 player.playerPassGo += playerPassGoHandler;
                 //add player 
                 Board.access().addPlayer(player);
+                playerList.Add(player);
                 Console.WriteLine("{0} has been added to the game.", Board.access().getPlayer(i).getName());
             }
 
@@ -349,7 +358,14 @@ namespace MolopolyGame
             Console.WriteLine("4. Buy House for Property");
             Console.WriteLine("5. Trade Property with Player");
             Console.WriteLine("6. Mortgage Property");
-            Console.WriteLine("7.Un Mortgage Property");
+            Console.WriteLine("7. Un Mortgage Property");
+          
+            Console.WriteLine("9. Save game");
+            if (player.getJailStatis() == true && player.first == false)
+            {
+                Console.WriteLine("9. Paiy $50 to get out of jail");
+
+            }
             Console.Write("(1-7)>");
             //read response
             resp = inputInteger();
@@ -393,6 +409,16 @@ namespace MolopolyGame
                     this.buyHouse(player);
                     this.displayPlayerChoiceMenu(player);
                     break;
+
+                case 9:
+                    this.save();
+                    break;
+                case 10:
+                    player.payJailFine();
+                    break;
+
+                   
+
                 default:
                     Console.WriteLine("That option is not avaliable. Please try again.");
                     this.displayPlayerChoiceMenu(player);
@@ -661,6 +687,29 @@ namespace MolopolyGame
 
             selected_property.unMortgageProperty();
         }
+       public void save()
+        {
+
+            
+
+            foreach (Player p in playerList)
+            {
+                
+                XmlSerializer xs = new XmlSerializer(typeof(Player));
+                TextWriter tw = new StreamWriter(@"c:\temp\garage.xml");
+                xs.Serialize(tw, p);
+
+                tw.Flush();
+                tw.Close();
+
+               
+
+            }
+
+        }
+
+
+    
 
 
     }

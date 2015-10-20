@@ -1,12 +1,16 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace MolopolyGame
 {
     /// <summary>
     /// This is class for singleton Board that has properties and traders on it.
     /// </summary>
-    
+    [Serializable]
     public class Board
     {
         //provide an static instance of this class to create singleton
@@ -87,5 +91,11 @@ namespace MolopolyGame
         {
             return this.properties;
         }
+
+
+
+
+    
+
     }
 }

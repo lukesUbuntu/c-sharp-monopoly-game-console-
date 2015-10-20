@@ -9,6 +9,26 @@ namespace MolopolyGame.Testing
     [TestFixture]
     class _LandOnTest
     {
+
+
+        [Test]
+        public void TestLandOnGoToJail()
+        {
+            Player playerone = new Player();
+
+            Board theboard = new Board();
+
+            Jail Visting = new Jail("visitng", true);
+            Board.access().addPlayer(playerone);
+
+            Board.access().addProperty(Visting);
+
+            playerone.setLocation(0, false);
+
+            Assert.IsTrue(Board.access().getPlayer(0).getJailStatis());
+
+
+        }
         [Test]
         /// <summary>
         /// This test has been created to test that you will not have to pay rent if you land on a mortgaged property 
@@ -33,8 +53,8 @@ namespace MolopolyGame.Testing
             theproperty.landOn(ref playertwo);
 
         }
-
-        public void TestLandOnJail() {
+        [Test]
+        public void TestLandOnJailJustVisiting() {
             Player playerone = new Player();
             
             Board theboard = new Board();
@@ -44,9 +64,13 @@ namespace MolopolyGame.Testing
            
             Board.access().addProperty(Visting);
 
-            playerone.setLocation(0, false);
-            Visting.landOn(ref playerone);
+            playerone.setLocation(10, false);
+
+            Assert.IsFalse(Board.access().getPlayer(0).getJailStatis());
+
+
         }
+       
         
     }
 }

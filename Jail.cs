@@ -28,7 +28,7 @@ namespace MolopolyGame
             return base.ToString();
         }
 
-
+       
         public override string landOn(ref Player player)
         {
             
@@ -44,8 +44,14 @@ namespace MolopolyGame
             {
                 if (player.getJailStatis() == true)
                 {
-                   // SpeechSynthesizer synth = new SpeechSynthesizer();
-                   // synth.Speak("Hahahaha you are in jail, Just like Kiel with his ankle bracelet");
+                    SpeechSynthesizer synth = new SpeechSynthesizer();
+                    synth.Speak("Hahahaha you are in jail, Just like Kiel with his ankle bracelet");
+                   
+                    if (player.sendMsg == false)
+                    {
+                        return null;
+                    }
+
                     return base.landOn(ref player) + String.Format(player.getName().ToString() + " is in jail!..");
                 }
                 return base.landOn(ref player) + String.Format(player.getName().ToString() + " is just visiting!.");
