@@ -27,9 +27,9 @@ namespace MolopolyGame
 
         public override string landOn(ref Player player)
         {
-
-            draw_card(player);
-            return base.landOn(ref player) + String.Format("You landed on something and got something");
+            the_bank = Banker.access();
+            string drawedCord = draw_card(player);
+            return base.landOn(ref player) + String.Format(drawedCord);
 
         }
         //info for creating a list of actions was taken from http://stackoverflow.com/questions/4910775/can-a-list-hold-multiple-void-methods
@@ -122,9 +122,25 @@ namespace MolopolyGame
         public string draw_card(Player player)
         {
             List<Actionable> Community_Cards_Actions = CardList();
+            ///Community_Cards_Actions
             current_player = player; //Current Player
             Community_Cards_Actions[0].Action.Invoke();
-            return ("need to figure out how to not bother returning anything");
+            return Community_Cards_Actions[0].Name.ToString();
+            //return ("need to figure out how to not bother returning anything");
+        }
+        private static Random rng = new Random();
+
+        public static void Shuffle<T>(this IList<T> list)
+        {
+            int n = list.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = rng.Next(n + 1);
+                T value = list[k];
+                list[k] = list[n];
+                list[n] = value;
+            }
         }
         /**
          * Card Methods below here 
@@ -135,7 +151,7 @@ namespace MolopolyGame
             Console.WriteLine("Doctor's fees – Pay $50 ");
             current_player.pay(50);
             the_bank.receive(50);
-            Console.WriteLine("Your new balance is /n" + current_player.getBalance());
+            Console.WriteLine("Your new balance is \n" + current_player.getBalance());
             Console.ReadLine();
 
         }
@@ -174,7 +190,7 @@ namespace MolopolyGame
                 }
 
             }
-            Console.WriteLine("Your new balance is /n" + current_player.getBalance());
+            Console.WriteLine("Your new balance is \n" + current_player.getBalance());
         }
 
         public void Tax_refund()
@@ -182,7 +198,7 @@ namespace MolopolyGame
 
             current_player.receive(20);
             the_bank.pay(20);
-            Console.WriteLine("Your new balance is /n" + current_player.getBalance());
+            Console.WriteLine("Your new balance is \n" + current_player.getBalance());
 
         }
 
@@ -190,50 +206,50 @@ namespace MolopolyGame
         {
             current_player.pay(100);
             the_bank.receive(100);
-            Console.WriteLine("Your new balance is /n" + current_player.getBalance());
+            Console.WriteLine("Your new balance is \n" + current_player.getBalance());
         }
 
         public void School_Fees()
         {
             current_player.pay(50);
             the_bank.receive(50);
-            Console.WriteLine("Your new balance is /n" + current_player.getBalance());
+            Console.WriteLine("Your new balance is \n" + current_player.getBalance());
         }
 
         public void Consultancy_Fee()
         {
             current_player.receive(25);
             the_bank.pay(25);
-            Console.WriteLine("Your new balance is /n" + current_player.getBalance());
+            Console.WriteLine("Your new balance is \n" + current_player.getBalance());
         }
         public void beauty_contest()
         {
             current_player.receive(10);
             the_bank.pay(10);
-            Console.WriteLine("Your new balance is /n" + current_player.getBalance());
+            Console.WriteLine("Your new balance is \n" + current_player.getBalance());
         }
         public void inherit()
         {
             current_player.receive(100);
             the_bank.pay(100);
-            Console.WriteLine("Your new balance is /n" + current_player.getBalance());
+            Console.WriteLine("Your new balance is \n" + current_player.getBalance());
         }
         public void sale_of_stock()
         {
             current_player.receive(50);
             the_bank.pay(50);
-            Console.WriteLine("Your new balance is /n" + current_player.getBalance());
+            Console.WriteLine("Your new balance is \n" + current_player.getBalance());
         }
 
         public void Holiday_Fund()
         {
             current_player.receive(100);
             the_bank.pay(100);
-            Console.WriteLine("Your new balance is /n" + current_player.getBalance());
+            Console.WriteLine("Your new balance is \n" + current_player.getBalance());
         }
         public void street_repairs()
         {
-            //need to finish of the residental class
+            Console.WriteLine("Your new balance is \n" + current_player.getBalance());
         }
 
     }

@@ -242,8 +242,10 @@ namespace MolopolyGame
             //Colours have not been implemented
             Board.access().addProperty(luckFactory.create("Go", false, 200));
             Board.access().addProperty(resFactory.create("Ohakune Carrot", 60, 6, 50));
+   
+            Board.access().addProperty(ChestFactory.create("Community Chest"));
 
-            Board.access().addProperty(luckFactory.create("Community Chest", false, 50)); // not properly implemented just 50 benefit
+        
             Board.access().addProperty(resFactory.create("Te Puke, Giant Kiwifruit", 60, 6, 50));
             Board.access().addProperty(luckFactory.create("Income Tax", true, 200));
             Board.access().addProperty(transFactory.create("Auckland International Airport"));
