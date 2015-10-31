@@ -69,8 +69,11 @@ namespace MolopolyGame.Testing
 
         [Test]
 
-        public void testMoveInJail()
+        public void testMove()
         {
+
+            //~~ This will test that the player will not move if they are in jail
+
             //Set the player as in jail
             testPlayer.setIsInJail();
             //get the players current location, this sould be 10
@@ -87,14 +90,13 @@ namespace MolopolyGame.Testing
 
 
 
-        }
 
-        [Test]
-        public void testMoveInJail()
-        {
-            
+            //~~ This will test that the player will move if they are not in jail
+
+            //Set player is not in jail
+            testPlayer.setIsNotInJail();
             //get the players current location, they should be on go
-            int currentLocation = testPlayer.getLocation();
+             currentLocation = testPlayer.getLocation();
             //set the roll for this turn, it can not be a double or the player will no longer be in jail
             die1.setRole(1);
             die2.setRole(3);
@@ -106,9 +108,9 @@ namespace MolopolyGame.Testing
             Assert.AreSame(currentLocation, 4);
 
 
-
         }
 
+        
 
 
 
