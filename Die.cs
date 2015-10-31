@@ -11,7 +11,7 @@ namespace MolopolyGame
     public class Die
     {
         private static Random numGenerator = new Random();
-        private int numberRolled;
+       public int numberRolled;
         
         public int roll()
         {
