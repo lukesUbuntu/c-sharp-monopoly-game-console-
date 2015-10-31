@@ -14,23 +14,35 @@ namespace MolopolyGame
         public Player current_player;
         public Banker the_bank;
         public string sName;
-
-
-        public Community_Chest() : this("Community Chest") { }
+        private List<Actionable> Community_Cards_Actions;
+        private Random rng = new Random();
+        private int cardPulled = 0;
+        
+        public Community_Chest() : this("Community Chest") {}
 
 
         public Community_Chest(string sName)
         {
-
             this.sName = sName;
+            List<Actionable> Community_Cards_Actions = Shuffle(CardList());
         }
 
         public override string landOn(ref Player player)
         {
+            //if we have pulled the complete deck we need to reshuffle
+            if (this.cardPulled >= Community_Cards_Actions.Count) this.ShuffleCards();
+
             the_bank = Banker.access();
             string drawedCord = draw_card(player);
             return base.landOn(ref player) + String.Format(drawedCord);
 
+        }
+
+        public void ShuffleCards()
+        {
+            Console.Write(String.Format("Shuffling {0} cards  ", this.sName));
+            List<Actionable> Community_Cards_Actions = Shuffle(CardList());
+            Console.Write("Shuffled");
         }
         //info for creating a list of actions was taken from http://stackoverflow.com/questions/4910775/can-a-list-hold-multiple-void-methods
 
@@ -121,34 +133,41 @@ namespace MolopolyGame
 
         public string draw_card(Player player)
         {
-            List<Actionable> Community_Cards_Actions = CardList();
+  
             ///Community_Cards_Actions
             current_player = player; //Current Player
-            Community_Cards_Actions[0].Action.Invoke();
-            return Community_Cards_Actions[0].Name.ToString();
+            Actionable cardPull = Community_Cards_Actions[this.cardPulled++];
+            cardPull.Action.Invoke();
+            return cardPull.Name.ToString();
             //return ("need to figure out how to not bother returning anything");
         }
-        private static Random rng = new Random();
 
-        public static void Shuffle<T>(this IList<T> list)
+        
+
+        private List<Actionable> Shuffle(List<Actionable> list)
         {
+
             int n = list.Count;
             while (n > 1)
             {
                 n--;
                 int k = rng.Next(n + 1);
-                T value = list[k];
+                Actionable value = list[k];
                 list[k] = list[n];
                 list[n] = value;
             }
+            return list;
         }
+        
+
+   
         /**
          * Card Methods below here 
          */
         public void Doctor_fees()
         {
 
-            Console.WriteLine("Doctor's fees – Pay $50 ");
+            //Console.WriteLine("Doctor's fees – Pay $50 ");
             current_player.pay(50);
             the_bank.receive(50);
             Console.WriteLine("Your new balance is \n" + current_player.getBalance());
@@ -159,7 +178,7 @@ namespace MolopolyGame
         public void advance_to_go()
         {
             current_player.setLocation(0, false);
-            Console.WriteLine("Advance straight to GO");
+            //Console.WriteLine("Advance straight to GO");
         }
 
         public void your_birthday()
