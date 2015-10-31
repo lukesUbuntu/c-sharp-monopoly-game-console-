@@ -266,7 +266,6 @@ namespace MolopolyGame
             first = true;
            this.inJail = true;
         }
-        //release player from jail
         public void setIsNotInJail()
         {
             this.inJail = false;
