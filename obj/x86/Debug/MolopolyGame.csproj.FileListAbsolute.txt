@@ -109,3 +109,4 @@ C:\Users\michael\Documents\GitHub\c-sharp-monopoly-game-console-\bin\Debug\nunit
 C:\Users\michael\Documents\GitHub\c-sharp-monopoly-game-console-\bin\Debug\nunit.framework.xml
 C:\Users\michael\Documents\GitHub\c-sharp-monopoly-game-console-\obj\x86\Debug\MolopolyGame.exe
 C:\Users\michael\Documents\GitHub\c-sharp-monopoly-game-console-\obj\x86\Debug\MolopolyGame.pdb
+C:\Users\michael\Documents\GitHub\c-sharp-monopoly-game-console-\obj\x86\Debug\MolopolyGame.csprojResolveAssemblyReference.cache

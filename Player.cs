@@ -64,7 +64,7 @@ namespace MolopolyGame
             {
              
                 //move distance is total of both throws
-                int iMoveDistance = die1.roll() + die2.roll();
+                int iMoveDistance = die1.numberLastRolled() + die2.numberLastRolled();
                 
                 //increase location
                 this.setLocation(this.getLocation() + iMoveDistance, false);

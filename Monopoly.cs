@@ -350,6 +350,15 @@ namespace MolopolyGame
             }
         }
 
+
+        public void displayJailMenu(Player player)
+        {
+
+        }
+
+
+
+
         public void displayPlayerChoiceMenu(Player player)
         {
             int resp = 0;
@@ -365,7 +374,7 @@ namespace MolopolyGame
             Console.WriteLine("9. Save game");
             if (player.getJailStatis() == true && player.first == false)
             {
-                Console.WriteLine("9. Paiy $50 to get out of jail");
+                Console.WriteLine("9. Pay $50 to get out of jail");
 
             }
             Console.Write("(1-7)>");
@@ -414,7 +423,7 @@ namespace MolopolyGame
                     break;
 
                 case 9:
-                    this.save();
+                    player.payJailFine();
                     break;
                 case 10:
                     player.payJailFine();

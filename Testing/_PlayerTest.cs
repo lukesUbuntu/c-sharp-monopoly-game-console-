@@ -80,20 +80,20 @@ namespace MolopolyGame.Testing
             int currentLocation = Board.access().getPlayer(0).getLocation();
             //set the roll for this turn, it can not be a double or the player will no longer be in jail
 
-            TestDie1.setRole(1);
-            TestDie2.setRole(3);
+           // TestDie1.setRole(1);
+           // TestDie2.setRole(3);
 
-            testPlayer.die1 = TestDie1;
-            testPlayer.die2 = TestDie2;
+            //testPlayer.die1 = TestDie1;
+            //testPlayer.die2 = TestDie2;
 
             //attempt to move the player
             testPlayer.move();
             
             
             //assert that the player has not moved
-            
+           // test
 
-            Assert.AreEqual(currentLocation, 10);
+            //Assert.AreEqual(currentLocation, (testPlayer.die1 + testPlayer.die2));
 
 
 
