@@ -52,6 +52,7 @@
     <Compile Include="Banker.cs" />
     <Compile Include="Board.cs" />
     <Compile Include="Card.cs" />
+    <Compile Include="Chance_Cards.cs" />
     <Compile Include="Community_Chest.cs" />
     <Compile Include="Community_Chest_Factory.cs" />
     <Compile Include="Die.cs" />

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Text;
 using NUnit.Framework;
 
-namespace MolopolyGame
+namespace MolopolyGame.Testing
 {
    
     /// <summary>

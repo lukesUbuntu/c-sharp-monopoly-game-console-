@@ -21,8 +21,8 @@ namespace MolopolyGame
         public bool first = false;
 
         //each player has two dice
-       public Die die1 = new Die();
-       public Die die2 = new Die();
+        public Die die1 = new Die();
+        public Die die2 = new Die();
         bool isInactive = false;
 
         //event for playerBankrupt
@@ -55,10 +55,11 @@ namespace MolopolyGame
         {
             die1.roll();
             die2.roll();
-
+            this.first = false;
             if (this.getJailStatis() == true)
             {
                 Console.WriteLine("in jail so didnt move");
+                diceRollingToString();
             }
             else
             {
@@ -127,6 +128,24 @@ namespace MolopolyGame
             }
 
             this.location = location;
+        }
+        public void attemptRollDouble()
+        {
+            die1.roll();
+            die2.roll();
+
+            if (die1.numberRolled != die2.numberRolled)
+            {
+                this.setIsNotInJail();
+                Console.WriteLine("You have rolled doubles and are no longer in jail!");
+            }
+            else
+            {
+                Console.WriteLine("You did not roll a double you are still in jail!");
+
+
+            }
+           
         }
 
         public int getLocation()
@@ -235,7 +254,7 @@ namespace MolopolyGame
             this.pay(50);
             Banker.access().receive(50);
             this.setIsNotInJail();
-            Console.WriteLine("you no in jail");
+            Console.WriteLine("you not in jail");
 
 
         }
@@ -263,13 +282,13 @@ namespace MolopolyGame
 
         //send player to jail
         public void setIsInJail() {
-            first = true;
+           this.first = true;
            this.inJail = true;
            this.setLocation(10, true);
         }
         public void setIsNotInJail()
         {
-            
+            this.setLocation(10, false);
             this.inJail = false;
         }
 

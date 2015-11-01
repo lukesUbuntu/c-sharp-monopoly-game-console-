@@ -62,31 +62,44 @@ namespace MolopolyGame
             }
 
 
-            //prompt player to make move
-            Console.WriteLine("{0}Your turn. Press Enter to make move", playerPrompt(iPlayerIndex));
-            Console.ReadLine();
-            //move player
+           
+            if (player.getJailStatis() == true && player.first == false)
+            {
+                
+                displayJailMenu(player);
+            }
+            else
+            {
+                //prompt player to make move
+                Console.WriteLine("{0}Your turn. Press Enter to make move", playerPrompt(iPlayerIndex));
+                Console.ReadLine();
+                //move player
+
+
+
+                //Display making move
+                Console.WriteLine("*****Move for {0}:*****", player.getName());
+                //Display rolling
+                Console.WriteLine("{0}{1}\n", playerPrompt(iPlayerIndex), player.diceRollingToString());
+                //check for double
+
+                player.CheckForDouble();
+                Property propertyLandedOn = Board.access().getProperty(player.getLocation());
+                //landon property and output to console
+                Console.WriteLine(propertyLandedOn.landOn(ref player));
+                //Display player details
+                Console.WriteLine("\n{0}{1}", playerPrompt(iPlayerIndex), player.BriefDetailsToString());
+
+
+                //display player choice menu
+                displayPlayerChoiceMenu(player);
+
+                //Inside player.move there is a check that will stop the player from moving if 
+                //they are in jail
+                player.move();
+            }
             
-            //Inside player.move there is a check that will stop the player from moving if 
-            //they are in jail
-            player.move();
-
-            //Display making move
-            Console.WriteLine("*****Move for {0}:*****", player.getName());
-            //Display rolling
-            Console.WriteLine("{0}{1}\n", playerPrompt(iPlayerIndex), player.diceRollingToString());
-            //check for double
-            
-            player.CheckForDouble();
-            Property propertyLandedOn = Board.access().getProperty(player.getLocation());
-            //landon property and output to console
-            Console.WriteLine(propertyLandedOn.landOn(ref player));
-            //Display player details
-            Console.WriteLine("\n{0}{1}", playerPrompt(iPlayerIndex), player.BriefDetailsToString());
-            //display player choice menu
-            displayPlayerChoiceMenu(player);
-
-
+           
         }
 
         public override bool endOfGame()
@@ -245,7 +258,8 @@ namespace MolopolyGame
    
             Board.access().addProperty(ChestFactory.create("Community Chest"));
 
-        
+            //Board.access().addProperty(jailFactory.create("Jail", true)); 
+
             Board.access().addProperty(resFactory.create("Te Puke, Giant Kiwifruit", 60, 6, 50));
             Board.access().addProperty(luckFactory.create("Income Tax", true, 200));
             Board.access().addProperty(transFactory.create("Auckland International Airport"));
@@ -277,7 +291,7 @@ namespace MolopolyGame
             Board.access().addProperty(resFactory.create("Cable Cars Wellington", 300, 30, 200));
             Board.access().addProperty(resFactory.create("Cathedral Square", 300, 30, 200));
             //old            //Board.access().addProperty(luckFactory.create("Community Chest", false, 50)); // not properly implemented just 50 benefit
-            //   Board.access().addProperty(Community_Chest_Factory.create("Community Chest"));
+            Board.access().addProperty(ChestFactory.create("Community Chest"));
             Board.access().addProperty(resFactory.create("The Square, Palmerston North", 320, 32, 200));
             Board.access().addProperty(transFactory.create("Picton Ferry"));
             Board.access().addProperty(luckFactory.create("Chance", true, 50)); // not properly implemented just 50 penalty
@@ -353,6 +367,38 @@ namespace MolopolyGame
 
         public void displayJailMenu(Player player)
         {
+            int resp = 0;
+            Console.WriteLine("\n{0}Please make a selection:\n", playerPrompt(player));
+            Console.WriteLine("1. Pay $50");
+            Console.WriteLine("2. Use Get Out Of Jail Free Card");
+            Console.WriteLine("3. Roll The Dice");
+
+            Console.Write("(1-3)>");
+            //read response
+            resp = inputInteger();
+            //if response is invalid redisplay menu
+            if (resp == 0)
+                this.displayJailMenu(player);
+
+            //perform choice according to number input
+            switch (resp)
+            {
+                case 1:
+                    player.payJailFine();
+                    player.move();
+                    displayPlayerChoiceMenu(player);
+
+                    break;
+                case 2:
+                   
+                    break;
+                case 3:
+                    player.attemptRollDouble();
+                    Console.WriteLine("Press any key to continue..........");
+                    Console.ReadLine();
+                    break;
+            }
+
 
         }
 
@@ -361,80 +407,98 @@ namespace MolopolyGame
 
         public void displayPlayerChoiceMenu(Player player)
         {
-            int resp = 0;
-            Console.WriteLine("\n{0}Please make a selection:\n", playerPrompt(player));
-            Console.WriteLine("1. Finish turn");
-            Console.WriteLine("2. View your details");
-            Console.WriteLine("3. Purchase This Property");
-            Console.WriteLine("4. Buy House for Property");
-            Console.WriteLine("5. Trade Property with Player");
-            Console.WriteLine("6. Mortgage Property");
-            Console.WriteLine("7. Un Mortgage Property");
-          
-            Console.WriteLine("9. Save game");
-            if (player.getJailStatis() == true && player.first == false)
+            if (player.first == true)
             {
-                Console.WriteLine("9. Pay $50 to get out of jail");
+                int resp = 0;
+                Console.WriteLine("1. Finish turn");
+                Console.Write("(1-7)>");
+                //read response
+                resp = inputInteger();
+                //if response is invalid redisplay menu
+                if (resp == 0)
+                    this.displayPlayerChoiceMenu(player);
 
+                //perform choice according to number input
+                switch (resp)
+                {
+                    case 1:
+                        //player.first = false;
+                        break;
+                }
             }
-            Console.Write("(1-7)>");
-            //read response
-            resp = inputInteger();
-            //if response is invalid redisplay menu
-            if (resp == 0)
-                this.displayPlayerChoiceMenu(player);
-
-            //perform choice according to number input
-            switch (resp)
+            else
             {
-                case 1:
-                    player.first = false;
-                    break;
-                case 2:
-                    Console.WriteLine("==================================");
-                    Console.WriteLine(player.FullDetailsToString());
-                    Console.WriteLine("==================================");
-                    this.displayPlayerChoiceMenu(player);
-                    break;
-                case 3:
-                    this.purchaseProperty(player);
-                    this.displayPlayerChoiceMenu(player);
-                    break;
-                case 4:
-                    this.buyHouse(player);
-                    this.displayPlayerChoiceMenu(player);
-                    break;
+                int resp = 0;
+                Console.WriteLine("\n{0}Please make a selection:\n", playerPrompt(player));
+                Console.WriteLine("1. Finish turn");
+                Console.WriteLine("2. View your details");
+                Console.WriteLine("3. Purchase This Property");
+                Console.WriteLine("4. Buy House for Property");
+                Console.WriteLine("5. Trade Property with Player");
+                Console.WriteLine("6. Mortgage Property");
+                Console.WriteLine("7. Un Mortgage Property");
 
-                case 5:
-                    this.tradeProperty(player);
-                    this.displayPlayerChoiceMenu(player);
-                    break;
-                case 6:
-                    this.mortgage_property(player);
-                    this.displayPlayerChoiceMenu(player);
-                    break;
-                case 7:
-                    this.un_mortgage_property(player);
-                    this.displayPlayerChoiceMenu(player);
-                    break;
-                case 8:
-                    this.buyHouse(player);
-                    this.displayPlayerChoiceMenu(player);
-                    break;
 
-                case 9:
-                    player.payJailFine();
-                    break;
-                case 10:
-                    player.payJailFine();
-                    break;
+                if (player.getJailStatis() == true && player.first == false)
+                {
+                    Console.WriteLine("9. Pay $50 to get out of jail");
 
-                   
-
-                default:
-                    Console.WriteLine("That option is not avaliable. Please try again.");
+                }
+                Console.Write("(1-7)>");
+                //read response
+                resp = inputInteger();
+                //if response is invalid redisplay menu
+                if (resp == 0)
                     this.displayPlayerChoiceMenu(player);
-                    break;
+
+                //perform choice according to number input
+                switch (resp)
+                {
+                    case 1:
+                        //player.first = false;
+                        break;
+                    case 2:
+                        Console.WriteLine("==================================");
+                        Console.WriteLine(player.FullDetailsToString());
+                        Console.WriteLine("==================================");
+                        this.displayPlayerChoiceMenu(player);
+                        break;
+                    case 3:
+                        this.purchaseProperty(player);
+                        this.displayPlayerChoiceMenu(player);
+                        break;
+                    case 4:
+                        this.buyHouse(player);
+                        this.displayPlayerChoiceMenu(player);
+                        break;
+
+                    case 5:
+                        this.tradeProperty(player);
+                        this.displayPlayerChoiceMenu(player);
+                        break;
+                    case 6:
+                        this.mortgage_property(player);
+                        this.displayPlayerChoiceMenu(player);
+                        break;
+                    case 7:
+                        this.un_mortgage_property(player);
+                        this.displayPlayerChoiceMenu(player);
+                        break;
+                    case 8:
+                        this.buyHouse(player);
+                        this.displayPlayerChoiceMenu(player);
+                        break;
+
+                    case 9:
+                        player.payJailFine();
+                        break;
+
+
+                    default:
+                        Console.WriteLine("That option is not avaliable. Please try again.");
+                        this.displayPlayerChoiceMenu(player);
+                        break;
+                }
             }
         }
 

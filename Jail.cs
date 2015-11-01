@@ -44,8 +44,7 @@ namespace MolopolyGame
             {
                 if (player.getJailStatis() == true)
                 {
-                    SpeechSynthesizer synth = new SpeechSynthesizer();
-                    synth.Speak("Hahahaha you are in jail, Just like Kiel with his ankle bracelet");
+                   
                    
                     if (player.sendMsg == false)
                     {
