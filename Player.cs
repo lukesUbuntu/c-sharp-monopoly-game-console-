@@ -21,8 +21,8 @@ namespace MolopolyGame
         public bool first = false;
 
         //each player has two dice
-        Die die1 = new Die();
-        Die die2 = new Die();
+       public Die die1 = new Die();
+       public Die die2 = new Die();
         bool isInactive = false;
 
         //event for playerBankrupt
@@ -265,9 +265,11 @@ namespace MolopolyGame
         public void setIsInJail() {
             first = true;
            this.inJail = true;
+           this.setLocation(10, true);
         }
         public void setIsNotInJail()
         {
+            
             this.inJail = false;
         }
 

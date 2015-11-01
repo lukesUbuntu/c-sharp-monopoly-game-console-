@@ -68,7 +68,7 @@ namespace MolopolyGame
             Assert.IsInstanceOfType(t, p);
         }
 
-        [Test]
+       /* [Test]
         public void testCommunityChest()
         {
             //create a instance of community chest
@@ -76,6 +76,6 @@ namespace MolopolyGame
            Community_Chest p = T.create("new community chest");
             Type thisItem = new  Community_Chest().GetType();
             Assert.IsInstanceOfType(thisItem, p);
-        }
+        }*/
     }
 }

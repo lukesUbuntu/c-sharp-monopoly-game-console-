@@ -12,8 +12,8 @@ namespace MolopolyGame.Testing
 
         private Banker testbanker = new Banker();
         private Player testPlayer = new Player();
-        private NewDice die1 = new NewDice();
-        private NewDice die2 = new NewDice();
+        private NewDice TestDie1 = new NewDice();
+        private NewDice TestDie2 = new NewDice();
 
         [Test]
         public void GetName()
@@ -73,37 +73,53 @@ namespace MolopolyGame.Testing
         {
 
             //~~ This will test that the player will not move if they are in jail
-
+            Board.access().addPlayer(testPlayer);
             //Set the player as in jail
-            testPlayer.setIsInJail();
+            Board.access().getPlayer(0).setIsInJail();
             //get the players current location, this sould be 10
-            int currentLocation = testPlayer.getLocation();
+            int currentLocation = Board.access().getPlayer(0).getLocation();
             //set the roll for this turn, it can not be a double or the player will no longer be in jail
-            die1.setRole(1);
-            die2.setRole(3);
+
+            TestDie1.setRole(1);
+            TestDie2.setRole(3);
+
+            testPlayer.die1 = TestDie1;
+            testPlayer.die2 = TestDie2;
+
             //attempt to move the player
             testPlayer.move();
             
             
             //assert that the player has not moved
-            Assert.AreSame(currentLocation, 10);
+            
+
+            Assert.AreEqual(currentLocation, 10);
 
 
 
 
             //~~ This will test that the player will move if they are not in jail
 
-            //Set player is not in jail
-            testPlayer.setIsNotInJail();
-            //get the players current location, they should be on go
-             currentLocation = testPlayer.getLocation();
+           
+           
+            //Set the player as in jail
+            Board.access().getPlayer(0).setIsNotInJail();
+            //put the player back on go 
+            Board.access().getPlayer(0).setLocation(0, false);
+            //get the players current location, this sould be 10
+            currentLocation = Board.access().getPlayer(0).getLocation();
             //set the roll for this turn, it can not be a double or the player will no longer be in jail
-            die1.setRole(1);
-            die2.setRole(3);
+
+
+            TestDie1.setRole(1);
+            TestDie2.setRole(3);
+
+            testPlayer.die1 = TestDie1;
+            testPlayer.die2 = TestDie2;
+
+
             //attempt to move the player
             testPlayer.move();
-
-
             //assert that the player has moved 4 places as set in the dice above
             Assert.AreSame(currentLocation, 4);
 
