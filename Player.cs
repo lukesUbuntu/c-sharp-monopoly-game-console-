@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Collections;
+using System.IO;
 
 namespace MolopolyGame
 {
@@ -29,7 +30,7 @@ namespace MolopolyGame
         //event for playerBankrupt
         public event EventHandler playerBankrupt;
         public event EventHandler playerPassGo;
-
+        
         public void IncreaseJailRollCount()
         {
             JailRollCount++;
@@ -65,6 +66,7 @@ namespace MolopolyGame
             this.dBalance = InitialValuesAccessor.getPlayerStartingBalance();
             this.location = 0;
             this.inJail = false;
+
         }
 
 

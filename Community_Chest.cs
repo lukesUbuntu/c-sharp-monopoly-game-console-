@@ -13,8 +13,8 @@ namespace MolopolyGame
     public class Community_Chest : Property
     {
         public Player current_player;
-        public Banker the_bank;
-        public string sName;
+       
+        //public string sName;
         private List<Actionable> Community_Cards_Actions;
         private Random rng = new Random();
         private int cardPulled = 0;
@@ -34,7 +34,7 @@ namespace MolopolyGame
             if (this.cardPulled >= this.Community_Cards_Actions.Count) this.ShuffleCards();
 
             
-            the_bank = Banker.access();
+            
             string drawedCord = draw_card(player);
             return base.landOn(ref player) + String.Format(drawedCord);
 
@@ -169,9 +169,9 @@ namespace MolopolyGame
 
             //Console.WriteLine("Doctor's fees – Pay $50 ");
             current_player.pay(50);
-            the_bank.receive(50);
+            Banker.access().receive(50);
             Console.WriteLine("Your new balance is \n" + current_player.getBalance());
-            Console.ReadLine();
+            
 
         }
 
@@ -218,7 +218,7 @@ namespace MolopolyGame
         {
 
             current_player.receive(20);
-            the_bank.pay(20);
+            Banker.access().pay(20);
             Console.WriteLine("Your new balance is \n" + current_player.getBalance());
 
         }
@@ -226,46 +226,46 @@ namespace MolopolyGame
         public void Hospital_Fees()
         {
             current_player.pay(100);
-            the_bank.receive(100);
+            Banker.access().receive(100);
             Console.WriteLine("Your new balance is \n" + current_player.getBalance());
         }
 
         public void School_Fees()
         {
             current_player.pay(50);
-            the_bank.receive(50);
+            Banker.access().receive(50);
             Console.WriteLine("Your new balance is \n" + current_player.getBalance());
         }
 
         public void Consultancy_Fee()
         {
             current_player.receive(25);
-            the_bank.pay(25);
+            Banker.access().pay(25);
             Console.WriteLine("Your new balance is \n" + current_player.getBalance());
         }
         public void beauty_contest()
         {
             current_player.receive(10);
-            the_bank.pay(10);
+            Banker.access().pay(10);
             Console.WriteLine("Your new balance is \n" + current_player.getBalance());
         }
         public void inherit()
         {
             current_player.receive(100);
-            the_bank.pay(100);
+            Banker.access().pay(100);
             Console.WriteLine("Your new balance is \n" + current_player.getBalance());
         }
         public void sale_of_stock()
         {
             current_player.receive(50);
-            the_bank.pay(50);
+            Banker.access().pay(50);
             Console.WriteLine("Your new balance is \n" + current_player.getBalance());
         }
 
         public void Holiday_Fund()
         {
             current_player.receive(100);
-            the_bank.pay(100);
+            Banker.access().pay(100);
             Console.WriteLine("Your new balance is \n" + current_player.getBalance());
         }
         public void street_repairs()

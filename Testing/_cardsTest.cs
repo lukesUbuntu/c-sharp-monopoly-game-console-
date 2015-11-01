@@ -13,23 +13,61 @@ namespace MolopolyGame.Testing
         Chance_Cards testChanceCards = new Chance_Cards();
         Player testplayer = new Player();
         Banker testBank = new Banker();
+
        
-        [Test]
+      
+       [Test]
         public void testCommunityChestCardList()
         {
+            testccCards.ShuffleCards();
             //get the card list
-            testccCards.CardList();
+             List<Actionable> theCards = testccCards.CardList();
+            
             //check that the list is not empty
-            Assert.IsNotEmpty(testccCards.CardList());
+             Assert.IsNotEmpty(testccCards.CardList());
+             Banker.access().setBalance(20000);
+             Player testPlayer = new Player();
+            
+             testPlayer.setBalance(1000);
 
-            foreach (var i in testccCards.CardList())
+             Board.access().addPlayer(testplayer);
+
+             testccCards.draw_card(testplayer);
+
+            foreach (Actionable i in theCards)
             {
-                Assert.IsNotNull(i.Action);
+                i.Action.Invoke();
                 Assert.IsNotEmpty(i.Name);
 
             }
 
         }
+       [Test]
+       public void testChestCardList()
+       {
+
+           testChanceCards.ShuffleCards();
+           //get the card list
+           List<Actionable> theCards = testChanceCards.CardList();
+           //check that the list is not empty
+           Assert.IsNotEmpty(testChanceCards.CardList());
+           Banker.access().setBalance(20000);
+           Player testPlayer = new Player();
+
+           testPlayer.setBalance(1000);
+
+           Board.access().addPlayer(testplayer);
+
+           testChanceCards.draw_card(testplayer);
+
+           foreach (Actionable i in theCards)
+           {
+               i.Action.Invoke();
+               Assert.IsNotEmpty(i.Name);
+
+           }
+
+       }
         [Test]
         public void testChanceList()
         {
@@ -50,7 +88,7 @@ namespace MolopolyGame.Testing
         [Test]
         public void testShuffleCards()
         {
-            testccCards.the_bank = testBank;
+            //testccCards.the_bank = testBank;
             testplayer.setBalance(1000);
             var firstDraw = testccCards.draw_card(testplayer);
             var secondDraw = testccCards.draw_card(testplayer);
@@ -61,7 +99,7 @@ namespace MolopolyGame.Testing
         [Test]
         public void testShuffleCardsChance()
         {
-            testccCards.the_bank = testBank;
+            //testccCards.the_bank = testBank;
             testplayer.setBalance(1000);
             var firstDraw = testChanceCards.draw_card(testplayer);
             var secondDraw = testChanceCards.draw_card(testplayer);

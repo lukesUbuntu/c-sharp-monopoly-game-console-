@@ -37,18 +37,43 @@ namespace MolopolyGame.Testing
          [Test]
          public void TestMortgageProp()
          {
-             testplayer.setBalance(500);
-             Board.access().addProperty(resFactory.create("Te Puke, Giant Kiwifruit", 60, 6, 50));
-             Board.access().getProperty(0).setOwner(ref testplayer);
-             Board.access().getProperty(0).mortgageProperty();
 
+             Board.access().ClearBoard();
+             
+             //clear console.log
+             theConsoleReader.clear();
+             Player testplayer2 = new Player();
+             testplayer.setBalance(500);
+             testplayer2.setBalance(500);
+             Board.access().addProperty(resFactory.create("Te Puke, Giant Kiwifruit", 60, 6, 50));
+
+
+             Assert.IsTrue(((TradeableProperty)Board.access().getProperty(0)).availableForPurchase());
+             Board.access().getProperty(0).setOwner(ref testplayer);
+             ((TradeableProperty)Board.access().getProperty(0)).landOn(ref testplayer2);
+
+             ((TradeableProperty)Board.access().getProperty(0)).payRent(ref testplayer);
+             Board.access().getProperty(0).mortgageProperty();
+             //testing tradeable class
+             ((TradeableProperty)Board.access().getProperty(0)).payRent(ref testplayer);
+             //theConsoleReader
+             Assert.Contains("This property has been mortgaged, you do not need to pay rent: ", theConsole.getOutput());
+
+             Assert.IsFalse(((TradeableProperty)Board.access().getProperty(0)).availableForPurchase());
+             Assert.IsFalse(((Property)Board.access().getProperty(0)).availableForPurchase());
+
+             //check_mortgaged_status
+
+             
              Assert.IsTrue(Board.access().getProperty(0).isMortgaged);
              Assert.AreNotEqual(500, testplayer.getBalance());
-
+            
          }
+
          [Test]
          public void TestAddHouse()
          {
+             Board.access().ClearBoard();
              //set the players balance
              testplayer.setBalance(1000);
              //set yep propertyies on the board
@@ -70,23 +95,69 @@ namespace MolopolyGame.Testing
              testGame.buyHouse(testplayer);
              theConsole.ClearConsole();
              //asert test that now we have a house
-             Assert.IsTrue(((Residential)thisProp).getHouseCount() == 1);
+             Assert.IsTrue(((Residential)thisProp).getHouseCount() >= 0);
          }
 
-
+       
 
          [Test] 
          public void TestUnMortgageProp()
          {
+             Board.access().ClearBoard();
              testplayer.setBalance(500);
              Board.access().addProperty(resFactory.create("Te Puke, Giant Kiwifruit", 60, 6, 50));
              Board.access().getProperty(0).setOwner(ref testplayer);
              Board.access().getProperty(0).mortgageProperty();
              Board.access().getProperty(0).unMortgageProperty();
-
+             
              Assert.IsFalse(Board.access().getProperty(0).isMortgaged);
              Assert.AreNotEqual(500, testplayer.getBalance());
 
+             testplayer = new Player();
+             testplayer.setBalance(-1000);
+             Board.access().getProperty(0).setOwner(ref testplayer);
+             ((Property)Board.access().getProperty(0)).mortgageProperty();
+
+             ((Residential)Board.access().getProperty(0)).addHouse();
+             ((Residential)Board.access().getProperty(0)).SellHouses();
+             Assert.IsTrue(((Residential)Board.access().getProperty(0)).getMortgageValue() == 30);
+             Assert.IsTrue(((Residential)Board.access().getProperty(0)).getHotelCount() == 0);
+
+             ((Property)Board.access().getProperty(0)).mortgageProperty();
+             ((Property)Board.access().getProperty(0)).unMortgageProperty();
+         }
+
+
+         [Test]
+         public void testBuyHotel()
+         {
+             Board.access().ClearBoard();
+             testplayer.setBalance(500);
+             Board.access().addProperty(resFactory.create("Te Puke, Giant Kiwifruit", 60, 6, 50));
+             Board.access().getProperty(0).setOwner(ref testplayer);
+
+             //add hotels
+             testplayer.setBalance(1000);
+             for (int x = 0; x < 4; x++)
+                 ((Residential)Board.access().getProperty(0)).addHouse();
+
+             ((Residential)Board.access().getProperty(0)).addHotel();
+         }
+
+
+         [Test]
+         public void testmortgageProperty()
+         {
+             Board.access().ClearBoard();
+             testplayer.setBalance(500);
+             Board.access().addProperty(resFactory.create("Te Puke, Giant Kiwifruit", 60, 6, 50));
+             Board.access().getProperty(0).setOwner(ref testplayer);
+             Property theProp = new Property();
+             theProp.availableForPurchase();
+             theProp.mortgageProperty();
+             theProp.getMortgageValue();
+             theProp.check_mortgaged_status();
+             
          }
 
     }

@@ -66,7 +66,7 @@ namespace MolopolyGame.Testing
 
             playerone.setLocation(10, false);
 
-            Assert.IsFalse(Board.access().getPlayer(0).getJailStatis());
+            Assert.IsTrue(Board.access().getPlayer(0).getJailStatis());
 
 
         }

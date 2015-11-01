@@ -30,7 +30,7 @@ namespace MolopolyGame.Testing
 
             public void clear()
             {
-                this._keys.Clear();
+                this._keys = new ArrayList();
                 this._key_index = 0;
 
             }

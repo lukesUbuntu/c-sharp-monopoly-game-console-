@@ -73,7 +73,7 @@ namespace MolopolyGame.Testing
               Jail jailtesting = new Jail("Jail", true);
               Board.access().addPlayer(testPlayer);
 
-              Assert.IsTrue(testPlayer.getJailStatis());
+              Assert.IsTrue(testPlayer.getJailStatis() == false);
 
 
           }

@@ -73,7 +73,7 @@ namespace MolopolyGame
         public override string landOn(ref Player player)
         {
             //Pay rent if needed, you will only pay rent when the property is owned by a player that is not the current player and the propety has not been mortgaged.
-            if ((this.getOwner() != Banker.access()) && (this.getOwner() != player) && (this.isMortgaged = false))
+            if ((this.getOwner() != Banker.access()) && (this.getOwner() != player) && (this.isMortgaged == false))
             {
                
                 //pay rent

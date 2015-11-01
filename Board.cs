@@ -92,7 +92,10 @@ namespace MolopolyGame
             return this.properties;
         }
 
-
+        public void ClearBoard()
+        {
+            board = new Board();
+        }
 
 
     

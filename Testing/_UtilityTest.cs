@@ -22,7 +22,7 @@ namespace MolopolyGame.Testing
 
             //get p last move
             int i = p.getLastMove();
-
+            p.ToString();
             //check that p has played correct rent of 6 times last move
             decimal balance = 1500 - (6 * i);
             Assert.AreEqual(balance, p.getBalance());

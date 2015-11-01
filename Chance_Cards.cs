@@ -11,8 +11,8 @@ namespace MolopolyGame
 
 
          public Player current_player;
-        public Banker the_bank;
-        public string sName;
+      
+        //public string sName;
         private List<Actionable> Chance_Cards_Actions;
         private Random rng = new Random();
         private int cardPulled = 0;
@@ -31,7 +31,7 @@ namespace MolopolyGame
             //if we have pulled the complete deck we need to reshuffle
             if (this.cardPulled >= this.Chance_Cards_Actions.Count) this.ShuffleCards();
 
-            the_bank = Banker.access();
+          
             string drawedCord = draw_card(player);
             return base.landOn(ref player) + String.Format(drawedCord);
 
@@ -176,9 +176,9 @@ namespace MolopolyGame
 
             //Console.WriteLine("Doctor's fees – Pay $50 ");
             current_player.pay(50);
-            the_bank.receive(50);
+            Banker.access().receive(50);
             Console.WriteLine("Your new balance is \n" + current_player.getBalance());
-            Console.ReadLine();
+           
 
         }
         public void Cathedral_Square()
@@ -199,9 +199,9 @@ namespace MolopolyGame
         public void loan_matures()
         {
             current_player.pay(150);
-            the_bank.receive(150);
+            Banker.access().receive(150);
             Console.WriteLine("Your new balance is \n" + current_player.getBalance());
-            Console.ReadLine();
+            
         }
         public void Jail_Free()
         {
@@ -227,9 +227,9 @@ namespace MolopolyGame
         public void poor_tax()
         {
             current_player.pay(15);
-            the_bank.receive(15);
+            Banker.access().receive(15);
             Console.WriteLine("Your new balance is \n" + current_player.getBalance());
-            Console.ReadLine();
+           
         }
         public void Advance_to_Go()
         {

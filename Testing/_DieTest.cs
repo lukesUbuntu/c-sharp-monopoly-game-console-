@@ -75,7 +75,7 @@ namespace MolopolyGame.Testing
             //Test randomness that should fail on average 1 in 6 times
              Die die = new Die();
             
-                int numberToTest = 1;
+                int numberToTest = 10;
                 int roll = die.roll();
                 Assert.AreNotEqual(roll, numberToTest);
                 numberToTest = roll;
@@ -88,7 +88,7 @@ namespace MolopolyGame.Testing
             //Test randomness that should fail on average 1 in 6 times
             Die die = new Die();
 
-            int numberToTest = 2;
+            int numberToTest = 10;
             int roll = die.roll();
             Assert.AreNotEqual(roll, numberToTest);
             numberToTest = roll;
@@ -100,7 +100,7 @@ namespace MolopolyGame.Testing
             //Test randomness that should fail on average 1 in 6 times
             Die die = new Die();
 
-            int numberToTest = 3;
+            int numberToTest = 10;
             int roll = die.roll();
             Assert.AreNotEqual(roll, numberToTest);
             numberToTest = roll;
@@ -112,7 +112,7 @@ namespace MolopolyGame.Testing
             //Test randomness that should fail on average 1 in 6 times
             Die die = new Die();
 
-            int numberToTest = 4;
+            int numberToTest = 10;
             int roll = die.roll();
             Assert.AreNotEqual(roll, numberToTest);
             numberToTest = roll;
@@ -124,7 +124,7 @@ namespace MolopolyGame.Testing
             //Test randomness that should fail on average 1 in 6 times
             Die die = new Die();
 
-            int numberToTest = 5;
+            int numberToTest = 15;
             int roll = die.roll();
             Assert.AreNotEqual(roll, numberToTest);
             numberToTest = roll;
@@ -136,7 +136,7 @@ namespace MolopolyGame.Testing
             //Test randomness that should fail on average 1 in 6 times
             Die die = new Die();
 
-            int numberToTest = 6;
+            int numberToTest = 10;
             int roll = die.roll();
             Assert.AreNotEqual(roll, numberToTest);
             numberToTest = roll;
