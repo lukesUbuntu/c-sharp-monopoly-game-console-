@@ -8,9 +8,9 @@ namespace MolopolyGame
    public class Community_Chest_Factory : PropertyFactory
     {
         
-            public Community_Chest create(string sName)
+            public Community_Chest create()
             {
-                return new Community_Chest(sName);
+                return new Community_Chest();
             }
         
     }
