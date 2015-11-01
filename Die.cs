@@ -17,7 +17,7 @@ namespace MolopolyGame
         {
             numberRolled = numGenerator.Next(1, 7);
 
-            return 15;
+            return 1;
             
             return numberRolled;
         }

@@ -24,13 +24,13 @@ namespace MolopolyGame
         public Community_Chest(string sName)
         {
             this.sName = sName;
-            List<Actionable> Community_Cards_Actions = Shuffle(CardList());
+           this.Community_Cards_Actions = Shuffle(CardList());
         }
 
         public override string landOn(ref Player player)
         {
             //if we have pulled the complete deck we need to reshuffle
-            if (this.cardPulled >= Community_Cards_Actions.Count) this.ShuffleCards();
+            if (this.cardPulled >= this.Community_Cards_Actions.Count) this.ShuffleCards();
 
             the_bank = Banker.access();
             string drawedCord = draw_card(player);
