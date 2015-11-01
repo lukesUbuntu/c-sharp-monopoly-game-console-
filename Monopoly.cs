@@ -247,7 +247,7 @@ namespace MolopolyGame
             PropertyFactory genericFactory = new PropertyFactory();
             JailFactory jailFactory = new JailFactory();
             Community_Chest_Factory ChestFactory = new Community_Chest_Factory();
-
+            Chance_Factory ChanceCards = new Chance_Factory();
             //Create properties and add them to the board
             //Loading property details from file has not been implemented
             //Property names are taken from the "Here and Now" New Zealand version of monopoly
@@ -294,7 +294,9 @@ namespace MolopolyGame
             Board.access().addProperty(ChestFactory.create("Community Chest"));
             Board.access().addProperty(resFactory.create("The Square, Palmerston North", 320, 32, 200));
             Board.access().addProperty(transFactory.create("Picton Ferry"));
-            Board.access().addProperty(luckFactory.create("Chance", true, 50)); // not properly implemented just 50 penalty
+            
+            Board.access().addProperty(ChanceCards.create("Chance Cards"));
+            
             Board.access().addProperty(resFactory.create("Pukekura Park, Festival of Lights", 350, 35, 200));
             Board.access().addProperty(luckFactory.create("Super Tax", true, 100));
             Board.access().addProperty(resFactory.create("Rangitoto", 400, 40, 200));

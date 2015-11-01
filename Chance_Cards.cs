@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -56,8 +57,8 @@ namespace MolopolyGame
             {
                 new Actionable
                     {
-                          Name = "Take a ride on the Reading Railroad If you pass go collect $200 ",
-                          Action = Rail_Ride
+                          Name = "Take a ride on the Picton Ferry If you pass go collect $200 ",
+                          Action = Picton_Ferry
 
                     },
                 new Actionable
@@ -68,8 +69,8 @@ namespace MolopolyGame
                 
                 new Actionable
                 {
-                    Name = "Advance to Illinois Avenue ",
-                    Action = Advance_To
+                    Name = "Advance to Cathedral Square ",
+                    Action = Cathedral_Square
                 },
                  new Actionable
                 {
@@ -81,11 +82,7 @@ namespace MolopolyGame
                     Name = "Get out of jail free card",
                     Action = Jail_Free
                 },
-                 new Actionable
-                {
-                    Name = "Make general repairs on all your property Pay $25 for each house Pay $100 for each hotel ",
-                    Action = property_repairs
-                },
+                
                  new Actionable
                 {
                     Name = "Advance token to the nearest railroad and pay the owner twice the rental to which he is otherwise entitled. If railroad is unowned, you may buy it from the bank.",
@@ -98,24 +95,10 @@ namespace MolopolyGame
                 },
                  new Actionable
                 {
-                    Name = "Take a walk on the Boardwalk ",
-                    Action = walk_Boardwalk
-                },
-                 new Actionable
-                {
-                    Name = "Advance to St. Charles Place ",
-                    Action = Advance_To_Two
-                },
-                 new Actionable
-                {
                     Name = "You have been elected chairman of the board Pay each player $50 ",
                     Action = chairman
                 },
-                 new Actionable
-                {
-                    Name = "Advance token to nearest utility If unowned, you may buy it from the bank If owned, throw the dice and pay owner a total of 10 times the amount thrown ",
-                    Action = nearest_utility
-                },
+                
                  new Actionable
                 {
                     Name = "Go back 3 spaces",
@@ -166,13 +149,28 @@ namespace MolopolyGame
             }
             return list;
         }
-        
 
-   
+
+        public void Picton_Ferry()
+        {
+            int x = 0;
+            foreach (Property theProp in Board.access().getProperties())
+            {
+                if (theProp.getName() == "Picton Ferry")
+                {
+                    current_player.setLocation(x, false);
+                    break;
+
+                }
+                    
+                x++;
+            }
+
+        }
         /**
          * Card Methods below here 
          */
-        public void Doctor_fees()
+        public void dividend()
         {
 
             //Console.WriteLine("Doctor's fees – Pay $50 ");
@@ -182,29 +180,83 @@ namespace MolopolyGame
             Console.ReadLine();
 
         }
-
-        public void advance_to_go()
+        public void Cathedral_Square()
         {
+            int x = 0;
+            foreach (Property theProp in Board.access().getProperties())
+            {
+                if (theProp.getName() == "Cathedral Square")
+                {
+                    current_player.setLocation(x, false);
+                    break;
+
+                }
+
+                x++;
+            }
+        }
+        public void loan_matures()
+        {
+            current_player.pay(150);
+            the_bank.receive(150);
+            Console.WriteLine("Your new balance is \n" + current_player.getBalance());
+            Console.ReadLine();
+        }
+        public void Jail_Free()
+        {
+            Console.WriteLine("Your new balance is \n" + current_player.getBalance());
+        }
+
+
+        public void nearest_railroad()
+        {
+            int x = 0;
+            foreach (Property theProp in Board.access().getProperties())
+            {
+                if (theProp.GetType() == (new Transport().GetType()))
+                {
+                    current_player.setLocation(x, false);
+                    break;
+
+                }
+
+                x++;
+            }
+        }
+        public void poor_tax()
+        {
+            current_player.pay(15);
+            the_bank.receive(15);
+            Console.WriteLine("Your new balance is \n" + current_player.getBalance());
+            Console.ReadLine();
+        }
+        public void Advance_to_Go()
+        {
+
+           
             current_player.setLocation(0, false);
             //Console.WriteLine("Advance straight to GO");
         }
 
-        public void your_birthday()
+        public void chairman()
         {
-            //collect $10 from all players on board
+            //pay everyone 50 from all players on board
             foreach (Player otherPlayer in Board.access().getPlayers())
             {
                 if (otherPlayer != current_player)
                 {
-                    otherPlayer.pay(10);
-                    Console.WriteLine(String.Format("{0} paid you $10 ", otherPlayer.getName()));
-                    current_player.receive(10);
+                    otherPlayer.receive(50);
+                    Console.WriteLine(String.Format("{0} paid you $50 ", otherPlayer.getName()));
+                    current_player.pay(50);
                 }
 
             }
 
         }
-
+        public void Go_back()
+        {
+            current_player.setLocation(current_player.getLocation() - 3, false);
+        }
         public void Opera_Night()
         {
             foreach (Player otherPlayer in Board.access().getPlayers())
@@ -220,64 +272,16 @@ namespace MolopolyGame
             Console.WriteLine("Your new balance is \n" + current_player.getBalance());
         }
 
-        public void Tax_refund()
+
+        public void Go_to_Jail() 
         {
-
-            current_player.receive(20);
-            the_bank.pay(20);
-            Console.WriteLine("Your new balance is \n" + current_player.getBalance());
-
+            current_player.setIsInJail();
+            Console.WriteLine("Your in jail");
         }
 
-        public void Hospital_Fees()
-        {
-            current_player.pay(100);
-            the_bank.receive(100);
-            Console.WriteLine("Your new balance is \n" + current_player.getBalance());
-        }
 
-        public void School_Fees()
-        {
-            current_player.pay(50);
-            the_bank.receive(50);
-            Console.WriteLine("Your new balance is \n" + current_player.getBalance());
-        }
 
-        public void Consultancy_Fee()
-        {
-            current_player.receive(25);
-            the_bank.pay(25);
-            Console.WriteLine("Your new balance is \n" + current_player.getBalance());
-        }
-        public void beauty_contest()
-        {
-            current_player.receive(10);
-            the_bank.pay(10);
-            Console.WriteLine("Your new balance is \n" + current_player.getBalance());
-        }
-        public void inherit()
-        {
-            current_player.receive(100);
-            the_bank.pay(100);
-            Console.WriteLine("Your new balance is \n" + current_player.getBalance());
-        }
-        public void sale_of_stock()
-        {
-            current_player.receive(50);
-            the_bank.pay(50);
-            Console.WriteLine("Your new balance is \n" + current_player.getBalance());
-        }
 
-        public void Holiday_Fund()
-        {
-            current_player.receive(100);
-            the_bank.pay(100);
-            Console.WriteLine("Your new balance is \n" + current_player.getBalance());
-        }
-        public void street_repairs()
-        {
-            Console.WriteLine("Your new balance is \n" + current_player.getBalance());
-        }
 
 
 

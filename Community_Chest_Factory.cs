@@ -14,4 +14,14 @@ namespace MolopolyGame
             }
         
     }
+
+     public class Chance_Factory : PropertyFactory
+    {
+        
+            public Chance_Cards create(string sName)
+            {
+                return new Chance_Cards(sName);
+            }
+        
+    }
 }
