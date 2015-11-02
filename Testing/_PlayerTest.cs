@@ -67,6 +67,21 @@ namespace MolopolyGame.Testing
 
         }
 
+        public void TestSetIsInJail()
+        {
+            //Check that the player is in jail if setIsInJail is called  
+            Board.access().addPlayer(new Player("Player1"));
+
+            Board.access().getPlayer(0).setIsInJail();
+            
+
+
+            Assert.IsTrue(Board.access().getPlayer(0).getJailStatis());
+
+
+        }
+
+        //this test is not working, having trouble setting the die roll
         [Test]
 
         public void testMove()
@@ -80,11 +95,11 @@ namespace MolopolyGame.Testing
             int currentLocation = Board.access().getPlayer(0).getLocation();
             //set the roll for this turn, it can not be a double or the player will no longer be in jail
 
-           // TestDie1.setRole(1);
-           // TestDie2.setRole(3);
+            TestDie1.setRole(1);
+            TestDie2.setRole(3);
 
-            //testPlayer.die1 = TestDie1;
-            //testPlayer.die2 = TestDie2;
+            testPlayer.die1 = TestDie1;
+            testPlayer.die2 = TestDie2;
 
             //attempt to move the player
             testPlayer.move();
@@ -93,7 +108,7 @@ namespace MolopolyGame.Testing
             //assert that the player has not moved
            // test
 
-            //Assert.AreEqual(currentLocation, (testPlayer.die1 + testPlayer.die2));
+            Assert.AreEqual(currentLocation, 10);
 
 
 
@@ -111,7 +126,7 @@ namespace MolopolyGame.Testing
             //set the roll for this turn, it can not be a double or the player will no longer be in jail
 
 
-            TestDie1.setRole(1);
+            TestDie1.setRole(4);
             TestDie2.setRole(3);
 
             testPlayer.die1 = TestDie1;
@@ -121,15 +136,55 @@ namespace MolopolyGame.Testing
             //attempt to move the player
             testPlayer.move();
             //assert that the player has moved 4 places as set in the dice above
-            Assert.AreSame(currentLocation, 4);
+            Assert.AreSame(currentLocation, 7);
 
 
         }
 
         
+        [Test]
+        public void TestsetLocation()
+        {
+            Board.access().addPlayer(testPlayer);
+            Board.access().getPlayer(0).setLocation(16, false);
 
+          int LocationIndex = Board.access().getPlayer(0).getLocation();
 
+          Assert.AreEqual(16, LocationIndex);
+        }
 
+        [Test]
+        public void TestcheckBankrupt()
+        {
+            Board.access().addPlayer(testPlayer);
+            testPlayer.setBalance(100);
+            testPlayer.checkBankrupt();
+
+            Assert.IsFalse(testPlayer.isNotActive());
+
+            Board.access().addPlayer(testPlayer);
+            testPlayer.setBalance(0);
+            testPlayer.checkBankrupt();
+
+            Assert.IsTrue(testPlayer.isNotActive());
+
+        }
+
+        [Test]
+        public void TestgetPropertiesOwnedFromBoard()
+        {
+            ResidentialFactory resFactory = new ResidentialFactory();
+            Board.access().addPlayer(testPlayer);
+            testPlayer.setBalance(1000);
+            Board.access().addProperty(resFactory.create("Te Puke, Giant Kiwifruit", 60, 6, 50));
+            testPlayer.setLocation(0, false);
+            TradeableProperty propertyLocatedOn = (TradeableProperty)Board.access().getProperty(testPlayer.getLocation());
+            propertyLocatedOn.purchase(ref testPlayer);
+
+           
+
+            Assert.IsNotNull(testPlayer.getPropertiesOwned());
+        }
 
         public class NewDice : Die
         {

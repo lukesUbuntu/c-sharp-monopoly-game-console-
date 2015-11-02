@@ -17,9 +17,9 @@ namespace MolopolyGame
     {
         ConsoleColor[] colors = new ConsoleColor[8] { ConsoleColor.Cyan, ConsoleColor.Green, ConsoleColor.Yellow, ConsoleColor.Red, ConsoleColor.Magenta, ConsoleColor.Gray, ConsoleColor.Blue, ConsoleColor.DarkYellow };
         bool gameSetUp = false;
-        int rollCount;
+       // int rollCount;
         //create a collection that will be used to save the game
-      //  Player players = new List<Player>();
+      // Player players = new List<Player>();
         //clsPerson[] objArr = new clsPerson[1000];
         public List<Player> playerList = new List<Player>();
         public override void initializeGame()
@@ -74,7 +74,9 @@ namespace MolopolyGame
                 Console.WriteLine("{0}Your turn. Press Enter to make move", playerPrompt(iPlayerIndex));
                 Console.ReadLine();
                 //move player
-
+                //Inside player.move there is a check that will stop the player from moving if 
+                //they are in jail
+                player.move();
 
 
                 //Display making move
@@ -94,9 +96,7 @@ namespace MolopolyGame
                 //display player choice menu
                 displayPlayerChoiceMenu(player);
 
-                //Inside player.move there is a check that will stop the player from moving if 
-                //they are in jail
-                player.move();
+               
             }
             
            

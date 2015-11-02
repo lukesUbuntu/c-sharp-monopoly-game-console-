@@ -5,20 +5,21 @@ using System.Collections;
 
 namespace MolopolyGame
 {
-   
+
     /// <summary>
     /// Class for players playing monopoly
     /// </summary>
-    
+
     public class Player : Trader
     {
         private int location;
         private int lastMove;
         private bool inJail;
-        public int rollCount;
+        // public int rollCount;
         public int rollDoubleCount;
         public bool sendMsg;
         public bool first = false;
+        private int JailRollCount;
 
         //each player has two dice
         public Die die1 = new Die();
@@ -29,12 +30,33 @@ namespace MolopolyGame
         public event EventHandler playerBankrupt;
         public event EventHandler playerPassGo;
 
+        public void IncreaseJailRollCount()
+        {
+            JailRollCount++;
+        }
+
+        
+
+        public void ResetJailRollCount()
+        {
+            JailRollCount = 0;
+
+
+        }
+
+        public int GetJailRollCount()
+        {
+            return JailRollCount;
+        }
+
+
         public Player()
         {
             this.sName = "Player";
             this.dBalance = InitialValuesAccessor.getPlayerStartingBalance();
             this.location = 0;
             this.inJail = false;
+
         }
 
         public Player(string sName)
@@ -46,11 +68,12 @@ namespace MolopolyGame
         }
 
 
-        public Player(string sName, decimal dBalance) : base(sName, dBalance)
+        public Player(string sName, decimal dBalance)
+            : base(sName, dBalance)
         {
             this.location = 0;
         }
-  
+
         public void move()
         {
             die1.roll();
@@ -63,15 +86,15 @@ namespace MolopolyGame
             }
             else
             {
-             
+
                 //move distance is total of both throws
                 int iMoveDistance = die1.numberLastRolled() + die2.numberLastRolled();
-                
+
                 //increase location
                 this.setLocation(this.getLocation() + iMoveDistance, false);
                 this.lastMove = iMoveDistance;
             }
-           
+
         }
 
         public int getLastMove()
@@ -79,9 +102,10 @@ namespace MolopolyGame
             return this.lastMove;
         }
 
-        public bool getJailStatis() {
-        
-        return this.inJail;
+        public bool getJailStatis()
+        {
+
+            return this.inJail;
         }
 
         public string BriefDetailsToString()
@@ -115,13 +139,13 @@ namespace MolopolyGame
 
         public void setLocation(int location, bool playerpaPassGo)
         {
-           
+
             //if set location is greater than number of squares then move back to beginning
             if (location >= Board.access().getSquares())
             {
                 location = (location - Board.access().getSquares());
                 //raise the pass go event if subscribers
-                if(playerPassGo != null)
+                if (playerPassGo != null)
                     this.playerPassGo(this, new EventArgs());
                 //add 200 for passing go
                 this.receive(200);
@@ -134,18 +158,29 @@ namespace MolopolyGame
             die1.roll();
             die2.roll();
 
-            if (die1.numberRolled != die2.numberRolled)
+            if (die1.numberRolled == die2.numberRolled)
             {
                 this.setIsNotInJail();
                 Console.WriteLine("You have rolled doubles and are no longer in jail!");
             }
             else
             {
-                Console.WriteLine("You did not roll a double you are still in jail!");
+                IncreaseJailRollCount();
 
+                if (GetJailRollCount() >= 3)
+                {
+                    this.payJailFine();
+                    this.setLocation(10, false);
+                    ResetJailRollCount();
+                }
+
+                else
+                {
+                    Console.WriteLine("You did not roll a double you are still in jail!");
+                }
 
             }
-           
+
         }
 
         public int getLocation()
@@ -154,23 +189,24 @@ namespace MolopolyGame
         }
 
         //check the dice roll for doubles 
-        public bool CheckForDouble() {
+        public bool CheckForDouble()
+        {
 
-            
+
             int dice_1 = Int32.Parse(die1.ToString());
             int dice_2 = Int32.Parse(die2.ToString());
 
-           
+
 
             if (dice_1 == dice_2 && dice_2 == dice_1)
             {
-                
+
                 if (this.getJailStatis() == true)
                 {
                     this.setIsNotInJail();
                     Console.WriteLine("You have rolled doubles and are no longer in jail!");
-                    
-                    
+
+
                 }
 
                 rollDoubleCount++;
@@ -182,7 +218,7 @@ namespace MolopolyGame
                     this.setLocation(10, false);
                     sendMsg = false;
                     Console.WriteLine("You have rolled doubles 3 times in a row and have been sent to jail!");
-                    
+
                     rollDoubleCount = 0;
 
                 }
@@ -197,9 +233,9 @@ namespace MolopolyGame
 
         public string diceRollingToString()
         {
-            return String.Format("Rolling Dice:\tDice 1: {0}\tDice 2: {1}", die1, die2); 
+            return String.Format("Rolling Dice:\tDice 1: {0}\tDice 2: {1}", die1, die2);
         }
-      
+
 
         public ArrayList getPropertiesOwnedFromBoard()
         {
@@ -240,9 +276,9 @@ namespace MolopolyGame
             for (int i = 0; i < Board.access().getProperties().Count; i++)
             {
                 //owned by this player
-                if (Board.access().getProperty(i).getOwner() == this )
+                if (Board.access().getProperty(i).getOwner() == this)
                 {
-                    
+
                     //add to arraylist
                     propertiesOwned.Add(Board.access().getProperty(i));
                 }
@@ -281,10 +317,11 @@ namespace MolopolyGame
         }
 
         //send player to jail
-        public void setIsInJail() {
-           this.first = true;
-           this.inJail = true;
-           this.setLocation(10, true);
+        public void setIsInJail()
+        {
+            this.first = true;
+            this.inJail = true;
+            this.setLocation(10, true);
         }
         public void setIsNotInJail()
         {
@@ -292,14 +329,14 @@ namespace MolopolyGame
             this.inJail = false;
         }
 
-        
+
 
         public bool isNotActive()
         {
             return this.isInactive;
         }
 
-       
+
 
     }
 }

@@ -68,13 +68,33 @@ namespace MolopolyGame.Testing
             Assert.IsInstanceOfType(t, p);
         }
 
-       /* [Test]
+        [Test]
         public void testCommunityChest()
         {
             //create a instance of community chest
             Community_Chest_Factory T = new Community_Chest_Factory();
            Community_Chest p = T.create("new community chest");
             Type thisItem = new  Community_Chest().GetType();
+            Assert.IsInstanceOfType(thisItem, p);
+        }
+
+        public void testJail()
+        {
+            //create a instance of jail
+            JailFactory T = new JailFactory();
+            Jail p = T.create("jail",true);
+            Type thisItem = new Jail().GetType();
+            Assert.IsInstanceOfType(thisItem, p);
+        }
+
+
+        /*[Test]
+        public void testChanceCards()
+        {
+            //create a instance of chance cards
+            Chance_Factory T = new Chance_Factory();
+            Chance_Factory p = T.create("Chance Cards");
+            Type thisItem = new Community_Chest().GetType();
             Assert.IsInstanceOfType(thisItem, p);
         }*/
     }

@@ -34,8 +34,8 @@ namespace MolopolyGame
             
             if (this.setJail == true)
             {
-               // SpeechSynthesizer synth = new SpeechSynthesizer();
-               // synth.Speak("You have gone to jail, you do not pass go you can not collect $200");
+              
+              Console.WriteLine("You have gone to jail, you do not pass go you can not collect $200\n");
                 player.setIsInJail();
                 player.setLocation(10, false);
                 return base.landOn(ref player) + String.Format(player.getName().ToString() + " has gone to jail!");

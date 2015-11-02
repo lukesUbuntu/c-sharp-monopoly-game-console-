@@ -5,6 +5,7 @@ using System.Text;
 
 namespace MolopolyGame
 {
+    //This should be renamed to card factory as I have used it for both decks of cards
    public class Community_Chest_Factory : PropertyFactory
     {
         

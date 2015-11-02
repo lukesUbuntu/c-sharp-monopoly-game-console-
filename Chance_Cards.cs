@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MolopolyGame
 {
-    class Chance_Cards : Property
+    public class Chance_Cards : Property
     {
 
 
@@ -137,8 +137,9 @@ namespace MolopolyGame
 
         private List<Actionable> Shuffle(List<Actionable> list)
         {
-
+            // n = the size of the deck of cards
             int n = list.Count;
+            //loop through the cards
             while (n > 1)
             {
                 n--;
@@ -168,7 +169,7 @@ namespace MolopolyGame
 
         }
         /**
-         * Card Methods below here 
+         * Card Methods
          */
         public void dividend()
         {
@@ -235,7 +236,7 @@ namespace MolopolyGame
 
            
             current_player.setLocation(0, false);
-            //Console.WriteLine("Advance straight to GO");
+            Console.WriteLine("Advance straight to GO");
         }
 
         public void chairman()

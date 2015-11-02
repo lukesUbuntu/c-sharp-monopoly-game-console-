@@ -9,6 +9,9 @@ namespace MolopolyGame.Testing
      [TestFixture]
    public class _JailTest
     {
+         JailFactory testJailFac = new JailFactory();
+         Jail testjail = new Jail();
+         Player testPlayer = new Player();
          [Test]
          public void RollDoubleGoToJail() {
 
@@ -36,5 +39,44 @@ namespace MolopolyGame.Testing
 
 
          }
+
+         [Test]
+         public void testisjail()
+         {
+             testJailFac.create("Jail",true);
+
+             testjail.isjailproperty();
+
+             Board.access().addProperty(testJailFac.create("Jail", false));
+             Board.access().addProperty(testJailFac.create("Jail", true));
+             
+             testjail.isjailproperty();
+
+             
+
+         }
+
+          [Test]
+         public void testLandOnJailJustVisit()
+         {
+             Jail jailtesting = new Jail("Jail", false);
+             Board.access().addPlayer(testPlayer);
+
+             Assert.IsFalse(testPlayer.getJailStatis());
+             jailtesting.landOn(ref testPlayer);
+
+         }
+
+          [Test]
+          public void testLandOnJailInJail()
+          {
+              Jail jailtesting = new Jail("Jail", true);
+              Board.access().addPlayer(testPlayer);
+
+              Assert.IsTrue(testPlayer.getJailStatis());
+
+
+          }
+
     }
 }

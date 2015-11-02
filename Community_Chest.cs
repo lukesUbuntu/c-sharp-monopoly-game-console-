@@ -7,6 +7,7 @@ namespace MolopolyGame
 {
     /// <summary>
     /// This class stores all of the community chest cards
+    ///  //info for creating a list of actions was taken from http://stackoverflow.com/questions/4910775/can-a-list-hold-multiple-void-methods
     /// </summary>
 
     public class Community_Chest : Property
@@ -29,9 +30,10 @@ namespace MolopolyGame
 
         public override string landOn(ref Player player)
         {
-            //if we have pulled the complete deck we need to reshuffle
+            //if the whole deck has been used, re shuffle the cards
             if (this.cardPulled >= this.Community_Cards_Actions.Count) this.ShuffleCards();
 
+            
             the_bank = Banker.access();
             string drawedCord = draw_card(player);
             return base.landOn(ref player) + String.Format(drawedCord);
@@ -44,11 +46,11 @@ namespace MolopolyGame
             List<Actionable> Community_Cards_Actions = Shuffle(CardList());
             Console.Write("Shuffled");
         }
-        //info for creating a list of actions was taken from http://stackoverflow.com/questions/4910775/can-a-list-hold-multiple-void-methods
+       
 
         //Deck of comunity chest cards
 
-
+        
 
         public List<Actionable> CardList()
         {
@@ -129,7 +131,7 @@ namespace MolopolyGame
 
             return Community_Cards_Actions;
         }
-        //confirmed that this action runs
+        //draw a card
 
         public string draw_card(Player player)
         {
@@ -139,11 +141,11 @@ namespace MolopolyGame
             Actionable cardPull = Community_Cards_Actions[this.cardPulled++];
             cardPull.Action.Invoke();
             return cardPull.Name.ToString();
-            //return ("need to figure out how to not bother returning anything");
+            
         }
 
         
-
+        //shuffle the list of actions
         private List<Actionable> Shuffle(List<Actionable> list)
         {
 
@@ -161,9 +163,7 @@ namespace MolopolyGame
         
 
    
-        /**
-         * Card Methods below here 
-         */
+      //Card methods or actions
         public void Doctor_fees()
         {
 
@@ -178,12 +178,14 @@ namespace MolopolyGame
         public void advance_to_go()
         {
             current_player.setLocation(0, false);
-            //Console.WriteLine("Advance straight to GO");
+            Console.WriteLine("Advance straight to GO");
         }
 
         public void your_birthday()
         {
             //collect $10 from all players on board
+
+            //loop through all players
             foreach (Player otherPlayer in Board.access().getPlayers())
             {
                 if (otherPlayer != current_player)
