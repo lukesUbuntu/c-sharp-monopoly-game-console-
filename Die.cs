@@ -4,21 +4,21 @@ using System.Text;
 
 namespace MolopolyGame
 {
-     /// <summary>
+    /// <summary>
     /// This is class for a die that generates random number 1-6 inclusive
     /// </summary>
-    
+
     public class Die
     {
-        
-       public int numberRolled;
-        
+        private static Random numGenerator = new Random();
+        public int numberRolled;
+
         public int roll()
         {
-            Random numGenerator = new Random();
+
             numberRolled = numGenerator.Next(1, 7);
 
-           
+
             return numberRolled;
         }
 
@@ -26,7 +26,7 @@ namespace MolopolyGame
         {
             return numberRolled;
         }
-         
+
         public override string ToString()
         {
             return numberRolled.ToString();
