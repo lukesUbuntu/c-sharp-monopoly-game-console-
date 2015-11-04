@@ -8,11 +8,12 @@ using System.IO;
 namespace MolopolyGame.Testing
 {
     [TestFixture]
-    class _MonopolyTest
+    class _MonopolyTest : TestHelper
     {
         private Banker testbanker = new Banker();
         private Player testPlayer = new Player();
         private Monopoly testGame = new Monopoly();
+        private Board testBoard = new Board();
         private consoleIntercept theConsole;
         private consoleReader theConsoleReader;
 
@@ -23,6 +24,49 @@ namespace MolopolyGame.Testing
             theConsoleReader = new consoleReader();
             Console.SetOut(theConsole);
             Console.SetIn(theConsoleReader);
+        }
+
+        [Test]
+        public void testsetUpGame()
+        {
+            theConsoleReader.useKey("2");
+            //send y to confirm the action
+            theConsoleReader.useKey("playerOne");
+            theConsoleReader.useKey("playerTwo");
+
+            testGame.setUpGame();
+            theConsoleReader.clear();
+            Assert.IsTrue(testGame.playerList.Count == 2);
+            
+        }
+        [Test]
+        public void testInputInt()
+        {
+            theConsoleReader.useKey("2");
+            testGame.inputInteger();
+            Assert.AreEqual(2, 2);
+         
+
+        }
+        [Test]
+        public void setupPlayers()
+        {
+
+
+            //send 2 to the console to add two players
+            theConsoleReader.useKey("2");
+            //send y to confirm the action
+            theConsoleReader.useKey("playerOne");
+            theConsoleReader.useKey("playerTwo");
+
+
+            testGame.setUpPlayers();
+            string playerOneName = testGame.playerList[0].getName();
+            string playerTwoName = testGame.playerList[1].getName();
+            theConsoleReader.clear();
+            Assert.IsTrue(playerOneName == "playerOne");
+            Assert.IsTrue(playerTwoName == "playerTwo");
+            
         }
         [Test]
         public void testsetUpProperties()
@@ -73,72 +117,66 @@ namespace MolopolyGame.Testing
         }
 
         [Test]
-        public void TestPlayerMenu()
+        public void TestPlayerChoiceMenu()
         {
+
+            theConsoleReader.useKey("1");
+            theConsole.ClearConsole();
             testGame.displayPlayerChoiceMenu(testPlayer);
+
+            ArrayList T = theConsole.getOutput();
+            Assert.IsTrue((T[1].ToString() == "1. Finish turn"));
+            theConsole.ClearConsole();
+
+            testGame.inputInteger();
             Assert.NotNull(testGame);
 
+        }
+        // [Test]
+        public void TestMainChoiceMenu()
+        {
+
+            theConsoleReader.useKey("1");
+            theConsole.ClearConsole();
+            testGame.displayMainChoiceMenu();
+
+            ArrayList T = theConsole.getOutput();
+            Assert.IsTrue((T[1].ToString() == "2. Start New Game"));
+            theConsole.ClearConsole();
+
+            testGame.inputInteger();
+            Assert.NotNull(testGame);
 
         }
-
         [Test]
-        public void TestMakePlay()
+        public void TestSetUpBoard()
         {
-            testGame.makePlay(0);
-
-        }
-    }
-
-    public class consoleReader : TextReader
-    {
-        string key;
-        public override string ReadLine()
-        {
-            return this.key;
-        }
-
-        public void useKey(string theKey)
-        {
-            this.key = theKey;
-        }
-    }
+            testGame.setUpProperties();
 
 
-    public class consoleIntercept : TextWriter
-    {
-        ArrayList intercetped;
-
-        public consoleIntercept()
-        {
-            this.intercetped = new ArrayList();
-        }
-        public override void WriteLine(string consoleMessage)
-        {
-            this.intercetped.Add(consoleMessage);
-            //this.intercetped += consoleMessage;
-        }
-        public override void Write(string consoleMessage)
-        {
-            this.intercetped.Add(consoleMessage);
-            //this.intercetped += consoleMessage;
-        }
-        public void ClearConsole()
-        {
-            this.intercetped.Clear();
-            //this.intercetped = "";
+            Assert.IsTrue(Board.access().getProperty(0).getName() == "Go");
+            Assert.IsTrue(Board.access().getProperty(0).getOwner().getName().ToString() == "Banker");
         }
 
-        public override Encoding Encoding
+
+        //  [Test]
+        public void TestgetInputYN()
         {
-            get { throw new Exception("The method or operation is not implemented."); }
+            String Question = "Will This Test Pass";
+            testGame.getInputYN(testPlayer, Question);
+            theConsoleReader.useKey("S");
+
+            //   theConsole.ClearConsole();
+            ArrayList T = theConsole.getOutput();
+            Assert.IsTrue((T[0].ToString() == "That answer cannot be understood. Please answer 'y' or 'n'."));
         }
 
-        public ArrayList getOutput()
-        {
-            return this.intercetped;
-        }
 
 
 
     }
+
+
+
+
 }

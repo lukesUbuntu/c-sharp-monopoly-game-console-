@@ -69,6 +69,7 @@
     <Compile Include="PropertyFactory.cs" />
     <Compile Include="Residential.cs" />
     <Compile Include="ResidentialFactory.cs" />
+    <Compile Include="Testing\TestHelper.cs" />
     <Compile Include="Testing\_BankerTest.cs" />
     <Compile Include="Testing\_BoardTest.cs" />
     <Compile Include="Testing\_cardsTest.cs" />
